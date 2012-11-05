@@ -1,0 +1,158 @@
+\documentclass[11pt,a4paper,oneside]{memoir}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[finnish]{babel}%change this depending on your language
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fontspec}
+\usepackage{tocloft}
+\usepackage{lipsum}
+\usepackage{titlesec}
+\usepackage{url}
+\usepackage{mathtools}
+
+%condition for adding or not space in TOC
+\usepackage{etoolbox}
+%for compact list
+\usepackage{enumitem}
+%for block comment
+\usepackage{verbatim}
+%for "easier" references
+\usepackage{varioref}
+%forcing single line spacing in bibliography
+\DisemulatePackage{setspace}
+\usepackage{setspace}
+%including figure (image)
+\usepackage{graphicx}
+%change the numbering for figure
+\usepackage{chngcntr}
+%strike trough
+\usepackage{ulem}
+%euro symbol
+\usepackage{eurosym}
+
+%NORMAL TEXT
+%all text, title, etc. in same tahoma font
+\setmainfont{Tahoma}
+%line space
+\linespread{1.5}
+%\doublespacing
+%margin
+\usepackage[top=2.5cm, bottom=3cm, left=4cm, right=2cm, nofoot]{geometry}
+\setlength{\parindent}{0pt} %first line of paragraph not indented
+\setlength{\parskip}{16.5pt} %one empty line to separate paragraph
+%list with small line space separation
+\tightlists
+
+%IMAGE - FIGURE
+%the figures should be placed in the "illustration" folder
+\graphicspath{{illustration/}}
+%figure number without chapter (1.1, 1.2, 2.1) to (1, 2, 3)
+\counterwithout{figure}{chapter}
+%border around images
+\setlength\fboxsep{0pt}
+\setlength\fboxrule{0.5pt}
+%caption font size
+\captionnamefont{\small}
+\captiontitlefont{\small}
+%space after figure caption (and other float elements)
+\setlength{\belowcaptionskip}{-7pt}
+
+%TOC
+%remove dots
+\renewcommand*{\cftdotsep}{\cftnodots}
+%chapter title and page number not in bold
+\renewcommand{\cftchapterfont}{}
+\renewcommand{\cftchapterpagefont}{}
+%sub section in toc
+\setcounter{tocdepth}{2}
+%subsection numbered
+\setcounter{secnumdepth}{2}
+\renewcommand{\tocheadstart}{\vspace*{-15pt}}
+\renewcommand{\printtoctitle}[1]{\fontsize{13pt}{13pt}\bfseries #1}
+\renewcommand{\aftertoctitle}{\vspace*{-22pt}\afterchaptertitle}
+%spacing afer a chapter in toc
+\preto\section{%
+  \ifnum\value{section}=0\addtocontents{toc}{\vskip11pt}\fi
+}
+%spacing afer a section in toc
+\renewcommand{\cftsectionaftersnumb}{\vspace*{-3pt}}
+%spacing afer a subsection in toc
+\renewcommand{\cftsubsectionaftersnumb}{\vspace*{-1pt}}
+
+%TITLES
+%chapter title
+\titleformat{\chapter}
+{\fontsize{13pt}{13pt}\bfseries\linespread{1}}
+{\thechapter}{.5cm}{}
+\titlespacing*{\chapter}{0pt}{.32cm}{9pt}
+\titleformat{\section}
+{\fontsize{12pt}{12pt}\linespread{1}}
+{\thesection}{.5cm}{}
+\titlespacing*{\section}{0pt}{14pt}{6pt}
+\titleformat{\subsection}
+{\fontsize{12pt}{12pt}\linespread{1}}
+{\thesubsection}{.5cm}{}
+\titlespacing*{\subsection}{0pt}{14pt}{6pt}
+
+%QUOTE
+\renewenvironment{quote}
+    {\list{}{\rightmargin=0pt\leftmargin=1cm\topsep=-10pt}%
+    \item\relax\fontsize{10pt}{10pt}\singlespacing}
+    {\endlist}
+
+%BIBLIOGRAPHY
+%bibliography title to be "references"
+\renewcommand\bibname{References}
+\makeatletter %reference list option change
+\renewcommand\@biblabel[1]{#1\hspace{1cm}} %from [1] to 1 with 1cm gap
+\makeatother %
+\setlength{\bibitemsep}{11pt}
+
+%THESIS
+\author{Your name here}
+\title{Your title here}
+
+\begin{document}
+%page number always on the top right, clear the "chapter/section" head
+\pagestyle{myheadings}
+\markright{}
+%clear chapter "title" foot page
+\makeevenfoot{plain}{}{}{}
+\makeoddfoot{plain}{}{}{}
+
+%FRONT PAGE (TODO)
+
+%ABSTRACT (TODO)
+
+\makeevenhead{plain}{}{}{}
+\makeoddhead{plain}{}{}{}
+\pagestyle{empty} %remove page number in toc (if longer than 2 pages)
+\tableofcontents*
+\pagestyle{empty} %remove page number in toc (if longer than 1 pages)
+\clearpage
+\pagestyle{plain}
+
+%list of figure, tables comes here...
+
+%abbreviation comes here...
+
+%page number always on top right; also for chapter "title" page
+\makeevenhead{plain}{}{}{\thepage}
+\makeoddhead{plain}{}{}{\thepage}
+
+\setcounter{page}{1} %page 1 should be Introduction
+
+%CONTENT
+\chapter{Content}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam purus, in ornare nulla imperdiet molestie. Nam tempus erat eu dui rhoncus et vestibulum mi elementum. Ut porttitor elit sit amet justo dignissim sit amet sagittis massa egestas. Mauris sed dolor eget dui fermentum sodales ut eu nibh. 
+
+\section{Section}
+Quisque augue est, elementum ac porttitor non, porttitor ac orci. Donec hendrerit, ligula ac luctus egestas, sem dolor pretium nunc, sed vehicula magna diam a massa. Donec mattis, arcu et tempor mattis, risus tortor ultrices metus, nec sodales sem dolor eu elit. Nullam egestas enim at odio pellentesque bibendum. 
+
+\subsection{Subsection}
+Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
+
+TODO: more examples.
+\end{document}
