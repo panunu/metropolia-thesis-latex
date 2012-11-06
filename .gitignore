@@ -2,3 +2,6 @@
 *.log
 *.synctex*
 *.toc
+/.project
+/metropolia-thesis-template.bbl
+/metropolia-thesis-template.blg
