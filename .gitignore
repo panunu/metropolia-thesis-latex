@@ -2,6 +2,7 @@
 *.log
 *.synctex*
 *.toc
-/.project
-/metropolia-thesis-template.bbl
-/metropolia-thesis-template.blg
+*.bbl
+*.blg
+.project
+.DS_Store
