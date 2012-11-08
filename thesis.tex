@@ -139,7 +139,35 @@
 %	ABSTRACT
 %----------------------------------------------------------------------------------------
 
-%TODO
+%TODO check lineheights
+%TODO add "Abstract" to the upper right corner
+%TODO abstract content section
+%TODO abstract keyword section
+\pagestyle{empty}
+\begin{tabular}{ | p{4,7cm} | p{10,3cm} |}
+    \hline
+    Authors(s) \newline
+    Title \newline\newline 
+    Number of Pages \newline
+    Date
+    & 
+    Your name \newline %TODO refer to {author}
+    Your title \newline\newline %TODO refer to {title}
+    xx pages + x appendices \newline %TODO dynamic
+    \today		
+    \\ \hline
+    Degree & Bachelor of Engineering
+    \\ \hline
+    Degree Programme & Name of the degree programme		
+    \\ \hline
+    Specialisation option & Name of the specialisation option
+    \\ \hline
+    Instructor(s) & 
+    First name Last name, Title (for example: Project Manager) \newline
+    First name Last name, Title (for example: Principal Lecturer)
+    \\ \hline
+\end{tabular}
+\clearpage
 
 %----------------------------------------------------------------------------------------
 %	TABLE OF CONTENTS
@@ -175,10 +203,10 @@ Here is an example how to add biblio entry \cite{kopka:guide} using the \textquo
 
 And let also try the figure (see figure \vref{fig:latex-cover}) and internal reference (with label and vref). To note, \LaTeX{} will place the figure to the best place (except with forcing).
 \begin{figure}[h]
-   \centering
-   	\includegraphics[width=7.1cm]{LaTeX_cover}
-   \caption{\LaTeX{} cover image (Copied from wikibooks.org (2012) \cite{wikibooks:latex}).}
-   \label{fig:latex-cover}
+    \centering
+    \includegraphics[width=7.1cm]{LaTeX_cover}
+    \caption{\LaTeX{} cover image (Copied from wikibooks.org (2012) \cite{wikibooks:latex}).}
+    \label{fig:latex-cover}
 \end{figure}
 
 Quisque augue est, elementum ac porttitor non, porttitor ac orci. Donec hendrerit, ligula ac luctus egestas, sem dolor pretium nunc, sed vehicula magna diam a massa. Donec mattis, arcu et tempor mattis, risus tortor ultrices metus, nec sodales sem dolor eu elit. Nullam egestas enim at odio pellentesque bibendum. 
@@ -191,6 +219,7 @@ TODO: more examples.
 %----------------------------------------------------------------------------------------
 %   BIBLIOGRAPHY 
 %----------------------------------------------------------------------------------------
+
 \bibliographystyle{vancouver}
 %line space
 \singlespacing
