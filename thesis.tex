@@ -5,6 +5,14 @@
 \author{Your name here}
 \title{Your title here}
 
+\def\metropoliadegree {Bachelor of Engineering}
+\def\metropoliadegreeprogramme {Name of your degree programme}
+\def\metropoliaspecialisation {Name of your specialisation option}
+\def\metropoliainstructors {
+First name Last name, Title (for example: Project Manager)\newline
+First name Last name, Title (for example: Principal Lecturer)
+}
+
 %----------------------------------------------------------------------------------------
 %	GLOBAL STYLES
 %----------------------------------------------------------------------------------------
@@ -109,9 +117,9 @@
 
 %QUOTE
 \renewenvironment{quote}
-    {\list{}{\rightmargin=0pt\leftmargin=1cm\topsep=-10pt}%
-    \item\relax\fontsize{10pt}{10pt}\singlespacing}
-    {\endlist}
+  {\list{}{\rightmargin=0pt\leftmargin=1cm\topsep=-10pt}%
+  \item\relax\fontsize{10pt}{10pt}\singlespacing}
+  {\endlist}
 
 %BIBLIOGRAPHY
 %bibliography title to be "references"
@@ -141,31 +149,33 @@
 
 %TODO check lineheights
 %TODO add "Abstract" to the upper right corner
-%TODO abstract content section
+%TODO add Metropolia logo (check if it also exists in the Bachelor thesis)
 %TODO abstract keyword section
+%TODO improve padding
 \pagestyle{empty}
 \begin{tabular}{ | p{4,7cm} | p{10,3cm} |}
-    \hline
-    Authors(s) \newline
-    Title \newline\newline 
-    Number of Pages \newline
-    Date
-    & 
-    Your name \newline %TODO refer to {author}
-    Your title \newline\newline %TODO refer to {title}
-    xx pages + x appendices \newline %TODO dynamic
-    \today		
-    \\ \hline
-    Degree & Bachelor of Engineering
-    \\ \hline
-    Degree Programme & Name of the degree programme		
-    \\ \hline
-    Specialisation option & Name of the specialisation option
-    \\ \hline
-    Instructor(s) & 
-    First name Last name, Title (for example: Project Manager) \newline
-    First name Last name, Title (for example: Principal Lecturer)
-    \\ \hline
+  \hline
+  Authors(s) \newline
+  Title \newline\newline 
+  Number of Pages \newline
+  Date
+  & 
+  Your name \newline %TODO refer to {author}
+  Your title \newline\newline %TODO refer to {title}
+  xx pages + x appendices \newline %TODO dynamic numbering
+  \today		
+  \\ \hline
+  Degree & \metropoliadegree
+  \\ \hline
+  Degree Programme & \metropoliadegreeprogramme
+  \\ \hline
+  Specialisation option & \metropoliaspecialisation
+  \\ \hline
+  Instructor(s) & \metropoliainstructors
+  \\ \hline
+  \multicolumn{2}{|p{15cm}|}{
+  Abstract content
+  } \\[14cm] \hline
 \end{tabular}
 \clearpage
 
@@ -203,10 +213,10 @@ Here is an example how to add biblio entry \cite{kopka:guide} using the \textquo
 
 And let also try the figure (see figure \vref{fig:latex-cover}) and internal reference (with label and vref). To note, \LaTeX{} will place the figure to the best place (except with forcing).
 \begin{figure}[h]
-    \centering
-    \includegraphics[width=7.1cm]{LaTeX_cover}
-    \caption{\LaTeX{} cover image (Copied from wikibooks.org (2012) \cite{wikibooks:latex}).}
-    \label{fig:latex-cover}
+  \centering
+  \includegraphics[width=7.1cm]{LaTeX_cover}
+  \caption{\LaTeX{} cover image (Copied from wikibooks.org (2012) \cite{wikibooks:latex}).}
+  \label{fig:latex-cover}
 \end{figure}
 
 Quisque augue est, elementum ac porttitor non, porttitor ac orci. Donec hendrerit, ligula ac luctus egestas, sem dolor pretium nunc, sed vehicula magna diam a massa. Donec mattis, arcu et tempor mattis, risus tortor ultrices metus, nec sodales sem dolor eu elit. Nullam egestas enim at odio pellentesque bibendum. 
