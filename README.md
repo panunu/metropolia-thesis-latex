@@ -2,6 +2,8 @@
 
 ## Editor
 
-Use (4) spaces instead of tabs.
+### Indentation
+
+Use (2) spaces instead of tabs.
 
 2012
