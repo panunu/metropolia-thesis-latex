@@ -5,10 +5,14 @@
 % % Joku ifdef-tyyppinen vipu kieliversiolle (otsikot ja placeholdertekstit)
 %    % Vaihtoehtona tietty erilliset filet suomelle ja enkulle, mutta
 %    % tämä heikentää päivitettävyyttä (pitää aina muistaa korjata kahteen paikkaan).
+%    % PA: I put CAPS comments where to switch depending on the language
 % % Lisensointi (otsikkoon tekijä ja avoin lisenssi (esim. CC-BY, pohjan laatija
 %   mainittava kommenttirivillä tjsp. [pohja ei ylitä teoskynnystä mutta kiva mainita].
 % % Projektin siirto Githubiin (siinä on issueträkkäys sun muut kivasti kunnossa) Vai?
+%   %PA: done
 % % Odotetaan 29.11.2013 asti äikänmaikkojen ja viestinnän mahdollisia kommentteja.
+%   %done?
+% %Reduce the vertical spacing for appendix in table of content
 %
 % % % Vähemmän tärkeät
   % PNG:iden tilalle vektorigraffaa, jos vain löytyy kohtuuvaivalla
@@ -53,12 +57,12 @@ First name Last name, Title (for example: Principal Lecturer)
 \usepackage{tocloft}
 \usepackage{lipsum}
 \usepackage{titlesec}
-\usepackage{url}
+\usepackage[hyphens]{url}
 \usepackage{mathtools}
 \usepackage{wallpaper}
 \usepackage{eso-pic}
 \usepackage{datetime}
-\usepackage{lastpage}
+%\usepackage{lastpage} %other trick ;)
 \usepackage{url}
 \usepackage[amssymb]{SIunits}
 
@@ -84,6 +88,8 @@ First name Last name, Title (for example: Principal Lecturer)
 \usepackage{ulem}
 %euro symbol
 \usepackage{eurosym}
+%try to count
+\usepackage{totcount}
 
 %NORMAL TEXT
 %all text, title, etc. in the same font: Tahoma
@@ -136,6 +142,8 @@ First name Last name, Title (for example: Principal Lecturer)
 \renewcommand{\cftsectionaftersnumb}{\vspace*{-3pt}}
 %spacing afer a subsection in toc
 \renewcommand{\cftsubsectionaftersnumb}{\vspace*{-1pt}}
+%appendix in toc with "Appendix " + num
+\renewcommand*{\cftappendixname}{Appendix\space}
 
 %TITLES
 %chapter title
@@ -168,6 +176,10 @@ First name Last name, Title (for example: Principal Lecturer)
 \renewcommand\@biblabel[1]{#1\hspace{1cm}} %from [1] to 1 with 1cm gap
 \makeatother %
 \setlength{\bibitemsep}{11pt}
+
+%count the appendices (since the chapter counter is reset after \appendix).
+%! require to complie 2 times
+\regtotcounter{chapter}
 
 %TITLE PAGE
 \newcommand\BackgroundPic{%
@@ -254,7 +266,7 @@ Insinöörityö\\[2pt]
   \@author \newline 
   \otsikko \newline\newline 
   \makeatother
-  \pageref{LastPage} pages + x appendices \newline %TODO dynamic numbering
+  \pageref{LastPage} pages + \total{chapter} appendices \newline %! if no appendices, risk to count total of chapter :D
   \pvm		
   \\ \hline
   Tutkinto & \tutkinto
@@ -290,7 +302,7 @@ Insinöörityö\\[2pt]
   \makeatletter
   \@author \newline
   \@title \newline\newline
-  \pageref{LastPage} pages + x appendices \newline
+  \pageref{LastPage} pages + \total{chapter} appendices \newline %! if no appendices, risk to count total of chapter :D
   \@date
   \makeatother
   \\ \hline
@@ -309,6 +321,10 @@ Insinöörityö\\[2pt]
   \\ \hline
 \end{tabular}
 \clearpage
+
+%\chapter*{Acknowledgement}
+%Thanks to my cat
+%\clearpage
 
 %----------------------------------------------------------------------------------------
 %	TABLE OF CONTENTS
@@ -351,6 +367,7 @@ TL;DR & Too long, didn't read\\
 \newpage
 
 %page number always on top right; also for chapter "title" page
+\pagestyle{plain}
 \makeevenhead{plain}{}{}{\thepage}
 \makeoddhead{plain}{}{}{\thepage}
 
@@ -374,7 +391,7 @@ And let also try the figure (see figure \vref{fig:latex-cover}) and internal ref
   \label{fig:latex-cover}
 \end{figure}
 
-Quisque augue est, elementum ac porttitor non, porttitor ac orci. Donec hendrerit, ligula ac luctus egestas, sem dolor pretium nunc, sed vehicula magna diam a massa. Donec mattis, arcu et tempor mattis, risus tortor ultrices metus, nec sodales sem dolor eu elit. Nullam egestas enim at odio pellentesque bibendum. 
+\textit{Quisque augue} est, \textbf{elementum ac porttitor} non, porttitor ac orci. Donec hendrerit, ligula ac luctus egestas, sem dolor pretium nunc, sed vehicula magna diam a massa. Donec mattis, arcu et tempor mattis, risus tortor ultrices metus, nec sodales sem dolor eu elit. Nullam egestas enim at odio pellentesque bibendum. 
 
 \subsection{Subsection}
 Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
@@ -393,15 +410,99 @@ I &= \tn{ionivahvuus} \\
 z &= \tn{ionien varaus}
 \end{align}
 
+\chapter{Second Chapter}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam purus, in ornare nulla imperdiet molestie. Nam tempus erat eu dui rhoncus et vestibulum mi elementum. Ut porttitor elit sit amet justo dignissim sit amet sagittis massa egestas. Mauris sed dolor eget dui fermentum sodales ut eu nibh. 
+
+Quisque augue est, elementum ac porttitor non, porttitor ac orci. Donec hendrerit, ligula ac luctus egestas, sem dolor pretium nunc, sed vehicula magna diam a massa. Donec mattis, arcu et tempor mattis, risus tortor ultrices metus, nec sodales sem dolor eu elit. Nullam egestas enim at odio pellentesque bibendum. 
+
+Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
+
+\section{Section}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam purus, in ornare nulla imperdiet molestie. Nam tempus erat eu dui rhoncus et vestibulum mi elementum. Ut porttitor elit sit amet justo dignissim sit amet sagittis massa egestas. Mauris sed dolor eget dui fermentum sodales ut eu nibh. 
+
+\section{Section}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam purus, in ornare nulla imperdiet molestie. Nam tempus erat eu dui rhoncus et vestibulum mi elementum. Ut porttitor elit sit amet justo dignissim sit amet sagittis massa egestas. Mauris sed dolor eget dui fermentum sodales ut eu nibh. 
+
 %----------------------------------------------------------------------------------------
 %   BIBLIOGRAPHY 
 %----------------------------------------------------------------------------------------
 
 \bibliographystyle{vancouver}
 %line space
-\singlespacing
+%\singlespacing %removed otherwise the appendix are also single space
 \begin{flushleft}
+\begin{singlespacing}
 \bibliography{biblio}
+\end{singlespacing}
 \end{flushleft}
+
+%for conting the pages
+\label{LastPage}~
+
+
+%----------------------------------------------------------------------------------------
+%   APPENDICES 
+%----------------------------------------------------------------------------------------
+%avoid that the last page of bib get appendix header
+\clearpage
+%start appendix
+\appendix
+%no page number for appendix in table of content
+\addtocontents{toc}{\cftpagenumbersoff{chapter}}
+%appendix sections and subsections not in table of content
+\settocdepth{chapter}
+%add "Appendices" in the table of content
+\addappheadtotoc
+%have Appendix 1 (instead of Appendix A)
+\renewcommand{\thechapter}{\arabic{chapter}} 
+
+%each appendix restart page num to one
+\setcounter{page}{1}
+%special counter for appendix TODO: this is a ugly quick hack :( Should find a better way to count the page per appendix.
+\newtotcounter{appx1}
+%overwrite the header
+\makeevenhead{plain}{}{}{Appendix \thechapter \\ \thepage (\stepcounter{appx1}\total{appx1})}
+\makeoddhead{plain}{}{}{Appendix \thechapter \\ \thepage (\stepcounter{appx1}\total{appx1})}
+
+\chapter{My First Appendix}\label{appx:super}
+
+Note that every appendix will be a chapter.
+
+Sorry for the ugly hack on how to count the total pages per appendix.
+
+
+Of course with section and subsection.
+
+\section{Appendix Section}
+
+And you can cite \cite{tobias:book} stuff, it will go into the main bibliography.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam purus, in ornare nulla imperdiet molestie. Nam tempus erat eu dui rhoncus et vestibulum mi elementum. Ut porttitor elit sit amet justo dignissim sit amet sagittis massa egestas. Mauris sed dolor eget dui fermentum sodales ut eu nibh.
+
+\subsection{With a Subsection}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam purus, in ornare nulla imperdiet molestie. Nam tempus erat eu dui rhoncus et vestibulum mi elementum. Ut porttitor elit sit amet justo dignissim sit amet sagittis massa egestas. Mauris sed dolor eget dui fermentum sodales ut eu nibh.
+
+Quisque augue est, elementum ac porttitor non, porttitor ac orci. Donec hendrerit, ligula ac luctus egestas, sem dolor pretium nunc, sed vehicula magna diam a massa. Donec mattis, arcu et tempor mattis, risus tortor ultrices metus, nec sodales sem dolor eu elit. Nullam egestas enim at odio pellentesque bibendum. 
+
+Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
+
+
+%TODO with my ugly hack, for every appendix you will have to make this 
+\clearpage % avoid that the last page of previous appendix get this header
+\setcounter{page}{1} %restet to page 1 (you can't avoid this one (I think))
+\newtotcounter{appx2} % to have the total for this appendix and not the previous one.
+%overwrite the header
+\makeevenhead{plain}{}{}{Appendix \thechapter \\ \thepage (\stepcounter{appx2}\total{appx2})}
+\makeoddhead{plain}{}{}{Appendix \thechapter \\ \thepage (\stepcounter{appx2}\total{appx2})}
+
+\chapter{My Second Appendix}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam purus, in ornare nulla imperdiet molestie. Nam tempus erat eu dui rhoncus et vestibulum mi elementum. Ut porttitor elit sit amet justo dignissim sit amet sagittis massa egestas. Mauris sed dolor eget dui fermentum sodales ut eu nibh.
+
+Quisque augue est, elementum ac porttitor non, porttitor ac orci. Donec hendrerit, ligula ac luctus egestas, sem dolor pretium nunc, sed vehicula magna diam a massa. Donec mattis, arcu et tempor mattis, risus tortor ultrices metus, nec sodales sem dolor eu elit. Nullam egestas enim at odio pellentesque bibendum. 
 
 \end{document}
