@@ -1,10 +1,34 @@
 %----------------------------------------------------------------------------------------
+%    ToDo
+%----------------------------------------------------------------------------------------
+% % % TÄRKEÄT
+% % Joku ifdef-tyyppinen vipu kieliversiolle (otsikot ja placeholdertekstit)
+%    % Vaihtoehtona tietty erilliset filet suomelle ja enkulle, mutta
+%    % tämä heikentää päivitettävyyttä (pitää aina muistaa korjata kahteen paikkaan).
+% % Lisensointi (otsikkoon tekijä ja avoin lisenssi (esim. CC-BY, pohjan laatija
+%   mainittava kommenttirivillä tjsp. [pohja ei ylitä teoskynnystä mutta kiva mainita].
+% % Projektin siirto Githubiin (siinä on issueträkkäys sun muut kivasti kunnossa) Vai?
+% % Odotetaan 29.11.2013 asti äikänmaikkojen ja viestinnän mahdollisia kommentteja.
+%
+% % % Vähemmän tärkeät
+  % PNG:iden tilalle vektorigraffaa, jos vain löytyy kohtuuvaivalla
+
+ 
+%----------------------------------------------------------------------------------------
 %	THESIS
 %----------------------------------------------------------------------------------------
 
 \author{Your name here}
 \title{Your title here}
 
+\def\otsikko{Otsikko}
+\def\pvm{\ddmmyyyydate\today}
+\def\tutkinto{Tutkinto}
+\def\kohjelma{Koulutusohjelma}
+\def\suuntautumis{Suuntautumisvaihtoehto}
+\def\ohjaajat{Ohjaajat}
+\def\avainsanat{avainsana}
+\date{\today}
 \def\metropoliadegree {Bachelor of Engineering}
 \def\metropoliadegreeprogramme {Name of your degree programme}
 \def\metropoliaspecialisation {Name of your specialisation option}
@@ -18,9 +42,9 @@ First name Last name, Title (for example: Principal Lecturer)
 %	GLOBAL STYLES
 %----------------------------------------------------------------------------------------
 
-\documentclass[11pt,a4paper,oneside]{memoir}
-\usepackage[latin1]{inputenc}
-\usepackage[T1]{fontenc}
+\documentclass[11pt,a4paper,oneside,article]{memoir}
+%\usepackage[latin1]{inputenc}
+%\usepackage[T1]{fontenc}
 \usepackage[finnish]{babel} %change this depending on your language
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -31,7 +55,16 @@ First name Last name, Title (for example: Principal Lecturer)
 \usepackage{titlesec}
 \usepackage{url}
 \usepackage{mathtools}
+\usepackage{wallpaper}
+\usepackage{eso-pic}
+\usepackage{datetime}
+\usepackage{lastpage}
+\usepackage{url}
+\usepackage[amssymb]{SIunits}
 
+
+
+\renewcommand{\dateseparator}{.}
 %condition for adding or not space in TOC
 \usepackage{etoolbox}
 %for compact list
@@ -54,7 +87,7 @@ First name Last name, Title (for example: Principal Lecturer)
 
 %NORMAL TEXT
 %all text, title, etc. in the same font: Tahoma
-\setmainfont{Tahoma}
+\setmainfont{Arial}
 %line space
 \linespread{1.5}
 %\doublespacing
@@ -80,6 +113,9 @@ First name Last name, Title (for example: Principal Lecturer)
 \setlength{\belowcaptionskip}{-7pt}
 
 %TOC
+%change toc title
+%COMMENT OUT FOR ENGLISH
+\addto{\captionsfinnish}{\renewcommand*{\contentsname}{Sisällys}}
 %remove dots
 \renewcommand*{\cftdotsep}{\cftnodots}
 %chapter title and page number not in bold
@@ -116,6 +152,7 @@ First name Last name, Title (for example: Principal Lecturer)
 {\thesubsection}{.5cm}{}
 \titlespacing*{\subsection}{0pt}{14pt}{6pt}
 
+
 %QUOTE
 \renewenvironment{quote}
   {\list{}{\rightmargin=0pt\leftmargin=1cm\topsep=-10pt}%
@@ -124,13 +161,67 @@ First name Last name, Title (for example: Principal Lecturer)
 
 %BIBLIOGRAPHY
 %bibliography title to be "references"
-\renewcommand\bibname{References}
+%IN ENGLISH UN/COMMENT THIS 2 LINES
+%\renewcommand\bibname{References}
+\addto{\captionsfinnish}{\renewcommand*{\bibname}{Lähteet}}
 \makeatletter %reference list option change
 \renewcommand\@biblabel[1]{#1\hspace{1cm}} %from [1] to 1 with 1cm gap
 \makeatother %
 \setlength{\bibitemsep}{11pt}
 
+%TITLE PAGE
+\newcommand\BackgroundPic{%
+\put(0,0){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+\includegraphics[width=\paperwidth,height=\paperheight,%
+keepaspectratio]{viiva}%
+\vfill
+}}}
+
+
+\makeatletter
+\renewcommand{\maketitle}{
+\thispagestyle{empty}
+\ThisCenterWallPaper{1}{viiva}
+%
+\vspace*{9.5cm}
+\tn{\LARGE \@author\\[0.75cm]\Huge \@title}\\[3.5cm]
+
+\parbox{.5\linewidth}{\normalsize 
+Metropolia Ammattikorkeakoulu\\[2pt]
+\tutkinto \\[2pt]
+\kohjelma \\[2pt]
+Insinöörityö\\[2pt]
+\ddmmyyyydate\today}
+%IN ENGLISH
+%Helsinki Metropolia University of Applied Sciences\\[2pt]
+%\metropoliadegree \\[2pt]
+%\metropoliadegreeprogramme \\[2pt]
+%Thesis\\[2pt]
+%\ddmmyyyydate\today}%to be checked date format? 
+
+\ThisLRCornerWallPaper{1}{metropolia}
+%
+\clearpage
+}
+\makeatother
+
+%IN ENGLISH COMMENT THIS
+\makepagestyle{tiivis}
+\makeevenhead{tiivis}{}{}{Tiivistelmä}
+\makeoddhead{tiivis}{}{}{Tiivistelmä}
+
+\makepagestyle{abstract}
+\makeevenhead{abstract}{}{}{Abstract}
+\makeoddhead{abstract}{}{}{Abstract}
+
 \begin{document}
+
+\newcommand\tn[1]{\textnormal{#1}}
+\newcommand\reaction[1]{\begin{equation}\ce{#1}\end{equation}}
+
 %page number always on the top right, clear the "chapter/section" head
 \pagestyle{myheadings}
 \markright{}
@@ -142,18 +233,53 @@ First name Last name, Title (for example: Principal Lecturer)
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 
-%TODO
+\maketitle
+\newpage
+
+%----------------------------------------------------------------------------------------
+%    Tiivistelmä
+%----------------------------------------------------------------------------------------
+
+%IN ENGLISH COMMENT THIS SECTION
+\thispagestyle{tiivis}
+\ThisLRCornerWallPaper{1}{footer}
+\begin{tabular}{ | p{4,7cm} | p{10,3cm} |}
+  \hline
+  Tekijä(t) \newline
+  Otsikko \newline\newline 
+  Sivumäärä \newline
+  Aika
+  & 
+  \makeatletter
+  \@author \newline 
+  \otsikko \newline\newline 
+  \makeatother
+  \pageref{LastPage} pages + x appendices \newline %TODO dynamic numbering
+  \pvm		
+  \\ \hline
+  Tutkinto & \tutkinto
+  \\ \hline
+  Koulutusohjelma & \kohjelma
+  \\ \hline
+  Suuntautumisvaihtoehto & \suuntautumis
+  \\ \hline
+  Ohjaaja(t) & \ohjaajat
+  \\ \hline
+  \multicolumn{2}{|p{15cm}|}{
+  Tiivistelmä
+  } \\[14cm] \hline
+  Avainsanat & \avainsanat
+  \\ \hline
+\end{tabular}
+\clearpage
 
 %----------------------------------------------------------------------------------------
 %	ABSTRACT
 %----------------------------------------------------------------------------------------
 
-%TODO check lineheights
-%TODO add "Abstract" to the upper right corner
-%TODO add Metropolia logo (check if it also exists in the Bachelor thesis)
-%TODO abstract keyword section
-%TODO improve padding
-\pagestyle{empty}
+\pagestyle{abstract}
+\ThisLRCornerWallPaper{1}{footer}
+
 \begin{tabular}{ | p{4,7cm} | p{10,3cm} |}
   \hline
   Authors(s) \newline
@@ -161,10 +287,12 @@ First name Last name, Title (for example: Principal Lecturer)
   Number of Pages \newline
   Date
   & 
-  Your name \newline %TODO refer to {author}
-  Your title \newline\newline %TODO refer to {title}
-  xx pages + x appendices \newline %TODO dynamic numbering
-  \today		
+  \makeatletter
+  \@author \newline
+  \@title \newline\newline
+  \pageref{LastPage} pages + x appendices \newline
+  \@date
+  \makeatother
   \\ \hline
   Degree & \metropoliadegree
   \\ \hline
@@ -189,6 +317,7 @@ First name Last name, Title (for example: Principal Lecturer)
 \makeevenhead{plain}{}{}{}
 \makeoddhead{plain}{}{}{}
 \pagestyle{empty} %remove page number in toc (if longer than 2 pages)
+\ThisLRCornerWallPaper{1}{footer}
 \tableofcontents*
 \pagestyle{empty} %remove page number in toc (if longer than 1 pages)
 \clearpage
@@ -196,7 +325,30 @@ First name Last name, Title (for example: Principal Lecturer)
 
 %list of figure, tables comes here...
 
-%abbreviation comes here...
+
+%----------------------------------------------------------------------------------------
+%    Lyhenteet / Abbreviation
+%----------------------------------------------------------------------------------------
+
+\pagestyle{empty}
+\ThisLRCornerWallPaper{1}{footer}
+\setlength{\parskip}{1cm}
+\chapter*{Lyhenteet}
+\cftaddtitleline{toc}{chapter}{Lyhenteet}{}
+%IN ENGLISH
+%\chapter*{Abbreviation}
+%\cftaddtitleline{toc}{chapter}{Abbreviation}{}
+\begin{table}[h]
+\setlength{\tabcolsep}{8pt}
+\renewcommand{\arraystretch}{2}
+\begin{tabular}{l p{12cm}}
+OMG & Oh my god\\
+WTF & What the F\\
+TL;DR & Too long, didn't read\\
+\end{tabular}
+\end{table}
+
+\newpage
 
 %page number always on top right; also for chapter "title" page
 \makeevenhead{plain}{}{}{\thepage}
@@ -227,7 +379,19 @@ Quisque augue est, elementum ac porttitor non, porttitor ac orci. Donec hendreri
 \subsection{Subsection}
 Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
 
-TODO: more examples.
+Ionivahvuus lasketaan kaavalla.
+\begin{align}
+I&=\frac{1}{2}\cdot\sum z_i^2c_i \\
+z_i&= \tn{ionin varausluku} \\
+c_i&= \tn{ionin konsentraatio}
+\end{align}
+Aktiivisuuskerroin $\gamma_\pm$ lasketaan kaavalla.
+\begin{align}
+\log \gamma_\pm &= -\left|z_+\cdot z_-\right|A\cdot I^{\frac{1}{2}} \\
+A &= \tn{0,509 (lämpötilassa 25\celsius}) \\
+I &= \tn{ionivahvuus} \\
+z &= \tn{ionien varaus}
+\end{align}
 
 %----------------------------------------------------------------------------------------
 %   BIBLIOGRAPHY 
