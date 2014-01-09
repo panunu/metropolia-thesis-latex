@@ -1,4 +1,25 @@
 %----------------------------------------------------------------------------------------
+%	Metropolia Thesis LaTeX Template
+%----------------------------------------------------------------------------------------
+% License:
+% This work is licensed under the Creative Commons Attribution 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/.
+%
+% Authors:
+% Panu Leppäniemi, Patrik Luoto and Patrick Ausderau
+%
+% What:
+% Panu Leppäniemi: abstract, def, cleaning,...
+% Patrik Luoto: title page, abstract in Finnish, abbreviation, math example,...
+% Patrick Ausderau: initial version, style, table of content, bibliography, figure, appendix,...
+%
+% Please:
+% If you find mistakes, improve this template and alike, please contribute by sharing your improvements and/or send us your feedback there: https://github.com/panunu/metropolia-thesis-latex
+% And of course, if you improve it, add yourself as an author.
+%
+% Compiler:
+% Use XeLaTeX as a compiler.
+
+%----------------------------------------------------------------------------------------
 %    ToDo
 %----------------------------------------------------------------------------------------
 % % % TÄRKEÄT
@@ -8,6 +29,7 @@
 %    % PA: I put CAPS comments where to switch depending on the language
 % % Lisensointi (otsikkoon tekijä ja avoin lisenssi (esim. CC-BY, pohjan laatija
 %   mainittava kommenttirivillä tjsp. [pohja ei ylitä teoskynnystä mutta kiva mainita].
+%   PA: done
 % % Projektin siirto Githubiin (siinä on issueträkkäys sun muut kivasti kunnossa) Vai?
 %   %PA: done
 % % Odotetaan 29.11.2013 asti äikänmaikkojen ja viestinnän mahdollisia kommentteja.
@@ -92,7 +114,7 @@ First name Last name, Title (for example: Principal Lecturer)
 \usepackage{totcount}
 
 %NORMAL TEXT
-%all text, title, etc. in the same font: Tahoma
+%all text, title, etc. in the same font: Arial
 \setmainfont{Arial}
 %line space
 \linespread{1.5}
@@ -322,6 +344,9 @@ Insinöörityö\\[2pt]
 \end{tabular}
 \clearpage
 
+%----------------------------------------------------------------------------------------
+%	Acknowledgement ?
+%----------------------------------------------------------------------------------------
 %\chapter*{Acknowledgement}
 %Thanks to my cat
 %\clearpage
@@ -383,7 +408,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam
 \section{Section}
 Here is an example how to add biblio entry \cite{kopka:guide} using the \textquotedblleft cite\textquotedblright ~\cite[section 4.2]{tobias:book}. Note that a paragraph is added by forcing a new line.
 
-And let also try the figure (see figure \vref{fig:latex-cover}) and internal reference (with label and vref). To note, \LaTeX{} will place the figure to the best place (except with forcing).
+And let also try the figure (see figure \vref{fig:latex-cover}) and internal reference (with label and vref). The reference can be done to any label, for example why not to Appendix \ref{appx:first} or to Appendix \ref{appx:second}? To note, \LaTeX{} will place the figure to the best place (except with forcing).
 \begin{figure}[h]
   \centering
   \includegraphics[width=7.1cm]{LaTeX_cover}
@@ -391,7 +416,13 @@ And let also try the figure (see figure \vref{fig:latex-cover}) and internal ref
   \label{fig:latex-cover}
 \end{figure}
 
-\textit{Quisque augue} est, \textbf{elementum ac porttitor} non, porttitor ac orci. Donec hendrerit, ligula ac luctus egestas, sem dolor pretium nunc, sed vehicula magna diam a massa. Donec mattis, arcu et tempor mattis, risus tortor ultrices metus, nec sodales sem dolor eu elit. Nullam egestas enim at odio pellentesque bibendum. 
+\textit{Quisque augue} est, \textbf{elementum ac porttitor} non, porttitor ac orci. Donec hendrerit, ligula ac luctus egestas, sem dolor pretium nunc, sed vehicula magna diam a massa. Donec mattis, arcu et tempor mattis, risus tortor ultrices metus, nec sodales sem dolor eu elit.\vspace{-17pt} 
+\begin{itemize}
+\item \textbf{A small hack} with list
+\item is to force the vertical space 
+\item before and after the list
+\end{itemize}
+\vspace{-17pt} Nullam egestas enim at odio pellentesque bibendum. 
 
 \subsection{Subsection}
 Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
@@ -467,7 +498,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam
 \makeevenhead{plain}{}{}{Appendix \thechapter \\ \thepage (\stepcounter{appx1}\total{appx1})}
 \makeoddhead{plain}{}{}{Appendix \thechapter \\ \thepage (\stepcounter{appx1}\total{appx1})}
 
-\chapter{My First Appendix}\label{appx:super}
+\chapter{My First Appendix}\label{appx:first}
 
 Note that every appendix will be a chapter.
 
@@ -499,7 +530,7 @@ Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit ma
 \makeevenhead{plain}{}{}{Appendix \thechapter \\ \thepage (\stepcounter{appx2}\total{appx2})}
 \makeoddhead{plain}{}{}{Appendix \thechapter \\ \thepage (\stepcounter{appx2}\total{appx2})}
 
-\chapter{My Second Appendix}
+\chapter{My Second Appendix}\label{appx:second}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam purus, in ornare nulla imperdiet molestie. Nam tempus erat eu dui rhoncus et vestibulum mi elementum. Ut porttitor elit sit amet justo dignissim sit amet sagittis massa egestas. Mauris sed dolor eget dui fermentum sodales ut eu nibh.
 
