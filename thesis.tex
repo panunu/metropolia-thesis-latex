@@ -7,7 +7,7 @@
 % Authors:
 % Panu Leppäniemi, Patrik Luoto and Patrick Ausderau
 %
-% What:
+% Credits:
 % Panu Leppäniemi: abstract, def, cleaning,...
 % Patrik Luoto: title page, abstract in Finnish, abbreviation, math example,...
 % Patrick Ausderau: initial version, style, table of content, bibliography, figure, appendix,...
@@ -47,6 +47,7 @@
 \author{Your name here}
 \title{Your title here}
 
+%IN ENGLISH, you can comment out/remove till line \def\avainsanat
 \def\otsikko{Otsikko}
 \def\pvm{\ddmmyyyydate\today}
 \def\tutkinto{Tutkinto}
@@ -77,7 +78,7 @@ First name Last name, Title (for example: Principal Lecturer)
 \usepackage{amssymb}
 \usepackage{fontspec}
 \usepackage{tocloft}
-\usepackage{lipsum}
+%\usepackage{lipsum}
 \usepackage{titlesec}
 \usepackage[hyphens]{url}
 \usepackage{mathtools}
@@ -223,7 +224,8 @@ keepaspectratio]{viiva}%
 \vspace*{9.5cm}
 \tn{\LARGE \@author\\[0.75cm]\Huge \@title}\\[3.5cm]
 
-\parbox{.5\linewidth}{\normalsize 
+\parbox{.7\linewidth}{\normalsize 
+%IN FINNISH
 Metropolia Ammattikorkeakoulu\\[2pt]
 \tutkinto \\[2pt]
 \kohjelma \\[2pt]
@@ -242,7 +244,7 @@ Insinöörityö\\[2pt]
 }
 \makeatother
 
-%IN ENGLISH COMMENT THIS
+%IN ENGLISH COMMENT THIS 3 LINES
 \makepagestyle{tiivis}
 \makeevenhead{tiivis}{}{}{Tiivistelmä}
 \makeoddhead{tiivis}{}{}{Tiivistelmä}
@@ -361,6 +363,7 @@ Insinöörityö\\[2pt]
 \ThisLRCornerWallPaper{1}{footer}
 \tableofcontents*
 \pagestyle{empty} %remove page number in toc (if longer than 1 pages)
+\ThisLRCornerWallPaper{1}{footer} %add footer image (if longer than 1 page)
 \clearpage
 \pagestyle{plain}
 
@@ -374,6 +377,7 @@ Insinöörityö\\[2pt]
 \pagestyle{empty}
 \ThisLRCornerWallPaper{1}{footer}
 \setlength{\parskip}{1cm}
+%IN FINNISH
 \chapter*{Lyhenteet}
 \cftaddtitleline{toc}{chapter}{Lyhenteet}{}
 %IN ENGLISH
