@@ -113,6 +113,10 @@ First name Last name, Title (for example: Principal Lecturer)
 \usepackage{eurosym}
 %try to count
 \usepackage{totcount}
+%insert source code
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{color}
 
 %NORMAL TEXT
 %all text, title, etc. in the same font: Arial
@@ -140,6 +144,21 @@ First name Last name, Title (for example: Principal Lecturer)
 \captiontitlefont{\small}
 %space after figure caption (and other float elements)
 \setlength{\belowcaptionskip}{-7pt}
+
+%SOURCE CODE
+\lstset{
+captionpos=b,
+caption=\footnotesize,
+basicstyle=\singlespacing\ttfamily,%\small\fontfamily{"Courier"}\selectfont,
+keywordstyle=\color{blue}\textbf,
+commentstyle=\itshape\color[rgb]{0.1,1,0.1},
+%identifierstyle=\color[rgb]{0.9,0.9,0.9},
+stringstyle=\color[rgb]{0.8,0.8,0.8},
+tabsize=4,
+xleftmargin=1cm
+}
+%\counterwithout{lstlisting}{chapter}
+%moved after begin document, otherwise does not compile
 
 %TOC
 %change toc title
@@ -254,6 +273,7 @@ Insinöörityö\\[2pt]
 \makeoddhead{abstract}{}{}{Abstract}
 
 \begin{document}
+\counterwithout{lstlisting}{chapter}
 
 \newcommand\tn[1]{\textnormal{#1}}
 \newcommand\reaction[1]{\begin{equation}\ce{#1}\end{equation}}
@@ -441,6 +461,9 @@ From the Universal Declaration of Human Rights:
 \subsection{Subsection}
 Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
 
+\subsection{Subsection with math}
+Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
+
 Ionivahvuus lasketaan kaavalla.
 \begin{align}
 I&=\frac{1}{2}\cdot\sum z_i^2c_i \\
@@ -454,6 +477,26 @@ A &= \tn{0,509 (lämpötilassa 25\celsius}) \\
 I &= \tn{ionivahvuus} \\
 z &= \tn{ionien varaus}
 \end{align}
+
+\subsection{Subsection with source code}
+Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
+
+\vspace{-22pt}\begin{lstlisting}[language=PHP,caption={Descriptive Caption Text},label=testphp] 
+
+<?php
+$userName = $_POST["usern"];
+//maybe not?
+if ($userName){
+	?>
+	<h2>Hello <?php echo $userName; ?>!</h2>
+	<p>your message got received.</p>
+	<?php
+}
+?>
+\end{lstlisting}\vspace{-22pt}
+
+
+As see in listing \ref{testphp}: Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
 
 \chapter{Second Chapter}
 
