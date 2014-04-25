@@ -9,8 +9,8 @@
 %
 % Credits:
 % Panu Leppäniemi: abstract, def, cleaning,...
-% Patrik Luoto: title page, abstract in Finnish, abbreviation, math example,...
-% Patrick Ausderau: initial version, style, table of content, bibliography, figure, appendix,...
+% Patrik Luoto: title page, abstract in Finnish, abbreviation, math,...
+% Patrick Ausderau: initial version, style, table of content, bibliography, figure, appendix, table, source code listing...
 %
 % Please:
 % If you find mistakes, improve this template and alike, please contribute by sharing your improvements and/or send us your feedback there: https://github.com/panunu/metropolia-thesis-latex
@@ -23,6 +23,7 @@
 %    ToDo
 %----------------------------------------------------------------------------------------
 % % % TÄRKEÄT
+% % Translate "listing" in finnish (when inserting source code in the text)
 % % Joku ifdef-tyyppinen vipu kieliversiolle (otsikot ja placeholdertekstit)
 %    % Vaihtoehtona tietty erilliset filet suomelle ja enkulle, mutta
 %    % tämä heikentää päivitettävyyttä (pitää aina muistaa korjata kahteen paikkaan).
@@ -70,7 +71,7 @@ First name Last name, Title (for example: Principal Lecturer)
 %----------------------------------------------------------------------------------------
 
 \documentclass[11pt,a4paper,oneside,article]{memoir}
-%\usepackage[latin1]{inputenc}
+\usepackage[latin1]{inputenc}
 %\usepackage[T1]{fontenc}
 \usepackage[finnish]{babel} %change this depending on your language
 \usepackage{amsmath}
@@ -117,6 +118,8 @@ First name Last name, Title (for example: Principal Lecturer)
 \usepackage{listings}
 \usepackage{caption}
 \usepackage{color}
+%force the width of a table instead of column
+\usepackage{tabularx}
 
 %NORMAL TEXT
 %all text, title, etc. in the same font: Arial
@@ -145,18 +148,33 @@ First name Last name, Title (for example: Principal Lecturer)
 %space after figure caption (and other float elements)
 \setlength{\belowcaptionskip}{-7pt}
 
+%TABLE
+\counterwithout{table}{chapter}
+
 %SOURCE CODE
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
 \lstset{
+extendedchars=true,
 captionpos=b,
 caption=\footnotesize,
 basicstyle=\singlespacing\ttfamily,%\small\fontfamily{"Courier"}\selectfont,
-keywordstyle=\color{blue}\textbf,
-commentstyle=\itshape\color[rgb]{0.1,1,0.1},
-%identifierstyle=\color[rgb]{0.9,0.9,0.9},
-stringstyle=\color[rgb]{0.8,0.8,0.8},
-tabsize=4,
+keywordstyle=\color{blue}\bfseries,
+commentstyle=\color{purple}\itshape,
+identifierstyle=\color{black},
+stringstyle=\color{red},
+showstringspaces=false,
+showspaces=false,
+numbers=left,
+numberstyle=\footnotesize,
+numbersep=9pt,
+breaklines=true,
+tabsize=2,
+showtabs=false,
 xleftmargin=1cm
 }
+%YOU NEED TO TRANSLATE THE CAPTION "Listing" in Finnish. 
+%IN ENGLISH Nothing to do
 %\counterwithout{lstlisting}{chapter}
 %moved after begin document, otherwise does not compile
 
@@ -461,7 +479,7 @@ From the Universal Declaration of Human Rights:
 \subsection{Subsection}
 Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
 
-\subsection{Subsection with math}
+\subsection{Subsection with Math}
 Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
 
 Ionivahvuus lasketaan kaavalla.
@@ -478,7 +496,7 @@ I &= \tn{ionivahvuus} \\
 z &= \tn{ionien varaus}
 \end{align}
 
-\subsection{Subsection with source code}
+\section{Section with Source Code}
 Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
 
 \vspace{-22pt}\begin{lstlisting}[language=PHP,caption={Descriptive Caption Text},label=testphp] 
@@ -497,6 +515,41 @@ if ($userName){
 
 
 As see in listing \ref{testphp}: Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
+
+\section{Section with Table}
+Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
+
+\begin{table}[h]
+  \centering
+  \caption{Some data}
+  %IMPORTANT the caption must be before the tabular, so it will be on top of the table (there are other tricks to force it on top; but this one is straitforward).
+  \begin{tabular}{| l | >{\centering\arraybackslash}p{.5\textwidth} |}
+    \hline
+    Test 1 & test 1234 test \\
+    \hline
+    Some more date comes here & with more values and if the text is very long it will disappear out of the box unless you force the column size :( \\
+    \hline
+  \end{tabular}
+  \label{table:some_data}
+\end{table}
+
+
+As presented in table \ref{table:some_data}: Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
+
+\begin{table}[h]
+  \centering
+  \caption{Another table with tabularx}
+  \begin{tabularx}{.95\textwidth}{| l | >{\centering\arraybackslash} X |}
+    \hline
+    Test 1 & test 1234 test \\
+    \hline
+    Some more date comes here & with more values and if the text is very long it will disappear out of the box unless you force the table size :( \\
+    \hline
+  \end{tabularx}
+  \label{table:some_data2}
+\end{table}
+
+As presented in table \ref{table:some_data2}: Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
 
 \chapter{Second Chapter}
 
