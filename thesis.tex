@@ -5,10 +5,10 @@
 % This work is licensed under the Creative Commons Attribution 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/.
 %
 % Authors:
-% Panu Lepp‰niemi, Patrik Luoto and Patrick Ausderau
+% Panu Lepp√§niemi, Patrik Luoto and Patrick Ausderau
 %
 % Credits:
-% Panu Lepp‰niemi: abstract, def, cleaning,...
+% Panu Lepp√§niemi: abstract, def, cleaning,...
 % Patrik Luoto: title page, abstract in Finnish, abbreviation, math,...
 % Patrick Ausderau: initial version, style, table of content, bibliography, figure, appendix, table, source code listing...
 %
@@ -22,24 +22,24 @@
 %----------------------------------------------------------------------------------------
 %    ToDo
 %----------------------------------------------------------------------------------------
-% % % TƒRKEƒT
+% % % T√ÑRKE√ÑT
 % % Translate "listing" in finnish (when inserting source code in the text)
 % % Joku ifdef-tyyppinen vipu kieliversiolle (otsikot ja placeholdertekstit)
 %    % Vaihtoehtona tietty erilliset filet suomelle ja enkulle, mutta
-%    % t‰m‰ heikent‰‰ p‰ivitett‰vyytt‰ (pit‰‰ aina muistaa korjata kahteen paikkaan).
+%    % t√§m√§ heikent√§√§ p√§ivitett√§vyytt√§ (pit√§√§ aina muistaa korjata kahteen paikkaan).
 %    % PA: I put CAPS comments where to switch depending on the language
-% % Lisensointi (otsikkoon tekij‰ ja avoin lisenssi (esim. CC-BY, pohjan laatija
-%   mainittava kommenttirivill‰ tjsp. [pohja ei ylit‰ teoskynnyst‰ mutta kiva mainita].
+% % Lisensointi (otsikkoon tekij√§ ja avoin lisenssi (esim. CC-BY, pohjan laatija
+%   mainittava kommenttirivill√§ tjsp. [pohja ei ylit√§ teoskynnyst√§ mutta kiva mainita].
 %   PA: done
-% % Projektin siirto Githubiin (siin‰ on issuetr‰kk‰ys sun muut kivasti kunnossa) Vai?
+% % Projektin siirto Githubiin (siin√§ on issuetr√§kk√§ys sun muut kivasti kunnossa) Vai?
 %   %PA: done
-% % Odotetaan 29.11.2013 asti ‰ik‰nmaikkojen ja viestinn‰n mahdollisia kommentteja.
+% % Odotetaan 29.11.2013 asti √§ik√§nmaikkojen ja viestinn√§n mahdollisia kommentteja.
 %   %done?
 % %Reduce the vertical spacing for appendix in table of content
 %   %done
 %
-% % % V‰hemm‰n t‰rke‰t
-  % PNG:iden tilalle vektorigraffaa, jos vain lˆytyy kohtuuvaivalla
+% % % V√§hemm√§n t√§rke√§t
+  % PNG:iden tilalle vektorigraffaa, jos vain l√∂ytyy kohtuuvaivalla
 
  
 %----------------------------------------------------------------------------------------
@@ -72,7 +72,8 @@ First name Last name, Title (for example: Principal Lecturer)
 %----------------------------------------------------------------------------------------
 
 \documentclass[11pt,a4paper,oneside,article]{memoir}
-\usepackage[latin1]{inputenc}
+%\usepackage[utf8]{inputenc}
+%\usepackage[ansinew]{inputenc}
 %\usepackage[T1]{fontenc}
 \usepackage[finnish]{babel} %change this depending on your language
 \usepackage{amsmath}
@@ -182,7 +183,7 @@ xleftmargin=1cm
 %TOC
 %change toc title
 %COMMENT OUT FOR ENGLISH
-\addto{\captionsfinnish}{\renewcommand*{\contentsname}{Sis‰llys}}
+\addto{\captionsfinnish}{\renewcommand*{\contentsname}{Sis√§llys}}
 %remove dots
 \renewcommand*{\cftdotsep}{\cftnodots}
 %chapter title and page number not in bold
@@ -232,7 +233,7 @@ xleftmargin=1cm
 %bibliography title to be "references"
 %IN ENGLISH UN/COMMENT THIS 2 LINES
 %\renewcommand\bibname{References}
-\addto{\captionsfinnish}{\renewcommand*{\bibname}{L‰hteet}}
+\addto{\captionsfinnish}{\renewcommand*{\bibname}{L√§hteet}}
 \makeatletter %reference list option change
 \renewcommand\@biblabel[1]{#1\hspace{1cm}} %from [1] to 1 with 1cm gap
 \makeatother %
@@ -267,7 +268,7 @@ keepaspectratio]{viiva}%
 Metropolia Ammattikorkeakoulu\\[2pt]
 \tutkinto \\[2pt]
 \kohjelma \\[2pt]
-Insinˆˆrityˆ\\[2pt]
+Insin√∂√∂rity√∂\\[2pt]
 \ddmmyyyydate\today}
 %IN ENGLISH
 %Helsinki Metropolia University of Applied Sciences\\[2pt]
@@ -284,8 +285,8 @@ Insinˆˆrityˆ\\[2pt]
 
 %IN ENGLISH COMMENT THIS 3 LINES
 \makepagestyle{tiivis}
-\makeevenhead{tiivis}{}{}{Tiivistelm‰}
-\makeoddhead{tiivis}{}{}{Tiivistelm‰}
+\makeevenhead{tiivis}{}{}{Tiivistelm√§}
+\makeoddhead{tiivis}{}{}{Tiivistelm√§}
 
 \makepagestyle{abstract}
 \makeevenhead{abstract}{}{}{Abstract}
@@ -312,7 +313,7 @@ Insinˆˆrityˆ\\[2pt]
 \newpage
 
 %----------------------------------------------------------------------------------------
-%    Tiivistelm‰
+%    Tiivistelm√§
 %----------------------------------------------------------------------------------------
 
 %IN ENGLISH COMMENT THIS SECTION
@@ -320,9 +321,9 @@ Insinˆˆrityˆ\\[2pt]
 \ThisLRCornerWallPaper{1}{footer}
 \begin{tabular}{ | p{4,7cm} | p{10,3cm} |}
   \hline
-  Tekij‰(t) \newline
+  Tekij√§(t) \newline
   Otsikko \newline\newline 
-  Sivum‰‰r‰ \newline
+  Sivum√§√§r√§ \newline
   Aika
   & 
   \makeatletter
@@ -341,7 +342,7 @@ Insinˆˆrityˆ\\[2pt]
   Ohjaaja(t) & \ohjaajat
   \\ \hline
   \multicolumn{2}{|p{15cm}|}{
-  Tiivistelm‰
+  Tiivistelm√§
   } \\[14cm] \hline
   Avainsanat & \avainsanat
   \\ \hline
@@ -451,7 +452,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam
 \section{Section}
 Here is an example how to add biblio entry \cite{kopka:guide} using the \textquotedblleft cite\textquotedblright ~\cite[section 4.2]{tobias:book}. Note that a paragraph is added by forcing a new line.
 
-And let also try the figure (see figure \vref{fig:latex-cover}) and internal reference (with label and vref). The reference can be done to any label, for example why not to Appendix \ref{appx:first} or to Appendix \ref{appx:second}? To note, \LaTeX{} will place the figure to the best place (except with forcing).
+And let also try the figure (see figure \vref{fig:latex-cover}) and internal reference (with label and ref or vref). The reference can be done to any label, for example why not to appendix \ref{appx:first} or to appendix \ref{appx:second}? To note, \LaTeX{} will place the figure to the best place (except with forcing). Let them float till the final of final edit\ldots ~then force them to not break a paragraph.%hugly hack... I'm sorry
 \begin{figure}[h]
   \centering
   \includegraphics[width=7.1cm]{LaTeX_cover}
@@ -492,7 +493,7 @@ c_i&= \tn{ionin konsentraatio}
 Aktiivisuuskerroin $\gamma_\pm$ lasketaan kaavalla.
 \begin{align}
 \log \gamma_\pm &= -\left|z_+\cdot z_-\right|A\cdot I^{\frac{1}{2}} \\
-A &= \tn{0,509 (l‰mpˆtilassa 25\celsius}) \\
+A &= \tn{0,509 (l√§mp√∂tilassa 25\celsius}) \\
 I &= \tn{ionivahvuus} \\
 z &= \tn{ionien varaus}
 \end{align}
