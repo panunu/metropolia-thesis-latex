@@ -86,7 +86,6 @@ First name Last name, Title (for example: Principal Lecturer)
 \usepackage[hyphens]{url}
 \usepackage{mathtools}
 \usepackage{wallpaper}
-\usepackage{eso-pic}
 \usepackage{datetime}
 %\usepackage{lastpage} %other trick ;)
 \usepackage{url}
@@ -244,17 +243,6 @@ xleftmargin=1cm
 \regtotcounter{chapter}
 
 %TITLE PAGE
-\newcommand\BackgroundPic{%
-\put(0,0){%
-\parbox[b][\paperheight]{\paperwidth}{%
-\vfill
-\centering
-\includegraphics[width=\paperwidth,height=\paperheight,%
-keepaspectratio]{viiva}%
-\vfill
-}}}
-
-
 \makeatletter
 \renewcommand{\maketitle}{
 \thispagestyle{empty}
