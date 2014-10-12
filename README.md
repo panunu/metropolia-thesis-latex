@@ -11,7 +11,7 @@ Use XeLaTeX as a compiler.
 
 [![PDF Status](https://www.sharelatex.com/github/repos/laam4/metropolia-thesis-latex/builds/latest/badge.svg)](https://www.sharelatex.com/github/repos/laam4/metropolia-thesis-latex/builds/latest/output.pdf)
 
-<a href="https://www.sharelatex.com/templates/thesis/metropolia-uas-thesis">Sharelatex template</a>
+<a href="https://www.sharelatex.com/templates/thesis/metropolia-uas-thesis">Sharelatex template</a> 
 
 ## Editor
 
