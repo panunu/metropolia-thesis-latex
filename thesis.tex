@@ -618,7 +618,26 @@ Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit ma
 
 \section{Section}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam purus, in ornare nulla imperdiet molestie. Nam tempus erat eu dui rhoncus et vestibulum mi elementum. Ut porttitor elit sit amet justo dignissim sit amet sagittis massa egestas. Mauris sed dolor eget dui fermentum sodales ut eu nibh. 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam purus, in ornare nulla imperdiet molestie. Nam tempus erat eu dui rhoncus et vestibulum mi elementum. 
+\tikzstyle{palikka} = [rectangle, rounded corners, minimum width=1cm, minimum height=1cm, text centered, text width=2cm, draw=black, fill=red!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[node distance=2.75cm]
+\node (yksi) [palikka] {Lorem};
+\node (kaksi) [palikka, right of=yksi] {ipsum};
+\node (kolme) [palikka, below of=kaksi] {dolor};
+\node (neljä) [palikka, left of=kolme] {sit};
+\node (viisi) [palikka, below of=neljä] {amet};
+\draw [arrow] (yksi) -- (kaksi);
+\draw [arrow] (kaksi) -- (kolme);
+\draw [arrow] (kolme) -- (neljä);
+\draw [arrow] (neljä) -- (viisi);
+\end{tikzpicture}
+\caption{Example tikz-picture}
+\label{fig:tikz}
+\end{figure}
+Ut porttitor elit sit amet justo dignissim sit amet sagittis massa egestas. Mauris sed dolor eget dui fermentum sodales ut eu nibh. 
 
 \section{Section}
 
