@@ -34,7 +34,7 @@
 %	THESIS
 %----------------------------------------------------------------------------------------
 
-\def\thesislang{finnish} %change this depending on your language, if english you have to uncomment tiivistelmä section
+\def\thesislang{finnish} %change this depending on your language
 \author{Nimi/Name}
 
 %Finnish section
@@ -303,7 +303,10 @@ xleftmargin=1cm
 %    Tiivistelmä
 %----------------------------------------------------------------------------------------
 
-%IN ENGLISH COMMENT THIS SECTION
+\newif\iftiivistelma
+\IfLanguageName{finnish}{\tiivistelmatrue}{\tiivistelmafalse}
+
+\iftiivistelma
 \thispagestyle{tiivis}
 \begin{tabular}{ | p{4,7cm} | p{10,3cm} |}
   \hline
@@ -334,6 +337,7 @@ xleftmargin=1cm
   \\ \hline
 \end{tabular}
 \clearpage
+\fi
 
 %----------------------------------------------------------------------------------------
 %	ABSTRACT
