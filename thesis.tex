@@ -598,10 +598,10 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam
     grid style=dashed
 ]
 
-\addplot [only marks, blue] table {name.dat};
+\addplot [only marks, blue] table {data.dat};
 \addplot [no markers, thick, red] table[
 x=c,
-y={create col/linear regression}] {name.dat};
+y={create col/linear regression}] {data.dat};
 \addlegendentry{data}
 \addlegendentry{%
 $\pgfmathprintnumber{\pgfplotstableregressiona}x
