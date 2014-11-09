@@ -23,20 +23,8 @@
 %    ToDo
 %----------------------------------------------------------------------------------------
 % % % TÄRKEÄT
-% % Translate "listing" in finnish (when inserting source code in the text)
-% % Joku ifdef-tyyppinen vipu kieliversiolle (otsikot ja placeholdertekstit)
-%    % Vaihtoehtona tietty erilliset filet suomelle ja enkulle, mutta
-%    % tämä heikentää päivitettävyyttä (pitää aina muistaa korjata kahteen paikkaan).
-%    % PA: I put CAPS comments where to switch depending on the language
-% % Lisensointi (otsikkoon tekijä ja avoin lisenssi (esim. CC-BY, pohjan laatija
-%   mainittava kommenttirivillä tjsp. [pohja ei ylitä teoskynnystä mutta kiva mainita].
-%   PA: done
-% % Projektin siirto Githubiin (siinä on issueträkkäys sun muut kivasti kunnossa) Vai?
-%   %PA: done
 % % Odotetaan 29.11.2013 asti äikänmaikkojen ja viestinnän mahdollisia kommentteja.
 %   %done?
-% %Reduce the vertical spacing for appendix in table of content
-%   %done
 %
 % % % Vähemmän tärkeät
   % PNG:iden tilalle vektorigraffaa, jos vain löytyy kohtuuvaivalla
@@ -46,18 +34,23 @@
 %	THESIS
 %----------------------------------------------------------------------------------------
 
-\author{Your name here}
-\title{Your title here}
+\def\thesislang{finnish} %change this depending on your language, if english you have to uncomment tiivistelmä section
+\author{Nimi/Name}
 
-%IN ENGLISH, you can comment out/remove till line \def\avainsanat
+%Finnish section
 \def\otsikko{Otsikko}
-\def\pvm{\ddmmyyyydate\today}
 \def\tutkinto{Tutkinto}
 \def\kohjelma{Koulutusohjelma}
 \def\suuntautumis{Suuntautumisvaihtoehto}
-\def\ohjaajat{Ohjaajat}
+\def\ohjaajat{
+Etunimi Sukunimi, Titteli\newline
+Etunimi Sukunimi, Titteli
+}
 \def\avainsanat{avainsana}
-\date{\today}
+\def\pvm{\ddmmyyyydate\today}
+
+%English section, for abstract
+\title{Your title here}
 \def\metropoliadegree {Bachelor of Engineering}
 \def\metropoliadegreeprogramme {Name of your degree programme}
 \def\metropoliaspecialisation {Name of your specialisation option}
@@ -66,16 +59,15 @@ First name Last name, Title (for example: Project Manager)\newline
 First name Last name, Title (for example: Principal Lecturer)
 }
 \def\metropoliakeywords {Keywords}
+\date{\today} % BUG: Month is in Finnish if babel is finnish :E
 
 %----------------------------------------------------------------------------------------
 %	GLOBAL STYLES
 %----------------------------------------------------------------------------------------
 
 \documentclass[11pt,a4paper,oneside,article]{memoir}
-%\usepackage[utf8]{inputenc}
-%\usepackage[ansinew]{inputenc}
-%\usepackage[T1]{fontenc}
-\usepackage[finnish]{babel} %change this depending on your language
+\usepackage[\thesislang]{babel} 
+\usepackage{iflang}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -182,15 +174,13 @@ tabsize=2,
 showtabs=false,
 xleftmargin=1cm
 }
-%YOU NEED TO TRANSLATE THE CAPTION "Listing" in Finnish. 
-%IN ENGLISH Nothing to do
+\IfLanguageName {finnish} {\renewcommand{\lstlistingname}{Listaus}} {} % what is a good translation for this?
 %\counterwithout{lstlisting}{chapter}
 %moved after begin document, otherwise does not compile
 
 %TOC
 %change toc title
-%COMMENT OUT FOR ENGLISH
-\addto{\captionsfinnish}{\renewcommand*{\contentsname}{Sisällys}}
+\IfLanguageName {finnish} {\addto{\captionsfinnish}{\renewcommand*{\contentsname}{Sisällys}}} {}
 %remove dots
 \renewcommand*{\cftdotsep}{\cftnodots}
 %chapter title and page number not in bold
@@ -212,10 +202,12 @@ xleftmargin=1cm
 %spacing afer a subsection in toc
 \renewcommand{\cftsubsectionaftersnumb}{\vspace*{-1pt}}
 %appendix in toc with "Appendix " + num
-\renewcommand*{\cftappendixname}{Appendix\space}
-% Uncomment for Finnish
-%\renewcommand*{\cftappendixname}{Liite\space}
-%\renewcommand{\appendixtocname}{Liitteet}
+\IfLanguageName {finnish} {
+  \renewcommand*{\cftappendixname}{Liite\space}
+  \renewcommand{\appendixtocname}{Liitteet}
+}{\renewcommand*{\cftappendixname}{Appendix\space}}
+%appendix header
+\IfLanguageName {finnish} {\def\appname{Liite\space}}{\def\appname{Appendix\space}}
 
 %TITLES
 %chapter title
@@ -241,9 +233,7 @@ xleftmargin=1cm
 
 %BIBLIOGRAPHY
 %bibliography title to be "references"
-%IN ENGLISH UN/COMMENT THIS 2 LINES
-%\renewcommand\bibname{References}
-\addto{\captionsfinnish}{\renewcommand*{\bibname}{Lähteet}}
+\IfLanguageName {finnish} {\addto{\captionsfinnish}{\renewcommand*{\bibname}{Lähteet}}} {\renewcommand\bibname{References}}
 \makeatletter %reference list option change
 \renewcommand\@biblabel[1]{#1\hspace{1cm}} %from [1] to 1 with 1cm gap
 \makeatother %
@@ -260,29 +250,29 @@ xleftmargin=1cm
 \ThisCenterWallPaper{1}{viiva}
 %
 \vspace*{9.5cm}
-\tn{\LARGE \@author\\[0.75cm]\Huge \@title}\\[3.5cm]
+\tn{\LARGE \@author\\[0.75cm]\Huge \IfLanguageName {finnish}{\otsikko}{\@title}}\\[3.5cm]
 
 \parbox{.7\linewidth}{\normalsize 
-%IN FINNISH
-Metropolia Ammattikorkeakoulu\\[2pt]
-\tutkinto \\[2pt]
-\kohjelma \\[2pt]
-Insinöörityö\\[2pt]
-\ddmmyyyydate\today}
-%IN ENGLISH
-%Helsinki Metropolia University of Applied Sciences\\[2pt]
-%\metropoliadegree \\[2pt]
-%\metropoliadegreeprogramme \\[2pt]
-%Thesis\\[2pt]
-%\ddmmyyyydate\today}%to be checked date format? 
-
+\IfLanguageName {finnish}{
+  Metropolia Ammattikorkeakoulu\\[2pt]
+  \tutkinto \\[2pt]
+  \kohjelma \\[2pt]
+  Insinöörityö\\[2pt]
+  \pvm
+} {
+  Helsinki Metropolia University of Applied Sciences\\[2pt]
+  \metropoliadegree \\[2pt]
+  \metropoliadegreeprogramme \\[2pt]
+  Thesis\\[2pt]
+  \ddmmyyyydate\today %to be checked date format? 
+}
+}
 \ThisLRCornerWallPaper{1}{metropolia}
 %
 \clearpage
 }
 \makeatother
 
-%IN ENGLISH COMMENT THIS 3 LINES
 \makepagestyle{tiivis}
 \makeevenhead{tiivis}{}{}{Tiivistelmä}
 \makeoddhead{tiivis}{}{}{Tiivistelmä}
@@ -307,6 +297,7 @@ Insinöörityö\\[2pt]
 
 \maketitle
 \newpage
+\LRCornerWallPaper{1}{footer}
 
 %----------------------------------------------------------------------------------------
 %    Tiivistelmä
@@ -314,7 +305,6 @@ Insinöörityö\\[2pt]
 
 %IN ENGLISH COMMENT THIS SECTION
 \thispagestyle{tiivis}
-\LRCornerWallPaper{1}{footer}
 \begin{tabular}{ | p{4,7cm} | p{10,3cm} |}
   \hline
   Tekijä(t) \newline
@@ -326,7 +316,7 @@ Insinöörityö\\[2pt]
   \@author \newline 
   \otsikko \newline\newline 
   \makeatother
-  \pageref{LastPage} pages + \total{chapter} appendices \newline %! if no appendices, risk to count total of chapter :D
+  \pageref{LastPage} sivua + \total{chapter} liitettä \newline %! if no appendices, risk to count total of chapter :D
   \pvm		
   \\ \hline
   Tutkinto & \tutkinto
@@ -396,7 +386,6 @@ Insinöörityö\\[2pt]
 \pagestyle{empty} %remove page number in toc (if longer than 2 pages)
 \tableofcontents*
 \pagestyle{empty} %remove page number in toc (if longer than 1 pages)
-\ThisLRCornerWallPaper{1}{footer} %add footer image (if longer than 1 page)
 \clearpage
 \pagestyle{plain}
 
@@ -409,12 +398,13 @@ Insinöörityö\\[2pt]
 
 \pagestyle{empty}
 \setlength{\parskip}{1cm}
-%IN FINNISH
-\chapter*{Lyhenteet}
-\cftaddtitleline{toc}{chapter}{Lyhenteet}{}
-%IN ENGLISH
-%\chapter*{Abbreviation}
-%\cftaddtitleline{toc}{chapter}{Abbreviation}{}
+\IfLanguageName {finnish} {
+  \chapter*{Lyhenteet}
+  \cftaddtitleline{toc}{chapter}{Lyhenteet}{}
+} {
+  \chapter*{Abbreviation}
+  \cftaddtitleline{toc}{chapter}{Abbreviation}{}
+}
 \begin{table}[h]
 \setlength{\tabcolsep}{8pt}
 \renewcommand{\arraystretch}{2}
@@ -587,6 +577,14 @@ As presented in table \ref{table:some_data2}: Donec et sapien ac leo condimentum
 \chapter{Second Chapter}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam purus, in ornare nulla imperdiet molestie. Nam tempus erat eu dui rhoncus et vestibulum mi elementum. Ut porttitor elit sit amet justo dignissim sit amet sagittis massa egestas. Mauris sed dolor eget dui fermentum sodales ut eu nibh. 
+
+Quisque augue est, elementum ac porttitor non, porttitor ac orci. Donec hendrerit, ligula ac luctus egestas, sem dolor pretium nunc, sed vehicula magna diam a massa. Donec mattis, arcu et tempor mattis, risus tortor ultrices metus, nec sodales sem dolor eu elit. Nullam egestas enim at odio pellentesque bibendum. 
+
+Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
+
+\chapter{Third Chapter}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam purus, in ornare nulla imperdiet molestie. Nam tempus erat eu dui rhoncus et vestibulum mi elementum. Ut porttitor elit sit amet justo dignissim sit amet sagittis massa egestas. Mauris sed dolor eget dui fermentum sodales ut eu nibh.
 \begin{figure}[htbp]
   \centering
     \begin{tikzpicture}
@@ -614,14 +612,6 @@ $\pgfmathprintnumber{\pgfplotstableregressiona}x
 \label{fig:stdplot}
 \caption{Simple linear regression plot (cannot get $r^2$ value)}
 \end{figure}
-Quisque augue est, elementum ac porttitor non, porttitor ac orci. Donec hendrerit, ligula ac luctus egestas, sem dolor pretium nunc, sed vehicula magna diam a massa. Donec mattis, arcu et tempor mattis, risus tortor ultrices metus, nec sodales sem dolor eu elit. Nullam egestas enim at odio pellentesque bibendum. 
-
-Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
-
-\chapter{Third Chapter}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam purus, in ornare nulla imperdiet molestie. Nam tempus erat eu dui rhoncus et vestibulum mi elementum. Ut porttitor elit sit amet justo dignissim sit amet sagittis massa egestas. Mauris sed dolor eget dui fermentum sodales ut eu nibh. 
-
 Quisque augue est, elementum ac porttitor non, porttitor ac orci. Donec hendrerit, ligula ac luctus egestas, sem dolor pretium nunc, sed vehicula magna diam a massa. Donec mattis, arcu et tempor mattis, risus tortor ultrices metus, nec sodales sem dolor eu elit. Nullam egestas enim at odio pellentesque bibendum. 
 
 Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
@@ -678,8 +668,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam
 %special counter for appendix TODO: this is a ugly quick hack :( Should find a better way to count the page per appendix.
 \newtotcounter{appx1}
 %overwrite the header
-\makeevenhead{plain}{}{}{Appendix \thechapter \\ \thepage (\stepcounter{appx1}\total{appx1})}
-\makeoddhead{plain}{}{}{Appendix \thechapter \\ \thepage (\stepcounter{appx1}\total{appx1})}
+\makeevenhead{plain}{}{}{\appname \thechapter \\ \thepage (\stepcounter{appx1}\total{appx1})}
+\makeoddhead{plain}{}{}{\appname \thechapter \\ \thepage (\stepcounter{appx1}\total{appx1})}
 
 \chapter{My First Appendix}\label{appx:first}
 
@@ -710,8 +700,8 @@ Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit ma
 \setcounter{page}{1} %restet to page 1 (you can't avoid this one (I think))
 \newtotcounter{appx2} % to have the total for this appendix and not the previous one.
 %overwrite the header
-\makeevenhead{plain}{}{}{Appendix \thechapter \\ \thepage (\stepcounter{appx2}\total{appx2})}
-\makeoddhead{plain}{}{}{Appendix \thechapter \\ \thepage (\stepcounter{appx2}\total{appx2})}
+\makeevenhead{plain}{}{}{\appname \thechapter \\ \thepage (\stepcounter{appx2}\total{appx2})}
+\makeoddhead{plain}{}{}{\appname \thechapter \\ \thepage (\stepcounter{appx2}\total{appx2})}
 
 \chapter{My Second Appendix}\label{appx:second}
 
