@@ -23,20 +23,8 @@
 %    ToDo
 %----------------------------------------------------------------------------------------
 % % % TÄRKEÄT
-% % Translate "listing" in finnish (when inserting source code in the text)
-% % Joku ifdef-tyyppinen vipu kieliversiolle (otsikot ja placeholdertekstit)
-%    % Vaihtoehtona tietty erilliset filet suomelle ja enkulle, mutta
-%    % tämä heikentää päivitettävyyttä (pitää aina muistaa korjata kahteen paikkaan).
-%    % PA: I put CAPS comments where to switch depending on the language
-% % Lisensointi (otsikkoon tekijä ja avoin lisenssi (esim. CC-BY, pohjan laatija
-%   mainittava kommenttirivillä tjsp. [pohja ei ylitä teoskynnystä mutta kiva mainita].
-%   PA: done
-% % Projektin siirto Githubiin (siinä on issueträkkäys sun muut kivasti kunnossa) Vai?
-%   %PA: done
 % % Odotetaan 29.11.2013 asti äikänmaikkojen ja viestinnän mahdollisia kommentteja.
 %   %done?
-% %Reduce the vertical spacing for appendix in table of content
-%   %done
 %
 % % % Vähemmän tärkeät
   % PNG:iden tilalle vektorigraffaa, jos vain löytyy kohtuuvaivalla
@@ -46,18 +34,23 @@
 %	THESIS
 %----------------------------------------------------------------------------------------
 
-\author{Your name here}
-\title{Your title here}
+\def\thesislang{finnish} %change this depending on your language
+\author{Nimi/Name}
 
-%IN ENGLISH, you can comment out/remove till line \def\avainsanat
+%Finnish section
 \def\otsikko{Otsikko}
-\def\pvm{\ddmmyyyydate\today}
 \def\tutkinto{Tutkinto}
 \def\kohjelma{Koulutusohjelma}
 \def\suuntautumis{Suuntautumisvaihtoehto}
-\def\ohjaajat{Ohjaajat}
+\def\ohjaajat{
+Etunimi Sukunimi, Titteli\newline
+Etunimi Sukunimi, Titteli
+}
 \def\avainsanat{avainsana}
-\date{\today}
+\def\pvm{\ddmmyyyydate\today}
+
+%English section, for abstract
+\title{Your title here}
 \def\metropoliadegree {Bachelor of Engineering}
 \def\metropoliadegreeprogramme {Name of your degree programme}
 \def\metropoliaspecialisation {Name of your specialisation option}
@@ -66,16 +59,15 @@ First name Last name, Title (for example: Project Manager)\newline
 First name Last name, Title (for example: Principal Lecturer)
 }
 \def\metropoliakeywords {Keywords}
+\date{\today}
 
 %----------------------------------------------------------------------------------------
 %	GLOBAL STYLES
 %----------------------------------------------------------------------------------------
 
 \documentclass[11pt,a4paper,oneside,article]{memoir}
-%\usepackage[utf8]{inputenc}
-%\usepackage[ansinew]{inputenc}
-%\usepackage[T1]{fontenc}
-\usepackage[finnish]{babel} %change this depending on your language
+\usepackage[\thesislang]{babel} 
+\usepackage{iflang}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -86,12 +78,15 @@ First name Last name, Title (for example: Principal Lecturer)
 \usepackage[hyphens]{url}
 \usepackage{mathtools}
 \usepackage{wallpaper}
-\usepackage{eso-pic}
 \usepackage{datetime}
+\usepackage{hyperref} % for automagic pdf links for toc, refs, etc.
 %\usepackage{lastpage} %other trick ;)
-\usepackage{url}
 \usepackage[amssymb]{SIunits}
-
+\usepackage[version=3]{mhchem}
+\usepackage{pgfplots} %simple plots etc
+\usepackage{pgfplotstable}
+\usepackage{tikz} % mindmaps, flowcharts, piecharts, examples at http://www.texample.net/tikz/examples/
+\usetikzlibrary{shapes.geometric, arrows}
 
 
 \renewcommand{\dateseparator}{.}
@@ -122,10 +117,14 @@ First name Last name, Title (for example: Principal Lecturer)
 \usepackage{color}
 %force the width of a table instead of column
 \usepackage{tabularx}
+\usepackage{booktabs} %why not booktabs? :3
+
+\newcommand\tn[1]{\textnormal{#1}} %use \tn instead of \textnormal
+\newcommand\reaction[1]{\begin{equation}\ce{#1}\end{equation}} %\reaction{} for chemical reactions
 
 %NORMAL TEXT
 %all text, title, etc. in the same font: Arial
-\setmainfont{Arial}
+\setmainfont{LiberationSans-Regular.ttf} %replace with arial.ttf if you have the fontfile
 %line space
 \linespread{1.5}
 %\doublespacing
@@ -175,15 +174,13 @@ tabsize=2,
 showtabs=false,
 xleftmargin=1cm
 }
-%YOU NEED TO TRANSLATE THE CAPTION "Listing" in Finnish. 
-%IN ENGLISH Nothing to do
+\IfLanguageName {finnish} {\renewcommand{\lstlistingname}{Listaus}} {} % what is a good translation for this?
 %\counterwithout{lstlisting}{chapter}
 %moved after begin document, otherwise does not compile
 
 %TOC
 %change toc title
-%COMMENT OUT FOR ENGLISH
-\addto{\captionsfinnish}{\renewcommand*{\contentsname}{Sisällys}}
+\IfLanguageName {finnish} {\addto{\captionsfinnish}{\renewcommand*{\contentsname}{Sisällys}}} {}
 %remove dots
 \renewcommand*{\cftdotsep}{\cftnodots}
 %chapter title and page number not in bold
@@ -205,7 +202,12 @@ xleftmargin=1cm
 %spacing afer a subsection in toc
 \renewcommand{\cftsubsectionaftersnumb}{\vspace*{-1pt}}
 %appendix in toc with "Appendix " + num
-\renewcommand*{\cftappendixname}{Appendix\space}
+\IfLanguageName {finnish} {
+  \renewcommand*{\cftappendixname}{Liite\space}
+  \renewcommand{\appendixtocname}{Liitteet}
+}{\renewcommand*{\cftappendixname}{Appendix\space}}
+%appendix header
+\IfLanguageName {finnish} {\def\appname{Liite\space}}{\def\appname{Appendix\space}}
 
 %TITLES
 %chapter title
@@ -231,9 +233,7 @@ xleftmargin=1cm
 
 %BIBLIOGRAPHY
 %bibliography title to be "references"
-%IN ENGLISH UN/COMMENT THIS 2 LINES
-%\renewcommand\bibname{References}
-\addto{\captionsfinnish}{\renewcommand*{\bibname}{Lähteet}}
+\IfLanguageName {finnish} {\addto{\captionsfinnish}{\renewcommand*{\bibname}{Lähteet}}} {\renewcommand\bibname{References}}
 \makeatletter %reference list option change
 \renewcommand\@biblabel[1]{#1\hspace{1cm}} %from [1] to 1 with 1cm gap
 \makeatother %
@@ -244,46 +244,35 @@ xleftmargin=1cm
 \regtotcounter{chapter}
 
 %TITLE PAGE
-\newcommand\BackgroundPic{%
-\put(0,0){%
-\parbox[b][\paperheight]{\paperwidth}{%
-\vfill
-\centering
-\includegraphics[width=\paperwidth,height=\paperheight,%
-keepaspectratio]{viiva}%
-\vfill
-}}}
-
-
 \makeatletter
 \renewcommand{\maketitle}{
 \thispagestyle{empty}
 \ThisCenterWallPaper{1}{viiva}
 %
 \vspace*{9.5cm}
-\tn{\LARGE \@author\\[0.75cm]\Huge \@title}\\[3.5cm]
+\tn{\LARGE \@author\\[0.75cm]\Huge \IfLanguageName {finnish}{\otsikko}{\@title}}\\[3.5cm]
 
 \parbox{.7\linewidth}{\normalsize 
-%IN FINNISH
-Metropolia Ammattikorkeakoulu\\[2pt]
-\tutkinto \\[2pt]
-\kohjelma \\[2pt]
-Insinöörityö\\[2pt]
-\ddmmyyyydate\today}
-%IN ENGLISH
-%Helsinki Metropolia University of Applied Sciences\\[2pt]
-%\metropoliadegree \\[2pt]
-%\metropoliadegreeprogramme \\[2pt]
-%Thesis\\[2pt]
-%\ddmmyyyydate\today}%to be checked date format? 
-
+\IfLanguageName {finnish}{
+  Metropolia Ammattikorkeakoulu\\[2pt]
+  \tutkinto \\[2pt]
+  \kohjelma \\[2pt]
+  Insinöörityö\\[2pt]
+  \pvm
+} {
+  Helsinki Metropolia University of Applied Sciences\\[2pt]
+  \metropoliadegree \\[2pt]
+  \metropoliadegreeprogramme \\[2pt]
+  Thesis\\[2pt]
+  \ddmmyyyydate\today %to be checked date format? 
+}
+}
 \ThisLRCornerWallPaper{1}{metropolia}
 %
 \clearpage
 }
 \makeatother
 
-%IN ENGLISH COMMENT THIS 3 LINES
 \makepagestyle{tiivis}
 \makeevenhead{tiivis}{}{}{Tiivistelmä}
 \makeoddhead{tiivis}{}{}{Tiivistelmä}
@@ -294,9 +283,6 @@ Insinöörityö\\[2pt]
 
 \begin{document}
 \counterwithout{lstlisting}{chapter}
-
-\newcommand\tn[1]{\textnormal{#1}}
-\newcommand\reaction[1]{\begin{equation}\ce{#1}\end{equation}}
 
 %page number always on the top right, clear the "chapter/section" head
 \pagestyle{myheadings}
@@ -311,14 +297,17 @@ Insinöörityö\\[2pt]
 
 \maketitle
 \newpage
+\LRCornerWallPaper{1}{footer}
 
 %----------------------------------------------------------------------------------------
 %    Tiivistelmä
 %----------------------------------------------------------------------------------------
 
-%IN ENGLISH COMMENT THIS SECTION
+\newif\iftiivistelma
+\IfLanguageName{finnish}{\tiivistelmatrue}{\tiivistelmafalse}
+
+\iftiivistelma
 \thispagestyle{tiivis}
-\ThisLRCornerWallPaper{1}{footer}
 \begin{tabular}{ | p{4,7cm} | p{10,3cm} |}
   \hline
   Tekijä(t) \newline
@@ -330,7 +319,7 @@ Insinöörityö\\[2pt]
   \@author \newline 
   \otsikko \newline\newline 
   \makeatother
-  \pageref{LastPage} pages + \total{chapter} appendices \newline %! if no appendices, risk to count total of chapter :D
+  \pageref{LastPage} sivua + \total{chapter} liitettä \newline %! if no appendices, risk to count total of chapter :D
   \pvm		
   \\ \hline
   Tutkinto & \tutkinto
@@ -348,14 +337,13 @@ Insinöörityö\\[2pt]
   \\ \hline
 \end{tabular}
 \clearpage
+\fi
 
 %----------------------------------------------------------------------------------------
 %	ABSTRACT
 %----------------------------------------------------------------------------------------
 
 \pagestyle{abstract}
-\ThisLRCornerWallPaper{1}{footer}
-
 \begin{tabular}{ | p{4,7cm} | p{10,3cm} |}
   \hline
   Author(s) \newline
@@ -367,7 +355,7 @@ Insinöörityö\\[2pt]
   \@author \newline
   \@title \newline\newline
   \pageref{LastPage} pages + \total{chapter} appendices \newline %! if no appendices, risk to count total of chapter :D
-  \@date
+  \IfLanguageName {finnish} {\foreignlanguage{english}{\longdate\@date}} {\@date}
   \makeatother
   \\ \hline
   Degree & \metropoliadegree
@@ -400,10 +388,8 @@ Insinöörityö\\[2pt]
 \makeevenhead{plain}{}{}{}
 \makeoddhead{plain}{}{}{}
 \pagestyle{empty} %remove page number in toc (if longer than 2 pages)
-\ThisLRCornerWallPaper{1}{footer}
 \tableofcontents*
 \pagestyle{empty} %remove page number in toc (if longer than 1 pages)
-\ThisLRCornerWallPaper{1}{footer} %add footer image (if longer than 1 page)
 \clearpage
 \pagestyle{plain}
 
@@ -415,14 +401,14 @@ Insinöörityö\\[2pt]
 %----------------------------------------------------------------------------------------
 
 \pagestyle{empty}
-\ThisLRCornerWallPaper{1}{footer}
 \setlength{\parskip}{1cm}
-%IN FINNISH
-\chapter*{Lyhenteet}
-\cftaddtitleline{toc}{chapter}{Lyhenteet}{}
-%IN ENGLISH
-%\chapter*{Abbreviation}
-%\cftaddtitleline{toc}{chapter}{Abbreviation}{}
+\IfLanguageName {finnish} {
+  \chapter*{Lyhenteet}
+  \cftaddtitleline{toc}{chapter}{Lyhenteet}{}
+} {
+  \chapter*{Abbreviation}
+  \cftaddtitleline{toc}{chapter}{Abbreviation}{}
+}
 \begin{table}[h]
 \setlength{\tabcolsep}{8pt}
 \renewcommand{\arraystretch}{2}
@@ -441,7 +427,7 @@ TL;DR & Too long, didn't read\\
 \makeoddhead{plain}{}{}{\thepage}
 
 \setcounter{page}{1} %page 1 should be Introduction
-
+\ClearWallPaper
 %----------------------------------------------------------------------------------------
 %	CONTENT
 %----------------------------------------------------------------------------------------
@@ -480,10 +466,26 @@ From the Universal Declaration of Human Rights:
 
 \subsection{Subsection}
 Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
+\reaction{\label{eq:reaktio}$\underset{\text{+II}}{\ce{2Fe^2+}}$ + $\underset{\text{+I\;-I}}{\ce{H2O2}}$ + $\underset{\text{+I\;-II}}{\ce{2H3O^+}}$ <=> $\underset{\text{+III}}{\ce{2Fe^3+}}$ + $\underset{\text{+I\;-II}}{\ce{4H2O}}$}
+Työn aluksi rauta(II)ionit hapetetaan rauta(III)ioneiksi väkevällä vetyperoksidilla, kuten reaktion~\ref{eq:reaktio} hapetusluvuista nähdään (rauta hapettuu, happi pelkistyy).  
+\reaction{Fe^3+( \emph{aq} ) + 3OH^-( \emph{aq} ) + $(x-1)$H2O( \emph{l} ) -> FeOOH $\cdot$ $x$(H2O)( \emph{s} )}
+Rauta(III)ionit saostetaan emäksen (\ce{NH3}) avulla ja saadaan tuotteeksi kidevedellinen rauta(III)hydroksidi. Saatu saostuma pestään \ce{NH4NO3}:lla.
+\reaction{FeOOH $\cdot$ $x$(H2O)( \emph{s} ) ->T[$\Delta$900-1000\celsius] Fe2O3( \emph{s} )}
 
 \subsection{Subsection with Math}
-Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
-
+Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit. Tertiäärinen butyylikloridi reagoi veden kanssa oheisen reaktion mukaisesti:
+\reaction{(CH3)3CCl + 2H2O -> (CH3)3COH+H3O+ +Cl-}
+Kyseessä on ensimmäisen kertaluvun reaktio, joten reaktion nopeus on
+\begin{align}
+v=-\frac{\mathrm{d}[\tn{t-ButCl}]}{\mathrm{d}t}=\frac{\mathrm{d}[\tn{HCl}]}{\mathrm{d}t}=k[\tn{t-ButCl}]
+\end{align}
+Jos tarkastellaan lähtöaineen t-butyylikloridin häviämistä saadaan
+\begin{align}
+\frac{\mathrm{d}[\tn{t-ButCl}]}{[\tn{t-ButCl}]}&=-k\mathrm{d}t \\
+\int \frac{\mathrm{d}[\tn{t-ButCl}]}{[\tn{t-ButCl}]}&=-k \int \mathrm{d}t \\
+\ln \int_{[\tn{t-ButCl}]_0}^{[\tn{t-ButCl}]} [\tn{t-ButCl}]&=-k\int_0^t t \\
+\ln \left( \frac{[\tn{t-ButCl}]}{[\tn{t-ButCl}]_0} \right)&=-kt
+\end{align}
 Ionivahvuus lasketaan kaavalla.
 \begin{align}
 I&=\frac{1}{2}\cdot\sum z_i^2c_i \\
@@ -553,6 +555,29 @@ As presented in table \ref{table:some_data}: Donec et sapien ac leo condimentum 
 
 As presented in table \ref{table:some_data2}: Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
 
+\begin{table}[htbp]
+  \centering
+  \caption{Booktabs example}
+    \begin{tabular}{rrrr}
+    \toprule
+    t (s) & [HCl] & [t-ButCl] & $\ln\frac{[t-ButCl]}{[t-ButCl]_0}$ \\
+    \midrule
+    0     & 4,02  & 160,88 & 0,00 \\
+    10    & 63    & 101,9 & -0,46 \\
+    20    & 115,2 & 49,7  & -1,17 \\
+    30    & 141,3 & 23,6  & -1,92 \\
+    40    & 157,9 & 7     & -3,13 \\
+    50    & 161   & 3,9   & -3,72 \\
+    60    & 164,3 & 0,6   & -5,59 \\
+    70    & 163,5 & 1,4   & -4,74 \\
+    80    & 163,8 & 1,1   & -4,99 \\
+    90    & 164,1 & 0,8   & -5,30 \\
+    100   & 164,3 & 0,6   & -5,59 \\
+    \bottomrule
+    \end{tabular}
+  \label{tab:thisislabel}
+\end{table}
+
 \chapter{Second Chapter}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam purus, in ornare nulla imperdiet molestie. Nam tempus erat eu dui rhoncus et vestibulum mi elementum. Ut porttitor elit sit amet justo dignissim sit amet sagittis massa egestas. Mauris sed dolor eget dui fermentum sodales ut eu nibh. 
@@ -563,15 +588,60 @@ Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit ma
 
 \chapter{Third Chapter}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam purus, in ornare nulla imperdiet molestie. Nam tempus erat eu dui rhoncus et vestibulum mi elementum. Ut porttitor elit sit amet justo dignissim sit amet sagittis massa egestas. Mauris sed dolor eget dui fermentum sodales ut eu nibh. 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam purus, in ornare nulla imperdiet molestie. Nam tempus erat eu dui rhoncus et vestibulum mi elementum. Ut porttitor elit sit amet justo dignissim sit amet sagittis massa egestas. Mauris sed dolor eget dui fermentum sodales ut eu nibh.
+\begin{figure}[htbp]
+  \centering
+    \begin{tikzpicture}
+        \pgfplotsset{width=12cm,
+        compat=1.3,
+        legend style={font=\footnotesize}}
+    \begin{axis}[
+    xlabel={c (mg/l)},
+    ylabel={A},
+    legend pos=north west,
+    ymajorgrids=true,
+    grid style=dashed
+]
 
+\addplot [only marks, blue] table {data.dat};
+\addplot [no markers, thick, red] table[
+x=c,
+y={create col/linear regression}] {data.dat};
+\addlegendentry{data}
+\addlegendentry{%
+$\pgfmathprintnumber{\pgfplotstableregressiona}x
+\pgfmathprintnumber[print sign]{\pgfplotstableregressionb}$}
+\end{axis}
+\end{tikzpicture}
+\label{fig:stdplot}
+\caption{Simple linear regression plot (cannot get $r^2$ value)}
+\end{figure}
 Quisque augue est, elementum ac porttitor non, porttitor ac orci. Donec hendrerit, ligula ac luctus egestas, sem dolor pretium nunc, sed vehicula magna diam a massa. Donec mattis, arcu et tempor mattis, risus tortor ultrices metus, nec sodales sem dolor eu elit. Nullam egestas enim at odio pellentesque bibendum. 
 
 Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
 
 \section{Section}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam purus, in ornare nulla imperdiet molestie. Nam tempus erat eu dui rhoncus et vestibulum mi elementum. Ut porttitor elit sit amet justo dignissim sit amet sagittis massa egestas. Mauris sed dolor eget dui fermentum sodales ut eu nibh. 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam purus, in ornare nulla imperdiet molestie. Nam tempus erat eu dui rhoncus et vestibulum mi elementum. 
+\tikzstyle{palikka} = [rectangle, rounded corners, minimum width=1cm, minimum height=1cm, text centered, text width=2cm, draw=black, fill=red!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[node distance=2.75cm]
+\node (yksi) [palikka] {Lorem};
+\node (kaksi) [palikka, right of=yksi] {ipsum};
+\node (kolme) [palikka, below of=kaksi] {dolor};
+\node (neljä) [palikka, left of=kolme] {sit};
+\node (viisi) [palikka, below of=neljä] {amet};
+\draw [arrow] (yksi) -- (kaksi);
+\draw [arrow] (kaksi) -- (kolme);
+\draw [arrow] (kolme) -- (neljä);
+\draw [arrow] (neljä) -- (viisi);
+\end{tikzpicture}
+\caption{Example tikz-picture}
+\label{fig:tikz}
+\end{figure}
+Ut porttitor elit sit amet justo dignissim sit amet sagittis massa egestas. Mauris sed dolor eget dui fermentum sodales ut eu nibh. 
 
 \section{Section}
 
@@ -621,8 +691,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam
 %special counter for appendix TODO: this is a ugly quick hack :( Should find a better way to count the page per appendix.
 \newtotcounter{appx1}
 %overwrite the header
-\makeevenhead{plain}{}{}{Appendix \thechapter \\ \thepage (\stepcounter{appx1}\total{appx1})}
-\makeoddhead{plain}{}{}{Appendix \thechapter \\ \thepage (\stepcounter{appx1}\total{appx1})}
+\makeevenhead{plain}{}{}{\appname \thechapter \\ \thepage (\stepcounter{appx1}\total{appx1})}
+\makeoddhead{plain}{}{}{\appname \thechapter \\ \thepage (\stepcounter{appx1}\total{appx1})}
 
 \chapter{My First Appendix}\label{appx:first}
 
@@ -653,8 +723,8 @@ Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit ma
 \setcounter{page}{1} %restet to page 1 (you can't avoid this one (I think))
 \newtotcounter{appx2} % to have the total for this appendix and not the previous one.
 %overwrite the header
-\makeevenhead{plain}{}{}{Appendix \thechapter \\ \thepage (\stepcounter{appx2}\total{appx2})}
-\makeoddhead{plain}{}{}{Appendix \thechapter \\ \thepage (\stepcounter{appx2}\total{appx2})}
+\makeevenhead{plain}{}{}{\appname \thechapter \\ \thepage (\stepcounter{appx2}\total{appx2})}
+\makeoddhead{plain}{}{}{\appname \thechapter \\ \thepage (\stepcounter{appx2}\total{appx2})}
 
 \chapter{My Second Appendix}\label{appx:second}
 

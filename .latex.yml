@@ -1,0 +1,5 @@
+# In .latex.yml
+compiler: xelatex
+
+# In .latex.yml
+root_file: thesis.tex
