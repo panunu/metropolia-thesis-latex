@@ -124,7 +124,13 @@ First name Last name, Title (for example: Principal Lecturer)
 
 %NORMAL TEXT
 %all text, title, etc. in the same font: Arial
-\setmainfont{LiberationSans-Regular.ttf} %replace with arial.ttf if you have the fontfile
+%replace with arial.ttf if you have the fontfile
+%NOTE: fontname is case-sensitive
+\setmainfont
+[BoldFont=LiberationSans-Bold.ttf,
+ItalicFont=LiberationSans-Italic.ttf,
+BoldItalicFont=LiberationSans-BoldItalic.ttf]
+{LiberationSans-Regular.ttf}
 %line space
 \linespread{1.5}
 %\doublespacing
@@ -433,7 +439,7 @@ TL;DR & Too long, didn't read\\
 %----------------------------------------------------------------------------------------
 
 \chapter{Content}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam purus, in ornare nulla imperdiet molestie. Nam tempus erat eu dui rhoncus et vestibulum mi elementum. Ut porttitor elit sit amet justo dignissim sit amet sagittis massa egestas. Mauris sed dolor eget dui fermentum sodales ut eu nibh. 
+This should be \textbf{bold} and this \textit{italic} and finally \textbf{\textit{bolditalic}}. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam purus, in ornare nulla imperdiet molestie. Nam tempus erat eu dui rhoncus et vestibulum mi elementum. Ut porttitor elit sit amet justo dignissim sit amet sagittis massa egestas. Mauris sed dolor eget dui fermentum sodales ut eu nibh. 
 
 \section{Section}
 Here is an example how to add biblio entry \cite{kopka:guide} using the \textquotedblleft cite\textquotedblright ~\cite[section 4.2]{tobias:book}. Note that a paragraph is added by forcing a new line.
