@@ -36,9 +36,11 @@
 
 \def\thesislang{finnish} %change this depending on your language
 \author{Nimi/Name}
+\def\thesis{Opinnäytetyö/Thesis}
+\def\alaotsikko{Alaotsikko/Subtitle}
 
 %Finnish section
-\def\otsikko{Otsikko}
+\def\otsikko{Opinnäytetyön otsikko}
 \def\tutkinto{Tutkinto}
 \def\kohjelma{Koulutusohjelma}
 \def\suuntautumis{Suuntautumisvaihtoehto}
@@ -46,7 +48,7 @@
 Etunimi Sukunimi, Titteli\newline
 Etunimi Sukunimi, Titteli
 }
-\def\avainsanat{avainsana}
+\def\avainsanat{avainsanat}
 \def\pvm{\ddmmyyyydate\today}
 
 %English section, for abstract
@@ -73,14 +75,12 @@ First name Last name, Title (for example: Principal Lecturer)
 \usepackage{amssymb}
 \usepackage{fontspec}
 \usepackage{tocloft}
-%\usepackage{lipsum}
 \usepackage{titlesec}
 \usepackage[hyphens]{url}
 \usepackage{mathtools}
 \usepackage{wallpaper}
 \usepackage{datetime}
-\usepackage{hyperref} % for automagic pdf links for toc, refs, etc.
-%\usepackage{lastpage} %other trick ;)
+\usepackage[bookmarksdepth=subsection]{hyperref} % for automagic pdf links for toc, refs, etc.
 \usepackage[amssymb]{SIunits}
 \usepackage[version=3]{mhchem}
 \usepackage{pgfplots} %simple plots etc
@@ -256,20 +256,20 @@ xleftmargin=1cm
 \ThisCenterWallPaper{1}{viiva}
 %
 \vspace*{9.5cm}
-\tn{\LARGE \@author\\[0.75cm]\Huge \IfLanguageName {finnish}{\otsikko}{\@title}}\\[3.5cm]
+\tn{\LARGE\@author\\[22pt]\Huge\IfLanguageName {finnish}{\otsikko}{\@title}\\[22pt]\LARGE\alaotsikko\\[1.75cm]}
 
-\parbox{.7\linewidth}{\normalsize 
+\parbox{.7\linewidth}{
 \IfLanguageName {finnish}{
-  Metropolia Ammattikorkeakoulu\\[2pt]
-  \tutkinto \\[2pt]
-  \kohjelma \\[2pt]
-  Insinöörityö\\[2pt]
+  Metropolia Ammattikorkeakoulu\\
+  \tutkinto \\
+  \kohjelma \\
+  \thesis\\
   \pvm
 } {
-  Helsinki Metropolia University of Applied Sciences\\[2pt]
-  \metropoliadegree \\[2pt]
-  \metropoliadegreeprogramme \\[2pt]
-  Thesis\\[2pt]
+  Helsinki Metropolia University of Applied Sciences\\
+  \metropoliadegree \\
+  \metropoliadegreeprogramme \\
+  \thesis\\
   \ddmmyyyydate\today %to be checked date format? 
 }
 }
@@ -309,10 +309,6 @@ xleftmargin=1cm
 %    Tiivistelmä
 %----------------------------------------------------------------------------------------
 
-\newif\iftiivistelma
-\IfLanguageName{finnish}{\tiivistelmatrue}{\tiivistelmafalse}
-
-\iftiivistelma
 \thispagestyle{tiivis}
 \begin{tabular}{ | p{4,7cm} | p{10,3cm} |}
   \hline
@@ -336,14 +332,15 @@ xleftmargin=1cm
   \\ \hline
   Ohjaaja(t) & \ohjaajat
   \\ \hline
-  \multicolumn{2}{|p{15cm}|}{
-  Tiivistelmä
-  } \\[14cm] \hline
+  \multicolumn{2}{|p{15cm}|}{\begin{singlespacing}\vspace{-22pt}
+  Tämä on tiivistelmän ensimmäinen kappale. Tiivistelmän kappaleet loppuvat komentoon newline, jotta saadaan yksi tyhjä rivi aikaiseksi. \newline
+  
+  Tämä on tiivistlemän toinen kappale.
+  \end{singlespacing}} \\[14cm] \hline
   Avainsanat & \avainsanat
   \\ \hline
 \end{tabular}
 \clearpage
-\fi
 
 %----------------------------------------------------------------------------------------
 %	ABSTRACT
@@ -372,9 +369,9 @@ xleftmargin=1cm
   \\ \hline
   Instructor(s) & \metropoliainstructors
   \\ \hline
-  \multicolumn{2}{|p{15cm}|}{
+  \multicolumn{2}{|p{15cm}|}{\begin{singlespacing}\vspace{-22pt}
   Abstract content
-  } \\[14cm] \hline
+  \end{singlespacing}} \\[14cm] \hline
   Keywords & \metropoliakeywords
   \\ \hline
 \end{tabular}
@@ -634,13 +631,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[node distance=2.75cm]
-\node (yksi) [palikka] {Lorem};
+\node[label=90:Label] (yksi) [palikka] {Lorem};
 \node (kaksi) [palikka, right of=yksi] {ipsum};
-\node (kolme) [palikka, below of=kaksi] {dolor};
+\node (kolme) [palikka, below of=kaksi,  yshift=1cm] {dolor};
 \node (neljä) [palikka, left of=kolme] {sit};
-\node (viisi) [palikka, below of=neljä] {amet};
+\node (viisi) [palikka, below of=neljä, yshift=1cm] {amet};
 \draw [arrow] (yksi) -- (kaksi);
-\draw [arrow] (kaksi) -- (kolme);
+\draw [arrow] (kaksi) -- node[anchor=west] {tekstiä} (kolme);
 \draw [arrow] (kolme) -- (neljä);
 \draw [arrow] (neljä) -- (viisi);
 \end{tikzpicture}
@@ -657,7 +654,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam
 %   BIBLIOGRAPHY 
 %----------------------------------------------------------------------------------------
 
-\bibliographystyle{vancouver}
+\IfLanguageName{finnish}{\bibliographystyle{vancouver_fi}}{\bibliographystyle{vancouver}}
 %line space
 %\singlespacing %removed otherwise the appendix are also single space
 \begin{flushleft}
@@ -688,18 +685,19 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam
 % You will have to play with these numbers and eventually copy the \pretocmd line on before some \chapter and force another number.
 \addtocontents{toc}{\vspace{11pt}}
 \pretocmd{\chapter}{\addtocontents{toc}{\protect\vspace{-24pt}}}{}{}
-
 %have Appendix 1 (instead of Appendix A)
 \renewcommand{\thechapter}{\arabic{chapter}} 
 
+\newcommand\liite[1]{
 %each appendix restart page num to one
 \setcounter{page}{1}
 %special counter for appendix TODO: this is a ugly quick hack :( Should find a better way to count the page per appendix.
-\newtotcounter{appx1}
+\newtotcounter{appx#1}
 %overwrite the header
-\makeevenhead{plain}{}{}{\appname \thechapter \\ \thepage (\stepcounter{appx1}\total{appx1})}
-\makeoddhead{plain}{}{}{\appname \thechapter \\ \thepage (\stepcounter{appx1}\total{appx1})}
+\makeevenhead{plain}{}{}{\appname \thechapter \\ \thepage (\stepcounter{appx#1}\total{appx#1})}
+\makeoddhead{plain}{}{}{\appname \thechapter \\ \thepage (\stepcounter{appx#1}\total{appx#1})}}
 
+\liite{1}
 \chapter{My First Appendix}\label{appx:first}
 
 Note that every appendix will be a chapter.
@@ -723,19 +721,17 @@ Quisque augue est, elementum ac porttitor non, porttitor ac orci. Donec hendreri
 
 Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
 
-
-%TODO with my ugly hack, for every appendix you will have to make this 
 \clearpage % avoid that the last page of previous appendix get this header
-\setcounter{page}{1} %restet to page 1 (you can't avoid this one (I think))
-\newtotcounter{appx2} % to have the total for this appendix and not the previous one.
-%overwrite the header
-\makeevenhead{plain}{}{}{\appname \thechapter \\ \thepage (\stepcounter{appx2}\total{appx2})}
-\makeoddhead{plain}{}{}{\appname \thechapter \\ \thepage (\stepcounter{appx2}\total{appx2})}
-
+\liite{2}
 \chapter{My Second Appendix}\label{appx:second}
+\addtocontents{toc}{\vspace{11pt}}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam purus, in ornare nulla imperdiet molestie. Nam tempus erat eu dui rhoncus et vestibulum mi elementum. Ut porttitor elit sit amet justo dignissim sit amet sagittis massa egestas. Mauris sed dolor eget dui fermentum sodales ut eu nibh.
 
 Quisque augue est, elementum ac porttitor non, porttitor ac orci. Donec hendrerit, ligula ac luctus egestas, sem dolor pretium nunc, sed vehicula magna diam a massa. Donec mattis, arcu et tempor mattis, risus tortor ultrices metus, nec sodales sem dolor eu elit. Nullam egestas enim at odio pellentesque bibendum. 
 
+\clearpage
+\liite{3}
+\chapter{R examples}
+TODO
 \end{document}
