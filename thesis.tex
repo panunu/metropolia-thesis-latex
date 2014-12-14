@@ -321,7 +321,7 @@ xleftmargin=1cm
   \@author \newline 
   \otsikko \newline\newline 
   \makeatother
-  \pageref{LastPage} sivua + \total{chapter} liitettä \newline %! if no appendices, risk to count total of chapter :D
+  \pageref*{LastPage} sivua + \total{chapter} liitettä \newline %! if no appendices, risk to count total of chapter :D
   \pvm		
   \\ \hline
   Tutkinto & \tutkinto
@@ -357,7 +357,7 @@ xleftmargin=1cm
   \makeatletter
   \@author \newline
   \@title \newline\newline
-  \pageref{LastPage} pages + \total{chapter} appendices \newline %! if no appendices, risk to count total of chapter :D
+  \pageref*{LastPage} pages + \total{chapter} appendices \newline %! if no appendices, risk to count total of chapter :D
   \IfLanguageName {finnish} {\foreignlanguage{english}{\longdate\@date}} {\@date}
   \makeatother
   \\ \hline
