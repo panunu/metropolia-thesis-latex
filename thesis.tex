@@ -694,8 +694,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam
 %special counter for appendix TODO: this is a ugly quick hack :( Should find a better way to count the page per appendix.
 \newtotcounter{appx#1}
 %overwrite the header
-\makeevenhead{plain}{}{}{\appname \thechapter \\ \thepage (\stepcounter{appx#1}\total{appx#1})}
-\makeoddhead{plain}{}{}{\appname \thechapter \\ \thepage (\stepcounter{appx#1}\total{appx#1})}}
+\makeevenhead{plain}{}{}{\appname \thechapter \\ \thepage\,(\stepcounter{appx#1}\total{appx#1})}
+\makeoddhead{plain}{}{}{\appname \thechapter \\ \thepage\,(\stepcounter{appx#1}\total{appx#1})}}
 
 \liite{1}
 \chapter{My First Appendix}\label{appx:first}
