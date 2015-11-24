@@ -53,7 +53,8 @@
 
 %% List of all possible fields
 ENTRY
-  { address
+  { title
+    address
     assignee     % for patents
     author
     booktitle    % for articles in books
@@ -76,7 +77,6 @@ ENTRY
     publisher
     school
     series
-    title
     type
     volume
     word
@@ -96,7 +96,8 @@ INTEGERS { hrefform addeprints adddoiresolver }
 % Following constants may be adjusted by hand, if desired
 FUNCTION {init.config.constants}
 {
-  "Saatavilla: " 'urlintro := % prefix before URL
+  %"Saatavilla: " 'urlintro := % prefix before URL
+  "" 'urlintro := % prefix before URL
   "http://arxiv.org/abs/" 'eprinturl := % prefix to make URL from eprint ref
   "arXiv:" 'eprintprefix := % text prefix printed before eprint ref
   "http://dx.doi.org/" 'doiurl := % prefix to make URL from DOI
@@ -196,8 +197,8 @@ FUNCTION {format.lastchecked}
 { lastchecked empty$
     { "" }
     { updated empty$
-      { inbrackets "viitattu " lastchecked * }
-      { inbrackets "päivitetty " updated * "; viitattu " * lastchecked * }
+      { "Luettu " lastchecked * }
+      { "Päivitetty " updated * "; Luettu " * lastchecked * }
     if$
     }
   if$
@@ -818,7 +819,14 @@ FUNCTION {format.names.ed}
 
 FUNCTION {format.authors}
 { 
-  author "author" format.names
+  %%author "author" format.names
+  author "author" bibinfo.check
+  %%"." " " "author" find.replace format.names
+}
+
+FUNCTION {format.publishers}
+{ 
+  publisher "publisher" bibinfo.check
   %%"." " " "author" find.replace format.names
 }
 
@@ -903,16 +911,13 @@ FUNCTION {format.note}
 
 FUNCTION {format.title}
 { title
-%%duplicate$ empty$ 'skip$
-%%  { "t" change.case$ }
-%%if$
   "title" bibinfo.check
 }
 
 FUNCTION {format.type}
 { type empty$
     'skip$
-    { inbrackets type }
+    { type }
     %%{ add.blank "[" type * "]" * }
   if$
 }
@@ -991,7 +996,7 @@ FUNCTION {format.journal.date}
 FUNCTION {format.date}
 {
   no.blank.or.punct
-  ";" 
+  "." 
   duplicate$ empty$
   year  "year"  bibinfo.check duplicate$ empty$
     { swap$ 'skip$
@@ -1381,8 +1386,8 @@ FUNCTION {format.url}
     { "" }
       { hrefform #1 =
           { % special case -- add HyperTeX specials
-            urlintro "\url{" url * "}" * url make.href.hypertex * }
-          { urlintro "\url{" * url * "}" * }
+            urlintro "<\url{" url * "}>" * url make.href.hypertex * }
+          { urlintro "<\url{" * url * "}>" * }
        if$
      }
   if$
@@ -1520,9 +1525,10 @@ FUNCTION {webpage}
 
 FUNCTION {misc}
 { output.bibitem
+  format.title "title" output.check
+  format.date "year" output.check
   format.authors "author" output.check
   format.editors "author and editor" output.check
-  format.title "title" output.check
   type missing$
     { skip$ }
     { format.type "type" output.check }
@@ -1530,7 +1536,23 @@ FUNCTION {misc}
   if$
   new.block
   format.publisher.address output
+  new.block
+  format.note output
+  new.block
+  howpublished new.block.checka
+  howpublished "howpublished" bibinfo.check output
+  output.web.refs  % urlbst
+  fin.entry
+  empty.misc.check
+}
+
+FUNCTION {online}
+{ output.bibitem
+  format.authors "author" output.check
+  format.title "title" output.check
   format.date "year" output.check
+  format.type "Verkkodokumentti" output
+  format.publishers "publisher" output.check
   new.block
   format.note output
   new.block
