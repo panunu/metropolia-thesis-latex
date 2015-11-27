@@ -9,6 +9,20 @@ Use XeLaTeX as a compiler.
 
 <a href="https://www.sharelatex.com/templates/thesis/metropolia-uas-thesis">Sharelatex template (outdated)</a> 
 
+### Compilation
+
+Usual compilation sequence
+
+    $ xelatex thesis
+    # If any change in the bibliography
+    $ bibtex8 thesis
+    # If any change with the abbreviation or acronym
+    $ makeglossaries thesis
+    #Then compile again
+    $ xelatex thesis
+    #And if still some citation or label warnings, compile once more
+    $ xelatex thesis
+
 ## Editor
 
 ### Indentation
