@@ -118,6 +118,8 @@ First name Last name, Title (for example: Principal Lecturer)
 %force the width of a table instead of column
 \usepackage{tabularx}
 \usepackage{booktabs} %why not booktabs? :3
+% Abbreviations, acronym and glossary
+\usepackage[acronym,nonumberlist,section]{glossaries}%xindy,%toc, ,nomain
 
 \newcommand\tn[1]{\textnormal{#1}} %use \tn instead of \textnormal
 \newcommand\reaction[1]{\begin{equation}\ce{#1}\end{equation}} %\reaction{} for chemical reactions
@@ -239,6 +241,7 @@ xleftmargin=1cm
 
 %BIBLIOGRAPHY
 %bibliography title to be "references"
+%IF THE TITLE DON'T GET RENAMED PROPERLY, move that line after the \begin{document}
 \IfLanguageName {finnish} {\addto{\captionsfinnish}{\renewcommand*{\bibname}{Lähteet}}} {\renewcommand\bibname{References}}
 \makeatletter %reference list option change
 \renewcommand\@biblabel[1]{#1\hspace{1cm}} %from [1] to 1 with 1cm gap
@@ -248,6 +251,39 @@ xleftmargin=1cm
 %count the appendices (since the chapter counter is reset after \appendix).
 %! require to complie 2 times
 \regtotcounter{chapter}
+
+%ABBREVIATION AND GLOSSARY
+% Generate the glossary
+\makeglossaries
+
+%Acronyms, abbreviations, etc. definitions
+\newacronym{html}{HTML}{HyperText Markup Language}
+\newacronym{sql}{SQL}{Structured Query Language}
+\newacronym{io}{I/O}{Input/Output}
+\newacronym{ram}{RAM}{Random Access Memory}
+\newacronym{php}{PHP}{Hypertext Preprocessor}
+
+%Glossary entries
+\newglossaryentry{part_key}{
+	name={partition key}, 
+	description={a column or set of columns from the same table whose consolidated value decide the partition for a given data}
+}
+\newglossaryentry{thesis}{
+	name=thesis, 
+	description={a written essay one submitted for a university degree},
+	plural=theses
+}
+\newglossaryentry{latex}
+{
+    name=latex,
+    description={Is a mark up language specially suited for scientific documents}
+}
+ 
+\newglossaryentry{maths}
+{
+    name=mathematics,
+    description={Mathematics is what mathematicians do}
+}
 
 %TITLE PAGE
 \makeatletter
@@ -393,8 +429,11 @@ xleftmargin=1cm
 \pagestyle{empty} %remove page number in toc (if longer than 2 pages)
 \tableofcontents*
 \pagestyle{empty} %remove page number in toc (if longer than 1 pages)
+
+
 \clearpage
-\pagestyle{plain}
+%Uncomment this line if you do not have Abbreviations list.
+%\pagestyle{plain}
 
 %list of figure, tables comes here...
 
@@ -403,24 +442,28 @@ xleftmargin=1cm
 %    Lyhenteet / Abbreviation
 %----------------------------------------------------------------------------------------
 
-\pagestyle{empty}
-\setlength{\parskip}{1cm}
-\IfLanguageName {finnish} {
-  \chapter*{Lyhenteet}
-  \cftaddtitleline{toc}{chapter}{Lyhenteet}{}
-} {
-  \chapter*{Abbreviation}
-  \cftaddtitleline{toc}{chapter}{Abbreviation}{}
+\begin{singlespacing}
+
+\glsaddall
+
+{
+	\titleformat{\section}
+	{\fontsize{13pt}{13pt}\bfseries\linespread{1}}
+	{\thesection}{.5cm}{}
+	%Adapt labelwidth (sorry for the ugly hack)
+	\setlist[description]{leftmargin=!, labelwidth=4em}
+	\IfLanguageName {finnish} {
+		\printacronyms[title=Lyhenteet]
+	}{
+		\printacronyms[title=Abbreviations]
+	}
+	\setlist[description]{leftmargin=!, labelwidth=7em}
+	\printglossary 
+	\setlist[description]{style=standard} % reset settings back to default
 }
-\begin{table}[h]
-\setlength{\tabcolsep}{8pt}
-\renewcommand{\arraystretch}{2}
-\begin{tabular}{l p{12cm}}
-OMG & Oh my god\\
-WTF & What the F\\
-TL;DR & Too long, didn't read\\
-\end{tabular}
-\end{table}
+\end{singlespacing}
+%Seems that bug is in sharelatex. Compile fine with TexLive >= 2014
+
 
 \newpage
 
@@ -436,10 +479,12 @@ TL;DR & Too long, didn't read\\
 %----------------------------------------------------------------------------------------
 
 \chapter{Content}
-This should be \textbf{bold} and this \textit{italic} and finally \textbf{\textit{bolditalic}}. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam purus, in ornare nulla imperdiet molestie. Nam tempus erat eu dui rhoncus et vestibulum mi elementum. Ut porttitor elit sit amet justo dignissim sit amet sagittis massa egestas. Mauris sed dolor eget dui fermentum sodales ut eu nibh. 
+This should be \textbf{bold} and this \textit{italic} and finally \textbf{\textit{bolditalic}}. When one want to use an abbreviation or acronym like \gls{html} using the \textbf{\textbackslash{}gls} command in \gls{latex}, the first time, it comes with it full version and for all next uses in it short \gls{html} form. Of course, when needed, the full version is available using e.g. the \textbf{\textbackslash{}acrlong} command.
+
+The defined terms like \gls{maths} use the same \textbf{\textbackslash{}gls} \gls{latex} command. The Capitalized can be obtained with \textbf{\textbackslash{}Gls}.
 
 \section{Section}
-Here is an example how to add biblio entry \cite{kopka:guide} using the \textquotedblleft cite\textquotedblright ~\cite[section 4.2]{tobias:book}. Note that a paragraph is added by forcing a new line.
+Here is an example how to add biblio entry \cite{kopka:guide} using the \textquotedblleft \\cite\textquotedblright \gls{latex} command ~\cite[section 4.2]{tobias:book}. Note that a paragraph is added by forcing a new line.
 
 And let also try the figure (see figure \vref{fig:latex-cover}) and internal reference (with label and ref or vref). The reference can be done to any label, for example why not to appendix \ref{appx:first} or to appendix \ref{appx:second}? To note, \LaTeX{} will place the figure to the best place (except with forcing). Let them float till the final of final edit\ldots ~then force them to not break a paragraph.%hugly hack... I'm sorry
 \begin{figure}[h]
@@ -475,7 +520,7 @@ Työn aluksi rauta(II)ionit hapetetaan rauta(III)ioneiksi väkevällä vetyperok
 Rauta(III)ionit saostetaan emäksen (\ce{NH3}) avulla ja saadaan tuotteeksi kidevedellinen rauta(III)hydroksidi. Saatu saostuma pestään \ce{NH4NO3}:lla.
 \reaction{FeOOH $\cdot$ $x$(H2O)( \emph{s} ) ->T[$\Delta$900-1000\celsius] Fe2O3( \emph{s} )}
 
-\subsection{Subsection with Math}
+\subsection{Subsection with \Gls{maths}}
 Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit. Tertiäärinen butyylikloridi reagoi veden kanssa oheisen reaktion mukaisesti:
 \reaction{(CH3)3CCl + 2H2O -> (CH3)3COH+H3O+ +Cl-}
 Kyseessä on ensimmäisen kertaluvun reaktio, joten reaktion nopeus on
