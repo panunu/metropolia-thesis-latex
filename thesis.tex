@@ -299,7 +299,7 @@ xleftmargin=1cm
 }
 \newglossaryentry{latex}
 {
-    name=latex,
+    name=\LaTeX{},
     description={Is a mark up language specially suited for scientific documents}
 }
  
@@ -507,16 +507,16 @@ xleftmargin=1cm
 \chapter{Content}
 This should be \textbf{bold} and this \textit{italic} and finally \textbf{\textit{bolditalic}}. When one want to use an abbreviation or acronym like \gls{html} using the \textbf{\textbackslash{}gls} command in \gls{latex}, the first time, it comes with it full version and for all next uses in it short \gls{html} form. Of course, when needed, the full version is available using e.g. the \textbf{\textbackslash{}acrlong} command.
 
-The defined terms like \gls{maths} use the same \textbf{\textbackslash{}gls} \gls{latex} command. The Capitalized can be obtained with \textbf{\textbackslash{}Gls}.
+The defined terms like \gls{maths} use the same \textbf{\textbackslash{}gls} \gls{latex} command. The Capitalized can be obtained with \textbf{\textbackslash{}Gls}. Should be avoided; but to have all the abbreviations and terms, even the non-used ones, use the \textbf{\textbackslash{}glsaddall} command before printing the list of Abbreviations. 
 
 \section{Section}
-Here is an example how to add biblio entry \cite{kopka:guide} using the \textquotedblleft \\cite\textquotedblright \gls{latex} command ~\cite[section 4.2]{tobias:book}. Note that a paragraph is added by forcing a new line.
+Here is an example how to add biblio entry \cite{kopka:guide} using the \textquotedblleft\textbackslash{}cite\textquotedblright ~\gls{latex} command ~\cite[section 4.2]{tobias:book}. Note that a paragraph is added by forcing a new line.
 
-And let also try the figure (see figure \vref{fig:latex-cover}) and internal reference (with label and ref or vref). The reference can be done to any label, for example why not to appendix \ref{appx:first} or to appendix \ref{appx:second}? To note, \LaTeX{} will place the figure to the best place (except with forcing). Let them float till the final of final edit\ldots ~then force them to not break a paragraph.%hugly hack... I'm sorry
+And let also try the figure (see figure \vref{fig:latex-cover}) and internal reference (with label and ref or vref). The reference can be done to any label, for example why not to appendix \ref{appx:first} or to appendix \ref{appx:second}? To note, \gls{latex} will place the figure to the best place (except with forcing). Let them float till the final of final edit\ldots ~then force them to not break a paragraph.%hugly hack... I'm sorry
 \begin{figure}[h]
   \centering
   \includegraphics[width=7.1cm]{LaTeX_cover}
-  \caption{\LaTeX{} cover image (Copied from wikibooks.org (2012) \cite{wikibooks:latex}).}
+  \caption{\gls{latex} cover image (Copied from wikibooks.org (2012) \cite{wikibooks:latex}).}
   \label{fig:latex-cover}
 \end{figure}
 
