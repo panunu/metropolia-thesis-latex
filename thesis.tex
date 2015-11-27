@@ -49,7 +49,7 @@ Etunimi Sukunimi, Titteli\newline
 Etunimi Sukunimi, Titteli
 }
 \def\avainsanat{avainsanat}
-\def\pvm{\ddmmyyyydate\today}
+\def\pvm{\specialdate\today}
 
 %English section, for abstract
 \title{Your title here}
@@ -121,6 +121,26 @@ First name Last name, Title (for example: Principal Lecturer)
 % Abbreviations, acronym and glossary
 \usepackage[acronym,nonumberlist,section]{glossaries}%xindy,%toc, ,nomain
 
+\usepackage{float} % For forced figure location with modifier H (\begin{figure}[H])
+\usepackage{cite} % Make citations to match Metropolia thesis guide
+
+% change font of links in bibliography to same as other text
+\usepackage{url}
+\urlstyle{same}
+
+% change punctuation of multiple cites to semicolon instead of comma: [1; 2; 3]
+\renewcommand\citepunct{; }
+
+% citep-macro for reference with period inside square brackets [1.]
+\newcommand{\citep}[1]{
+ \renewcommand\citeright{.]}
+ \cite{#1}
+ \renewcommand\citeright{]}
+}
+
+%set date format to MM.YYYY
+\newdateformat{specialdate}{\twodigit{\THEMONTH}.\THEYEAR}
+
 \newcommand\tn[1]{\textnormal{#1}} %use \tn instead of \textnormal
 \newcommand\reaction[1]{\begin{equation}\ce{#1}\end{equation}} %\reaction{} for chemical reactions
 
@@ -185,6 +205,10 @@ xleftmargin=1cm
 \IfLanguageName {finnish} {\renewcommand{\lstlistingname}{Listaus}} {} % what is a good translation for this?
 %\counterwithout{lstlisting}{chapter}
 %moved after begin document, otherwise does not compile
+
+%% set this format as the default for lstlisting
+\DeclareCaptionFormat{empty}{}
+\captionsetup[lstlisting]{format=empty}
 
 %TOC
 %change toc title
@@ -306,7 +330,7 @@ xleftmargin=1cm
   \metropoliadegree \\
   \metropoliadegreeprogramme \\
   \thesis\\
-  \ddmmyyyydate\today %to be checked date format? 
+  \specialdate\today % MM.YYYY date format
 }
 }
 \ThisLRCornerWallPaper{1}{metropolia}
@@ -477,6 +501,8 @@ xleftmargin=1cm
 %----------------------------------------------------------------------------------------
 %	CONTENT
 %----------------------------------------------------------------------------------------
+
+\sloppy % enforce alignment to fully justified
 
 \chapter{Content}
 This should be \textbf{bold} and this \textit{italic} and finally \textbf{\textit{bolditalic}}. When one want to use an abbreviation or acronym like \gls{html} using the \textbf{\textbackslash{}gls} command in \gls{latex}, the first time, it comes with it full version and for all next uses in it short \gls{html} form. Of course, when needed, the full version is available using e.g. the \textbf{\textbackslash{}acrlong} command.
