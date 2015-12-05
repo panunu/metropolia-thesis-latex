@@ -1548,9 +1548,18 @@ FUNCTION {misc}
 
 FUNCTION {online}
 { output.bibitem
-  format.authors "author" output.check
-  format.title "title" output.check
-  format.date "year" output.check
+
+  author empty$
+    { format.title "title" output.check output
+      format.date "year" output.check output
+    }
+    { format.authors "author" output.check output
+      format.date "year" output.check output
+      format.title "title" output.check output
+    }
+  if$
+  
+
   format.type "Verkkodokumentti" output
   format.publishers "publisher" output.check
   new.block
