@@ -136,8 +136,8 @@ First name Last name, Title (for example: Principal Lecturer)
  \renewcommand\citeright{]}
 }
 
-%set date format to MM.YYYY
-\newdateformat{specialdate}{\twodigit{\THEMONTH}.\THEYEAR}
+%set date format to D.M.YYYY
+\newdateformat{specialdate}{\THEDAY.\THEMONTH.\THEYEAR}
 
 \newcommand\tn[1]{\textnormal{#1}} %use \tn instead of \textnormal
 \newcommand\reaction[1]{\begin{equation}\ce{#1}\end{equation}} %\reaction{} for chemical reactions
@@ -294,7 +294,7 @@ xleftmargin=1cm
   \metropoliadegree \\
   \metropoliadegreeprogramme \\
   \thesis\\
-  \specialdate\today % MM.YYYY date format
+  \specialdate\today % D.M.YYYY date format
 }
 }
 \ThisLRCornerWallPaper{1}{metropolia}
