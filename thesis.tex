@@ -207,8 +207,8 @@ xleftmargin=1cm
 %moved after begin document, otherwise does not compile
 
 %% set this format as the default for lstlisting
-\DeclareCaptionFormat{empty}{}
-\captionsetup[lstlisting]{format=empty}
+%\DeclareCaptionFormat{empty}{}
+%\captionsetup[lstlisting]{format=empty}
 
 %TOC
 %change toc title
@@ -577,8 +577,7 @@ z &= \tn{ionien varaus}
 \section{Section with Source Code}
 Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
 
-\vspace{-22pt}\begin{lstlisting}[language=PHP,caption={Descriptive Caption Text},label=testphp] 
-
+\begin{lstlisting}[language=PHP,caption={Descriptive Caption Text},label=testphp] 
 <?php
 $userName = $_POST["usern"];
 //maybe not?
@@ -589,7 +588,7 @@ if ($userName){
 	<?php
 }
 ?>
-\end{lstlisting}\vspace{-22pt}
+\end{lstlisting}\vspace{-17pt}
 
 
 As see in listing \ref{testphp}: Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
