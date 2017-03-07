@@ -34,7 +34,7 @@
 %	THESIS
 %----------------------------------------------------------------------------------------
 
-\def\thesislang{finnish} %change this depending on your language
+\def\thesislang{english}%finnish} %change this depending on your language
 \author{Nimi/Name}
 \def\thesis{Opinnäytetyö/Thesis}
 \def\alaotsikko{Alaotsikko/Subtitle}
@@ -112,7 +112,8 @@ First name Last name, Title (for example: Principal Lecturer)
 %try to count
 \usepackage{totcount}
 %insert source code
-\usepackage{listings}
+%\usepackage{listings}
+\usepackage[newfloat]{minted}
 \usepackage[justification=justified,singlelinecheck=false]{caption}
 \usepackage{color}
 %force the width of a table instead of column
@@ -181,28 +182,8 @@ BoldItalicFont=LiberationSans-BoldItalic.ttf]
 \counterwithout{table}{chapter}
 
 %SOURCE CODE
-\definecolor{darkgray}{rgb}{.4,.4,.4}
-\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
-\lstset{
-extendedchars=true,
-captionpos=b,
-caption=\footnotesize,
-basicstyle=\singlespacing\ttfamily,%\small\fontfamily{"Courier"}\selectfont,
-keywordstyle=\color{blue}\bfseries,
-commentstyle=\color{purple}\itshape,
-identifierstyle=\color{black},
-stringstyle=\color{red},
-showstringspaces=false,
-showspaces=false,
-numbers=left,
-numberstyle=\footnotesize,
-numbersep=9pt,
-breaklines=true,
-tabsize=2,
-showtabs=false,
-xleftmargin=1cm
-}
-\IfLanguageName {finnish} {\renewcommand{\lstlistingname}{Listaus}} {} % what is a good translation for this?
+\newenvironment{code}{\captionsetup{type=listing}}{}
+\IfLanguageName {finnish} {\SetupFloatingEnvironment{listing}{name=Listaus}} {}
 %\counterwithout{lstlisting}{chapter}
 %moved after begin document, otherwise does not compile
 
@@ -348,7 +329,7 @@ xleftmargin=1cm
 \makeoddhead{abstract}{}{}{Abstract}
 
 \begin{document}
-\counterwithout{lstlisting}{chapter}
+\counterwithout{listing}{chapter}
 
 %page number always on the top right, clear the "chapter/section" head
 \pagestyle{myheadings}
@@ -577,7 +558,10 @@ z &= \tn{ionien varaus}
 \section{Section with Source Code}
 Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
 
-\begin{lstlisting}[language=PHP,caption={Descriptive Caption Text},label=testphp] 
+\begin{code}
+  \captionof{listing}{Descriptive Caption Text (e.g. this code do blah)}
+  \label{code:testphp}
+  \begin{minted}{php}
 <?php
 $userName = $_POST["usern"];
 //maybe not?
@@ -588,10 +572,11 @@ if ($userName){
 	<?php
 }
 ?>
-\end{lstlisting}\vspace{-17pt}
+\end{minted}
+\end{code}
 
 
-As see in listing \ref{testphp}: Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
+As see in listing \ref{code:testphp}: Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
 
 \section{Section with Table}
 Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
