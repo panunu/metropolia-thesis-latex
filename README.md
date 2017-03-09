@@ -12,17 +12,19 @@ Use XeLaTeX as a compiler.
 
 ### Compilation
 
-Usual compilation sequence
+Usual compilation sequence (minted package require external Python Pygments script to be installed ([check the docs](https://www.ctan.org/pkg/minted?lang=en)))
 
-    $ xelatex thesis
+    # minted require -shell-escape to run  external script. 
+    # -8bit avoid ^^I for tabs in minted.
+    $ xelatex -shell-escape -8bit thesis
     # If any change in the bibliography
     $ bibtex8 thesis
     # If any change with the abbreviation or acronym
     $ makeglossaries thesis
     #Then compile again
-    $ xelatex thesis
+    $ xelatex -shell-escape -8bit thesis
     #And if still some citation or label warnings, compile once more
-    $ xelatex thesis
+    $ xelatex -shell-escape -8bit thesis
 
 ### Using ShareLaTeX
 
