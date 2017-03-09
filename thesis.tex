@@ -34,7 +34,7 @@
 %	THESIS
 %----------------------------------------------------------------------------------------
 
-\def\thesislang{english}%finnish} %change this depending on your language
+\def\thesislang{finnish} %change this depending on your language
 \author{Nimi/Name}
 \def\thesis{Opinnäytetyö/Thesis}
 \def\alaotsikko{Alaotsikko/Subtitle}
@@ -113,7 +113,10 @@ First name Last name, Title (for example: Principal Lecturer)
 \usepackage{totcount}
 %insert source code
 %\usepackage{listings}
+%require -8bit -shell-escape in the xelatex compile command
 \usepackage[newfloat]{minted}
+\setminted{tabsize=2,linenos,breaklines,breaksymbolleft={\quad}}
+\setmintedinline{breaklines}
 \usepackage[justification=justified,singlelinecheck=false]{caption}
 \usepackage{color}
 %force the width of a table instead of column
@@ -559,8 +562,6 @@ z &= \tn{ionien varaus}
 Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
 
 \begin{code}
-  \captionof{listing}{Descriptive Caption Text (e.g. this code do blah)}
-  \label{code:testphp}
   \begin{minted}{php}
 <?php
 $userName = $_POST["usern"];
@@ -573,10 +574,30 @@ if ($userName){
 }
 ?>
 \end{minted}
+  \captionof{listing}{Descriptive Caption Text (e.g. this code do blah)}
+  \label{code:testphp}
 \end{code}
 
 
-As see in listing \ref{code:testphp}: Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
+As see in listing \ref{code:testphp}, blah. It is also possible to have code inline, for example \mintinline{sql}{SELECT * FROM user WHERE age >= 18} that was SQL. 
+The lisings \ref{code:htmlfull} and \ref{code:htmlpart} show how to load code from an external source file.
+
+\begin{code}
+  \inputminted{html}{html5_sample.html}
+  \captionof{listing}{Some html code}
+  \label{code:htmlfull}
+\end{code}
+ Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus.
+ 
+ \begin{code}
+   \inputminted[firstline=3,lastline=6]{html}{html5_sample.html}
+  \captionof{listing}{The \mintinline{html}{<head>} section of an html page}
+  \label{code:htmlpart}
+\end{code}
+
+
+ Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
+
 
 \section{Section with Table}
 Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
