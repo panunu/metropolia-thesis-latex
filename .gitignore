@@ -6,3 +6,14 @@
 *.blg
 .project
 .DS_Store
+*.acn
+*.acr
+*.alg
+*.fdb_latexmk
+*.fls
+*.glg
+*.glo
+*.gls
+*.ist
+*.out
+_minted-*
