@@ -33,6 +33,12 @@ Usual compilation sequence (minted package require external Python Pygments scri
 1. Once logged in ShareLaTeX: Open Project section. Then New Project &rarr; Upload Project &rarr; select the zip (otherwise with the paid version you could sync with github (your fork))
 1. Once project opened: from the menu change "compiler" to XeLaTeX
 
+### Using Overleaf
+
+1. Same instructions as for ShareLaTeX; but to [Overleaf](https://www.overleaf.com/)
+1. Among others [advantages](https://www.overleaf.com/plans): unlimited collaborators and git access with free account
+
+
 
 ## Editor
 
