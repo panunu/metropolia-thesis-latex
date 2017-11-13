@@ -84,35 +84,11 @@ First name Last name, Title (for example: Principal Lecturer)
 % Generate the glossary
 \makeglossaries
 
-%Acronyms, abbreviations, etc. definitions
-\newacronym{html}{HTML}{HyperText Markup Language}
-\newacronym{sql}{SQL}{Structured Query Language}
-\newacronym{io}{I/O}{Input/Output}
-\newacronym{ram}{RAM}{Random Access Memory}
-\newacronym{php}{PHP}{Hypertext Preprocessor}
-
-%Glossary entries
-\newglossaryentry{part_key}{
-	name={partition key}, 
-	description={a column or set of columns from the same table whose consolidated value decide the partition for a given data}
-}
-\newglossaryentry{thesis}{
-	name=thesis, 
-	description={a written essay one submitted for a university degree},
-	plural=theses
-}
-\newglossaryentry{latex}
-{
-    name=\LaTeX{},
-    description={Is a mark up language specially suited for scientific documents}
-}
- 
-\newglossaryentry{maths}
-{
-    name=mathematics,
-    description={Mathematics is what mathematicians do}
-}
-
+% Add/edit all your acronyms, abbreviations, glossary entries, etc. definitions in 
+% chapters/0abbr.tex file.
+% You can have as many as you wish. Only the ones you use in your text (inserted with 
+% \gls{} command) will print in the Glossary/Lyhenteet.
+\input{chapters/0abbr.tex}
 
 \begin{document}
 \counterwithout{listing}{chapter}
