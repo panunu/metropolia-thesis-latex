@@ -1,0 +1,32 @@
+% TITLE PAGE
+% Normally, you should not edit this file.
+
+\makeatletter
+\renewcommand{\maketitle}{
+\thispagestyle{empty}
+\ThisCenterWallPaper{1}{viiva}
+%
+\vspace*{9.5cm}
+\tn{\LARGE\@author\\[22pt]\Huge\IfLanguageName {finnish}{\otsikko}{\@title}\\[22pt]\LARGE\alaotsikko\\[1.75cm]}
+
+\parbox{.7\linewidth}{
+\IfLanguageName {finnish}{
+  Metropolia Ammattikorkeakoulu\\
+  \tutkinto \\
+  \kohjelma \\
+  \thesis\\
+  \pvm
+} {
+  Helsinki Metropolia University of Applied Sciences\\
+  \metropoliadegree \\
+  \metropoliadegreeprogramme \\
+  \thesis\\
+  \IfLanguageName {finnish}{\pvm}{\@date} % D.M.YYYY date format for Finnish. D Month YYYY for English
+}
+}
+\ThisLRCornerWallPaper{1}{metropolia}
+%
+\clearpage
+}
+\makeatother
+
