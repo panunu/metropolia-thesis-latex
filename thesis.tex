@@ -73,9 +73,10 @@ First name Last name, Title (for example: Principal Lecturer)
 
 % If you need extra package, etc. modify the style/style.tex file.
 % If you are using Windows OS, you will need to change default font to Arial in that 
-% style/style.tex file (or install LiberationSans font to your system).
-% If you are using MacOS or linux, make sure you have LiberationSans font installed.
+% style/style.tex file (or install Liberation Sans font to your system).
+% If you are using MacOS or linux, make sure you have Liberation Sans font installed.
 \input{style/style.tex}
+\input{style/title.tex}
 
 %----------------------------------------------------------------------------------------
 %	ABBREVIATION AND GLOSSARY
@@ -112,35 +113,6 @@ First name Last name, Title (for example: Principal Lecturer)
     description={Mathematics is what mathematicians do}
 }
 
-%TITLE PAGE
-\makeatletter
-\renewcommand{\maketitle}{
-\thispagestyle{empty}
-\ThisCenterWallPaper{1}{viiva}
-%
-\vspace*{9.5cm}
-\tn{\LARGE\@author\\[22pt]\Huge\IfLanguageName {finnish}{\otsikko}{\@title}\\[22pt]\LARGE\alaotsikko\\[1.75cm]}
-
-\parbox{.7\linewidth}{
-\IfLanguageName {finnish}{
-  Metropolia Ammattikorkeakoulu\\
-  \tutkinto \\
-  \kohjelma \\
-  \thesis\\
-  \pvm
-} {
-  Helsinki Metropolia University of Applied Sciences\\
-  \metropoliadegree \\
-  \metropoliadegreeprogramme \\
-  \thesis\\
-  \IfLanguageName {finnish}{\pvm}{\@date} % D.M.YYYY date format for Finnish. D Month YYYY for English
-}
-}
-\ThisLRCornerWallPaper{1}{metropolia}
-%
-\clearpage
-}
-\makeatother
 
 \begin{document}
 \counterwithout{listing}{chapter}
