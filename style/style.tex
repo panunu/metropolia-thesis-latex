@@ -1,0 +1,209 @@
+% Global style. Normally should not be edited. Eventually, change the default font (Arial if you use windows OS).
+
+\documentclass[11pt,a4paper,oneside,article]{memoir}
+\usepackage[\thesislang]{babel} 
+\usepackage{iflang}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fontspec}
+\usepackage{tocloft}
+\usepackage{titlesec}
+\usepackage[hyphens]{url}
+\usepackage{mathtools}
+\usepackage{wallpaper}
+\usepackage{datetime}
+\usepackage[bookmarksdepth=subsection]{hyperref} % for automagic pdf links for toc, refs, etc.
+\usepackage[amssymb]{SIunits}
+\usepackage[version=3]{mhchem}
+\usepackage{pgfplots} %simple plots etc
+\usepackage{pgfplotstable}
+\usepackage{tikz} % mindmaps, flowcharts, piecharts, examples at http://www.texample.net/tikz/examples/
+\usetikzlibrary{shapes.geometric, arrows}
+
+
+\renewcommand{\dateseparator}{.}
+%condition for adding or not space in TOC
+\usepackage{etoolbox}
+%for compact list
+\usepackage{enumitem}
+%for block comment
+\usepackage{verbatim}
+%for "easier" references
+\usepackage{varioref}
+%forcing single line spacing in bibliography
+\DisemulatePackage{setspace}
+\usepackage{setspace}
+%including figure (image)
+\usepackage{graphicx}
+%change the numbering for figure
+\usepackage{chngcntr}
+%strike trough
+\usepackage{ulem}
+%euro symbol
+\usepackage{eurosym}
+%try to count
+\usepackage{totcount}
+%insert source code
+%\usepackage{listings}
+%require -8bit -shell-escape in the xelatex compile command
+\usepackage[newfloat]{minted}
+\setminted{tabsize=2,linenos,breaklines,breaksymbolleft={\quad},baselinestretch=1}
+\setmintedinline{breaklines}
+\usepackage[justification=justified,singlelinecheck=false]{caption}
+\usepackage{color}
+%force the width of a table instead of column
+\usepackage{tabularx}
+\usepackage{booktabs} %why not booktabs? :3
+% Abbreviations, acronym and glossary
+\usepackage[acronym,nonumberlist,section]{glossaries}%xindy,%toc, ,nomain
+
+\usepackage{float} % For forced figure location with modifier H (\begin{figure}[H])
+\usepackage{cite} % Make citations to match Metropolia thesis guide
+
+% change font of links in bibliography to same as other text
+\usepackage{url}
+\urlstyle{same}
+
+% change punctuation of multiple cites to semicolon instead of comma: [1; 2; 3]
+\renewcommand\citepunct{; }
+
+% citep-macro for reference with period inside square brackets [1.]
+\newcommand{\citep}[1]{
+ \renewcommand\citeright{.]}
+ \cite{#1}
+ \renewcommand\citeright{]}
+}
+
+%set date format to D.M.YYYY
+\newdateformat{specialdate}{\THEDAY.\THEMONTH.\THEYEAR}
+%set date format to D Month YYYY
+\newdateformat{longmonth}{\THEDAY~\monthname[\THEMONTH] \THEYEAR}
+
+\newcommand\tn[1]{\textnormal{#1}} %use \tn instead of \textnormal
+\newcommand\reaction[1]{\begin{equation}\ce{#1}\end{equation}} %\reaction{} for chemical reactions
+
+%NORMAL TEXT
+%all text, title, etc. in the same font: Arial
+%replace with arial.ttf if you have the fontfile
+%NOTE: fontname is case-sensitive
+\setmainfont
+[BoldFont=LiberationSans-Bold.ttf,
+ItalicFont=LiberationSans-Italic.ttf,
+BoldItalicFont=LiberationSans-BoldItalic.ttf]
+{LiberationSans-Regular.ttf}
+%line space
+\linespread{1.5}
+\AtBeginEnvironment{tabular}{\singlespacing}
+%\doublespacing
+%margin
+\usepackage[top=2.5cm, bottom=3cm, left=4cm, right=2cm, nofoot]{geometry}
+\setlength{\parindent}{0pt} %first line of paragraph not indented
+\setlength{\parskip}{16.5pt} %one empty line to separate paragraph
+%list with small line space separation
+\tightlists
+
+%IMAGE - FIGURE
+%the figures should be placed in the "illustration" folder
+\graphicspath{{illustration/}}
+%figure number without chapter (1.1, 1.2, 2.1) to (1, 2, 3)
+\counterwithout{figure}{chapter}
+%border around images
+\setlength\fboxsep{0pt}
+\setlength\fboxrule{0.5pt}
+%caption font size
+\captionnamefont{\small}
+\captiontitlefont{\small}
+%space after figure caption (and other float elements)
+\setlength{\belowcaptionskip}{-7pt}
+
+%TABLE
+\counterwithout{table}{chapter}
+
+%SOURCE CODE
+\newenvironment{code}{\captionsetup{type=listing}}{}
+\IfLanguageName {finnish} {\SetupFloatingEnvironment{listing}{name=Listaus}} {}
+%\counterwithout{lstlisting}{chapter}
+%moved after begin document, otherwise does not compile
+
+%% set this format as the default for lstlisting
+%\DeclareCaptionFormat{empty}{}
+%\captionsetup[lstlisting]{format=empty}
+
+%TOC
+%change toc title
+\IfLanguageName {finnish} {\addto{\captionsfinnish}{\renewcommand*{\contentsname}{Sisällys}}} {}
+%remove dots
+\renewcommand*{\cftdotsep}{\cftnodots}
+%chapter title and page number not in bold
+\renewcommand{\cftchapterfont}{}
+\renewcommand{\cftchapterpagefont}{}
+%sub section in toc
+\setcounter{tocdepth}{2}
+%subsection numbered
+\setcounter{secnumdepth}{2}
+\renewcommand{\tocheadstart}{\vspace*{-15pt}}
+\renewcommand{\printtoctitle}[1]{\fontsize{13pt}{13pt}\bfseries #1}
+\renewcommand{\aftertoctitle}{\vspace*{-22pt}\afterchaptertitle}
+%spacing afer a chapter in toc
+\preto\section{%
+  \ifnum\value{section}=0\addtocontents{toc}{\vskip11pt}\fi
+}
+%spacing afer a section in toc
+\renewcommand{\cftsectionaftersnumb}{\vspace*{-3pt}}
+%spacing afer a subsection in toc
+\renewcommand{\cftsubsectionaftersnumb}{\vspace*{-1pt}}
+%appendix in toc with "Appendix " + num
+\IfLanguageName {finnish} {
+  \renewcommand*{\cftappendixname}{Liite\space}
+  \renewcommand{\appendixtocname}{Liitteet}
+}{\renewcommand*{\cftappendixname}{Appendix\space}}
+%appendix header
+\IfLanguageName {finnish} {\def\appname{Liite\space}}{\def\appname{Appendix\space}}
+
+%TITLES
+%chapter title
+%\clearforchapter{\clearpage}
+\titleformat{\chapter}
+{\fontsize{13pt}{13pt}\bfseries\linespread{1}}%\clearpage
+{\thechapter}{.5cm}{}
+\titlespacing*{\chapter}{0pt}{.32cm}{9pt}
+\titleformat{\section}
+{\fontsize{12pt}{12pt}\linespread{1}}
+{\thesection}{.5cm}{}
+\titlespacing*{\section}{0pt}{14pt}{6pt}
+\titleformat{\subsection}
+{\fontsize{12pt}{12pt}\linespread{1}}
+{\thesubsection}{.5cm}{}
+\titlespacing*{\subsection}{0pt}{14pt}{6pt}
+
+
+%QUOTE
+\renewenvironment{quote}
+  {\list{}{\rightmargin=0pt\leftmargin=1cm\topsep=-10pt}%
+  \item\relax\fontsize{10pt}{10pt}\singlespacing}
+  {\endlist}
+
+%BIBLIOGRAPHY
+%bibliography title to be "references"
+%IF THE TITLE DON'T GET RENAMED PROPERLY, move that line after the \begin{document}
+\IfLanguageName {finnish} {\addto{\captionsfinnish}{\renewcommand*{\bibname}{Lähteet}}} {\renewcommand\bibname{References}}
+\makeatletter %reference list option change
+\renewcommand\@biblabel[1]{#1\hspace{1cm}} %from [1] to 1 with 1cm gap
+\makeatother %
+\setlength{\bibitemsep}{11pt}
+
+%count the appendices (since the chapter counter is reset after \appendix).
+%! require to complie 2 times
+\regtotcounter{chapter}
+
+
+\makepagestyle{tiivis}
+\makeevenhead{tiivis}{}{}{Tiivistelmä}
+\makeoddhead{tiivis}{}{}{Tiivistelmä}
+
+\makepagestyle{abstract}
+\makeevenhead{abstract}{}{}{Abstract}
+\makeoddhead{abstract}{}{}{Abstract}
+
+
