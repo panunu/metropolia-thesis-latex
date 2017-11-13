@@ -2,7 +2,16 @@
 %	Metropolia Thesis LaTeX Template
 %----------------------------------------------------------------------------------------
 % License:
-% This work is licensed under the Creative Commons Attribution 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/.
+% This work is licensed under the Creative Commons Attribution 4.0 International License. 
+% To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/.
+%
+% However, this license apply to this template. As a template, it is supposed to be 
+% modified for your own needs (with your thesis content). For this reason, if you use 
+% this project as a template and not specifically distribute it as part of a another 
+% package/program, we grant the extra permission to freely copy and modify these files as 
+% you see fit and even to delete this copyright notice. 
+% In short, you are free to publish your thesis under whatever license you wish, even 
+% keep the all rights reserved to you.
 %
 % Authors:
 % Panu Leppäniemi, Patrik Luoto and Patrick Ausderau
@@ -10,10 +19,13 @@
 % Credits:
 % Panu Leppäniemi: abstract, def, cleaning,...
 % Patrik Luoto: title page, abstract in Finnish, abbreviation, math,...
-% Patrick Ausderau: initial version, style, table of content, bibliography, figure, appendix, table, source code listing...
+% Patrick Ausderau: initial version, style, table of content, bibliography, figure, 
+%                   appendix, table, source code listing...
 %
 % Please:
-% If you find mistakes, improve this template and alike, please contribute by sharing your improvements and/or send us your feedback there: https://github.com/panunu/metropolia-thesis-latex
+% If you find mistakes, improve this template and alike, please contribute by sharing 
+% your improvements and/or send us your feedback there: 
+% https://github.com/panunu/metropolia-thesis-latex
 % And of course, if you improve it, add yourself as an author.
 %
 % Compiler:
@@ -23,16 +35,17 @@
 %	THESIS
 %----------------------------------------------------------------------------------------
 
-\def\thesislang{finnish} %change this depending on your language
-\author{Nimi/Name}
-\def\thesis{Opinnäytetyö/Thesis}
+\def\thesislang{finnish} %change this depending on your language. "english" is the only
+% other supported language. If someone has the swedish, please contribute!
+\author{Nimi/Name} %your first name and last name
+\def\thesis{Insinöörityö/Thesis} %Opinnäytetyö
 \def\alaotsikko{Alaotsikko/Subtitle}
 
 %Finnish section
 \def\otsikko{Opinnäytetyön otsikko}
-\def\tutkinto{Tutkinto}
-\def\kohjelma{Koulutusohjelma}
-\def\suuntautumis{Suuntautumisvaihtoehto}
+\def\tutkinto{Tutkinto (esim. Insinööri (AMK))} % change to your needs, e.g. "YAMK", etc.
+\def\kohjelma{Koulutusohjelma (esim. Tieto\textendash ja viestintätekniikka)}
+\def\suuntautumis{Ammatillinen pääaine (esim. Mobile Solutions)}
 \def\ohjaajat{
 Titteli Etunimi Sukunimi\newline
 Titteli Etunimi Sukunimi
@@ -42,15 +55,15 @@ Titteli Etunimi Sukunimi
 
 %English section, for abstract
 \title{Your title here}
-\def\metropoliadegree {Bachelor of Engineering}
-\def\metropoliadegreeprogramme {Name of your degree programme}
-\def\metropoliaspecialisation {Name of your specialisation option}
+\def\metropoliadegree {Bachelor of Engineering} % change to your needs, e.g. "master", etc.
+\def\metropoliadegreeprogramme {your degree programme (e.g. Information Technology)}
+\def\metropoliaspecialisation {your major option (e.g. Mobile Solutions)}
 \def\metropoliainstructors {
 First name Last name, Title (for example: Project Manager)\newline
 First name Last name, Title (for example: Principal Lecturer)
 }
 \def\metropoliakeywords {Keywords}
-\date{\today}
+\date{\longmonth\today}
 
 %----------------------------------------------------------------------------------------
 %	GLOBAL STYLES
@@ -133,6 +146,8 @@ First name Last name, Title (for example: Principal Lecturer)
 
 %set date format to D.M.YYYY
 \newdateformat{specialdate}{\THEDAY.\THEMONTH.\THEYEAR}
+%set date format to D Month YYYY
+\newdateformat{longmonth}{\THEDAY~\monthname[\THEMONTH] \THEYEAR}
 
 \newcommand\tn[1]{\textnormal{#1}} %use \tn instead of \textnormal
 \newcommand\reaction[1]{\begin{equation}\ce{#1}\end{equation}} %\reaction{} for chemical reactions
@@ -148,6 +163,7 @@ BoldItalicFont=LiberationSans-BoldItalic.ttf]
 {LiberationSans-Regular.ttf}
 %line space
 \linespread{1.5}
+\AtBeginEnvironment{tabular}{\singlespacing}
 %\doublespacing
 %margin
 \usepackage[top=2.5cm, bottom=3cm, left=4cm, right=2cm, nofoot]{geometry}
@@ -303,7 +319,7 @@ BoldItalicFont=LiberationSans-BoldItalic.ttf]
   \metropoliadegree \\
   \metropoliadegreeprogramme \\
   \thesis\\
-  \specialdate\today % D.M.YYYY date format
+  \IfLanguageName {finnish}{\pvm}{\@date} % D.M.YYYY date format for Finnish. D Month YYYY for English
 }
 }
 \ThisLRCornerWallPaper{1}{metropolia}
@@ -343,6 +359,7 @@ BoldItalicFont=LiberationSans-BoldItalic.ttf]
 %----------------------------------------------------------------------------------------
 
 \thispagestyle{tiivis}
+{\renewcommand{\arraystretch}{2}%
 \begin{tabular}{ | p{4,7cm} | p{10,3cm} |}
   \hline
   Tekijä(t) \newline
@@ -359,9 +376,9 @@ BoldItalicFont=LiberationSans-BoldItalic.ttf]
   \\ \hline
   Tutkinto & \tutkinto
   \\ \hline
-  Koulutusohjelma & \kohjelma
+  Tutkinto-ohjelma & \kohjelma
   \\ \hline
-  Suuntautumisvaihtoehto & \suuntautumis
+  Ammatillinen pääaine & \suuntautumis
   \\ \hline
   Ohjaaja(t) & \ohjaajat
   \\ \hline
@@ -373,6 +390,7 @@ BoldItalicFont=LiberationSans-BoldItalic.ttf]
   Avainsanat & \avainsanat
   \\ \hline
 \end{tabular}
+}
 \clearpage
 
 %----------------------------------------------------------------------------------------
@@ -380,6 +398,7 @@ BoldItalicFont=LiberationSans-BoldItalic.ttf]
 %----------------------------------------------------------------------------------------
 
 \pagestyle{abstract}
+{\renewcommand{\arraystretch}{2}%
 \begin{tabular}{ | p{4,7cm} | p{10,3cm} |}
   \hline
   Author(s) \newline
@@ -398,7 +417,7 @@ BoldItalicFont=LiberationSans-BoldItalic.ttf]
   \\ \hline
   Degree Programme & \metropoliadegreeprogramme
   \\ \hline
-  Specialisation option & \metropoliaspecialisation
+  Professional Major & \metropoliaspecialisation
   \\ \hline
   Instructor(s) & \metropoliainstructors
   \\ \hline
@@ -408,6 +427,7 @@ BoldItalicFont=LiberationSans-BoldItalic.ttf]
   Keywords & \metropoliakeywords
   \\ \hline
 \end{tabular}
+}
 \clearpage
 
 %----------------------------------------------------------------------------------------
