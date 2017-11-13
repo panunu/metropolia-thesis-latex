@@ -32,40 +32,13 @@
 % Use XeLaTeX as a compiler.
  
 %----------------------------------------------------------------------------------------
-%	THESIS
+%	THESIS INFO
 %----------------------------------------------------------------------------------------
 
-% All general information (title, author (you), degree programme, major option, etc.)
-
-\def\thesislang{finnish} %change this depending on your language. "english" is the only
-% other supported language currently. If someone has the swedish, please contribute!
-\author{Nimi/Name} %your first name and last name
-\def\thesis{Insinöörityö/Thesis} %Opinnäytetyö
-\def\alaotsikko{Alaotsikko/Subtitle}
-
-%Finnish section
-\def\otsikko{Opinnäytetyön otsikko}
-\def\tutkinto{Tutkinto (esim. Insinööri (AMK))} % change to your needs, e.g. "YAMK", etc.
-\def\kohjelma{Koulutusohjelma (esim. Tieto\textendash ja viestintätekniikka)}
-\def\suuntautumis{Ammatillinen pääaine (esim. Mobile Solutions)}
-\def\ohjaajat{
-Titteli Etunimi Sukunimi\newline
-Titteli Etunimi Sukunimi
-}
-\def\avainsanat{avainsanat}
-\def\pvm{\specialdate\today}
-
-%English section, for abstract
-\title{Your title here}
-\def\metropoliadegree {Bachelor of Engineering} % change to your needs, e.g. "master", etc.
-\def\metropoliadegreeprogramme {your degree programme (e.g. Information Technology)}
-\def\metropoliaspecialisation {your major option (e.g. Mobile Solutions)}
-\def\metropoliainstructors {
-First name Last name, Title (for example: Project Manager)\newline
-First name Last name, Title (for example: Principal Lecturer)
-}
-\def\metropoliakeywords {Keywords}
-\date{\longmonth\today}
+% All general information (main language, title, author (you), degree programme, major 
+% option, etc.)
+% Edit the file chapters/0info.tex to change these information
+\input{chapters/0info.tex}
 
 %----------------------------------------------------------------------------------------
 %	GLOBAL STYLES
@@ -81,6 +54,7 @@ First name Last name, Title (for example: Principal Lecturer)
 %----------------------------------------------------------------------------------------
 %	ABBREVIATION AND GLOSSARY
 %----------------------------------------------------------------------------------------
+
 % Generate the glossary
 \makeglossaries
 
@@ -89,6 +63,10 @@ First name Last name, Title (for example: Principal Lecturer)
 % You can have as many as you wish. Only the ones you use in your text (inserted with 
 % \gls{} command) will print in the Glossary/Lyhenteet.
 \input{chapters/0abbr.tex}
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT STARTS HERE...
+%----------------------------------------------------------------------------------------
 
 \begin{document}
 \counterwithout{listing}{chapter}
