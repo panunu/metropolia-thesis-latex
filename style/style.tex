@@ -1,4 +1,7 @@
-% Global style. Normally should not be edited. Eventually, change the default font (Arial if you use windows OS).
+% Global style. Normally should not be edited. 
+% If you use windows OS, eventually change \setmainfont to Arial
+% Check around commit https://github.com/panunu/metropolia-thesis-latex/commit/a0c15ac77bab1a52c59c517a18080938e57bf5ef
+% to see how the font files were manually added (after downloading them: https://pagure.io/liberation-fonts/ )
 
 \documentclass[11pt,a4paper,oneside,article]{memoir}
 \usepackage[\thesislang]{babel} 
@@ -85,13 +88,8 @@
 
 %NORMAL TEXT
 %all text, title, etc. in the same font: Arial
-%replace with arial.ttf if you have the fontfile
 %NOTE: fontname is case-sensitive
-\setmainfont
-[BoldFont=LiberationSans-Bold.ttf,
-ItalicFont=LiberationSans-Italic.ttf,
-BoldItalicFont=LiberationSans-BoldItalic.ttf]
-{LiberationSans-Regular.ttf}
+\setmainfont{Liberation Sans}
 %line space
 \linespread{1.5}
 \AtBeginEnvironment{tabular}{\singlespacing}
