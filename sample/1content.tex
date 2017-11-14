@@ -95,17 +95,17 @@ if ($userName){
 
 
 As see in listing \ref{code:testphp}, blah. It is also possible to have code inline, for example \mintinline{sql}{SELECT * FROM user WHERE age >= 18} that was SQL. 
-The lisings \ref{code:htmlfull} and \ref{code:htmlpart} show how to load code from an external source file.
+The lisings \ref{code:htmlfull} and \ref{code:htmlpart} show how to load code from an external source file. In the case of listing \ref{code:htmlpart} it only take few line out of the source code file.
 
 \begin{code}
-  \inputminted{html}{html5_sample.html}
+  \inputminted{html}{code/html5_sample.html}
   \captionof{listing}{Some html code}
   \label{code:htmlfull}
 \end{code}
  Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus.
  
  \begin{code}
-   \inputminted[firstline=3,lastline=6]{html}{html5_sample.html}
+   \inputminted[firstline=3,lastline=6]{html}{code/html5_sample.html}
   \captionof{listing}{The \mintinline{html}{<head>} section of an html page}
   \label{code:htmlpart}
 \end{code}
