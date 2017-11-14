@@ -1,15 +1,18 @@
 % Global information (title of your thesis, your name, degree programme, major, etc.) 
 
-\def\thesislang{finnish} %change this depending on your language. "english" is the only
-% other supported language currently. If someone has the swedish, please contribute!
+\def\thesislang{finnish} %change this depending on the main language of the thesis. 
+% "english" is the only other supported language currently. If someone has the swedish, please contribute!
+
+\def\secondlang{english} %if the main language is Finnish (or Swedish), you must have 2 abstracts (one in Finnish (or Swedish) and one in English)
+%If the main language is English and that you are native Finnish (or Swedish) speaker, you must have also abstract in your native language on top of the English one.
 
 \author{Nimi/Name} %your first name and last name
-\def\thesis{Insinöörityö/Thesis} %delete the half that is not your main language 
+\def\thesis{Insinöörityö/Thesis}%keep the half based on the main thesis language
 %was Opinnäytetyö
 
 \def\alaotsikko{Alaotsikko/Subtitle} %if you don't have subtitle, empty {} it (but don't delete that line)
 
-%Finnish section
+%Finnish section, for title/abstract
 \def\otsikko{Opinnäytetyön otsikko}
 \def\tutkinto{Tutkinto (esim. Insinööri (AMK))} % change to your needs, e.g. "YAMK", etc.
 \def\kohjelma{Koulutusohjelma (esim. Tieto\textendash ja viestintätekniikka)}
@@ -21,7 +24,7 @@ Titteli Etunimi Sukunimi
 \def\avainsanat{avainsanat}
 \def\pvm{\specialdate\today}
 
-%English section, for abstract
+%English section, for title/abstract
 \title{Your title here}
 \def\metropoliadegree {Bachelor of Engineering} % change to your needs, e.g. "master", etc.
 \def\metropoliadegreeprogramme {your degree programme (e.g. Information Technology)}
