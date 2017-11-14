@@ -70,19 +70,14 @@
 \begin{document}
 \counterwithout{listing}{chapter}
 
-%page number always on the top right, clear the "chapter/section" head
-\pagestyle{myheadings}
-\markright{}
-%clear chapter "title" foot page
-\makeevenfoot{plain}{}{}{}
-\makeoddfoot{plain}{}{}{}
-
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 
+\input{style/title_headers.tex}
 \maketitle
 \newpage
+%all abstract, table of content and glossary will get the metropolia logo at bottom
 \LRCornerWallPaper{1}{footer}
 
 %----------------------------------------------------------------------------------------
