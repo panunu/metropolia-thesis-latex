@@ -1,0 +1,41 @@
+% Abstract in English
+%Most probably, you only need to change the text of the abstract. Everything else comes from chapter/0info.tex
+%If you do not have any appendix, you may delete \total{chapter} and replace with 0
+
+\pagestyle{abstract}
+\begin{otherlanguage}{english}
+{\renewcommand{\arraystretch}{2}%
+\begin{tabular}{ | p{4,7cm} | p{10,3cm} |}
+  \hline
+  Author(s) \newline
+  Title \newline\newline 
+  Number of Pages \newline
+  Date
+  & 
+  \makeatletter
+  \@author \newline
+  \@title \newline\newline
+  \pageref*{LastPage} pages + \total{chapter} appendices \newline %! if no appendices, risk to count total of chapter :D
+  \IfLanguageName {finnish} {\foreignlanguage{english}{\longdate\@date}} {\@date}
+  \makeatother
+  \\ \hline
+  Degree & \metropoliadegree
+  \\ \hline
+  Degree Programme & \metropoliadegreeprogramme
+  \\ \hline
+  Professional Major & \metropoliaspecialisation
+  \\ \hline
+  Instructor(s) & \metropoliainstructors
+  \\ \hline
+  \multicolumn{2}{|p{15cm}|}{\vspace{-22pt}
+  Abstract content. To force newline between paragraph in the abstract, you must have both a empty line and the newline command. \newline
+
+  beginning of second paragraph\ldots
+  } \\[14cm] \hline
+  Keywords & \metropoliakeywords
+  \\ \hline
+\end{tabular}
+}
+\end{otherlanguage}
+\clearpage
+
