@@ -86,7 +86,8 @@
 
 % If you are international student writing in English, remove the Finnish abstract.
 % If you are Finnish citizen, you must have 2 abstracts, one in Finnish (or Swedish 
-% depending on your mother tongue) and one in English.
+% depending on your mother tongue) and one in English regardless of the main language of 
+% your thesis.
 \input{chapters/0abstract_fi.tex}
 \input{chapters/0abstract_en.tex}
 
@@ -94,55 +95,27 @@
 %	License? Acknowledgement?
 %----------------------------------------------------------------------------------------
 
+% Uncomment next line and edit chapters/0license.tex if you want license in your thesis.
 %\input{chapters/0license.tex}
+
+% Uncomment next line and edit chapters/0acknowledgement.tex if you want acknowledgements.
 %\input{chapters/0acknowledgement.tex}
 
 %----------------------------------------------------------------------------------------
 %	TABLE OF CONTENTS
 %----------------------------------------------------------------------------------------
 
-\makeevenhead{plain}{}{}{}
-\makeoddhead{plain}{}{}{}
-\pagestyle{empty} %remove page number in toc (if longer than 2 pages)
-\tableofcontents*
-\pagestyle{empty} %remove page number in toc (if longer than 1 pages)
+\input{style/toc.tex}
 
-
-\clearpage
-%Uncomment this line if you do not have Abbreviations list.
-%\pagestyle{plain}
-
-%list of figure, tables comes here...
+%list of figure, tables would come here if relevant?
 
 
 %----------------------------------------------------------------------------------------
 %    Lyhenteet / Abbreviation
 %----------------------------------------------------------------------------------------
 
-\begin{singlespacing}
-
-\glsaddall
-
-{
-	\titleformat{\section}
-	{\fontsize{13pt}{13pt}\bfseries\linespread{1}}
-	{\thesection}{.5cm}{}
-	%Adapt labelwidth (sorry for the ugly hack)
-	\setlist[description]{leftmargin=!, labelwidth=4em}
-	\IfLanguageName {finnish} {
-		\printacronyms[title=Lyhenteet]
-	}{
-		\printacronyms[title=Abbreviations]
-	}
-	\setlist[description]{leftmargin=!, labelwidth=7em}
-	\printglossary 
-	\setlist[description]{style=standard} % reset settings back to default
-}
-\end{singlespacing}
-%Seems that bug is in sharelatex. Compile fine with TexLive >= 2014
-
-
-\newpage
+% If you don't use abbreviations/glossary, remove the following line.
+\input{style/abbr.tex}
 
 %page number always on top right; also for chapter "title" page
 \pagestyle{plain}
