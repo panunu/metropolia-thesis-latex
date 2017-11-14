@@ -1,0 +1,177 @@
+%sample content to demonstrate LaTeX command.
+
+\chapter{Demonstration Content}
+
+This is a chapter to demonstrate some of the \LaTeX{} ~commands that you can use to format your text.
+This should be \textbf{bold} and this \textit{italic} and finally \textbf{\textit{bolditalic}}. When one want to use an abbreviation or acronym like \gls{html} using the \textbf{\textbackslash{}gls} command in \gls{latex}, the first time, it comes with it full version and for all next uses in it short \gls{html} form. Of course, when needed, the full version is available using e.g. the \textbf{\textbackslash{}acrlong} command.
+
+The defined terms like \gls{maths} use the same \textbf{\textbackslash{}gls} \gls{latex} command. The Capitalized can be obtained with \textbf{\textbackslash{}Gls}. Should be avoided; but to have all the abbreviations and terms, even the non-used ones, use the \textbf{\textbackslash{}glsaddall} command before printing the list of Abbreviations. 
+
+\section{Section with references}
+Here is an example how to cite a bibliography entry \cite{kopka:guide} using the \textquotedblleft\textbackslash{}cite\textquotedblright ~\gls{latex} command ~\cite[section 4.2]{tobias:book}. Note that a paragraph is added by forcing a new line.
+
+And let also try the figure (see figure \vref{fig:latex-cover}) and internal reference (with label and ref or vref). The reference can be done to any label, for example why not to appendix \ref{appx:first} or to appendix \ref{appx:second}? To note, \gls{latex} will place the figure to the best place (except with forcing). Let them float till the final of final edit\ldots ~then force them to not break a paragraph.%hugly hack... I'm sorry
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=7.1cm]{LaTeX_cover}
+  \caption{\gls{latex} cover image (Copied from wikibooks.org (2012) \cite{wikibooks:latex}).}
+  \label{fig:latex-cover}
+\end{figure}
+
+Let's also try a long quote:
+From the Universal Declaration of Human Rights:
+\begin{quote}
+(1) Everyone has the right to education. Education shall be free, at least in the elementary and fundamental stages. Elementary education shall be compulsory. Technical and professional education shall be made generally available and higher education shall be equally accessible to all on the basis of merit.
+
+(2) Education shall be directed to the full development of the human personality and to the strengthening of respect for human rights and fundamental freedoms. It shall promote understanding, tolerance and friendship among all nations, racial or religious groups, and shall further the activities of the United Nations for the maintenance of peace.
+
+(3) Parents have a prior right to choose the kind of education that shall be given to their children. \cite[article 26]{un:udhr}
+\end{quote}
+
+\textit{Quisque augue} est, \textbf{elementum ac porttitor} non, porttitor ac orci. Donec hendrerit, ligula ac luctus egestas, sem dolor pretium nunc, sed vehicula magna diam a massa. Donec mattis, arcu et tempor mattis, risus tortor ultrices metus, nec sodales sem dolor eu elit.\vspace{-17pt} 
+\begin{itemize}
+\item \textbf{A small hack} with list
+\item is to force the vertical space 
+\item before and after the list
+\end{itemize}
+\vspace{-17pt} Nullam egestas enim at odio pellentesque bibendum. 
+
+\subsection{Subsection}
+Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
+\reaction{\label{eq:reaktio}$\underset{\text{+II}}{\ce{2Fe^2+}}$ + $\underset{\text{+I\;-I}}{\ce{H2O2}}$ + $\underset{\text{+I\;-II}}{\ce{2H3O^+}}$ <=> $\underset{\text{+III}}{\ce{2Fe^3+}}$ + $\underset{\text{+I\;-II}}{\ce{4H2O}}$}
+Työn aluksi rauta(II)ionit hapetetaan rauta(III)ioneiksi väkevällä vetyperoksidilla, kuten reaktion~\ref{eq:reaktio} hapetusluvuista nähdään (rauta hapettuu, happi pelkistyy).  
+\reaction{Fe^3+( \emph{aq} ) + 3OH^-( \emph{aq} ) + $(x-1)$H2O( \emph{l} ) -> FeOOH $\cdot$ $x$(H2O)( \emph{s} )}
+Rauta(III)ionit saostetaan emäksen (\ce{NH3}) avulla ja saadaan tuotteeksi kidevedellinen rauta(III)hydroksidi. Saatu saostuma pestään \ce{NH4NO3}:lla.
+\reaction{FeOOH $\cdot$ $x$(H2O)( \emph{s} ) ->T[$\Delta$900-1000\celsius] Fe2O3( \emph{s} )}
+
+\subsection{Subsection with \Gls{maths}}
+Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit. Tertiäärinen butyylikloridi reagoi veden kanssa oheisen reaktion mukaisesti:
+\reaction{(CH3)3CCl + 2H2O -> (CH3)3COH+H3O+ +Cl-}
+Kyseessä on ensimmäisen kertaluvun reaktio, joten reaktion nopeus on
+\begin{align}
+v=-\frac{\mathrm{d}[\tn{t-ButCl}]}{\mathrm{d}t}=\frac{\mathrm{d}[\tn{HCl}]}{\mathrm{d}t}=k[\tn{t-ButCl}]
+\end{align}
+Jos tarkastellaan lähtöaineen t-butyylikloridin häviämistä saadaan
+\begin{align}
+\frac{\mathrm{d}[\tn{t-ButCl}]}{[\tn{t-ButCl}]}&=-k\mathrm{d}t \\
+\int \frac{\mathrm{d}[\tn{t-ButCl}]}{[\tn{t-ButCl}]}&=-k \int \mathrm{d}t \\
+\ln \int_{[\tn{t-ButCl}]_0}^{[\tn{t-ButCl}]} [\tn{t-ButCl}]&=-k\int_0^t t \\
+\ln \left( \frac{[\tn{t-ButCl}]}{[\tn{t-ButCl}]_0} \right)&=-kt
+\end{align}
+Ionivahvuus lasketaan kaavalla.
+\begin{align}
+I&=\frac{1}{2}\cdot\sum z_i^2c_i \\
+z_i&= \tn{ionin varausluku} \\
+c_i&= \tn{ionin konsentraatio}
+\end{align}
+Aktiivisuuskerroin $\gamma_\pm$ lasketaan kaavalla.
+\begin{align}
+\log \gamma_\pm &= -\left|z_+\cdot z_-\right|A\cdot I^{\frac{1}{2}} \\
+A &= \tn{0,509 (lämpötilassa 25\celsius}) \\
+I &= \tn{ionivahvuus} \\
+z &= \tn{ionien varaus}
+\end{align}
+
+\section{Section with Source Code}
+Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
+
+%For sharelatex users, use space instead of tab to avoid ^^I
+\begin{code}
+  \begin{minted}{php}
+<?php
+$userName = $_POST["usern"];
+//maybe not?
+if ($userName){
+	?>
+	<h2>Hello <?php echo $userName; ?>!</h2>
+	<p>your message got received.</p>
+	<?php
+}
+?>
+\end{minted}
+  \captionof{listing}{Descriptive Caption Text (e.g. this code do blah)}
+  \label{code:testphp}
+\end{code}
+
+
+As see in listing \ref{code:testphp}, blah. It is also possible to have code inline, for example \mintinline{sql}{SELECT * FROM user WHERE age >= 18} that was SQL. 
+The lisings \ref{code:htmlfull} and \ref{code:htmlpart} show how to load code from an external source file.
+
+\begin{code}
+  \inputminted{html}{html5_sample.html}
+  \captionof{listing}{Some html code}
+  \label{code:htmlfull}
+\end{code}
+ Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus.
+ 
+ \begin{code}
+   \inputminted[firstline=3,lastline=6]{html}{html5_sample.html}
+  \captionof{listing}{The \mintinline{html}{<head>} section of an html page}
+  \label{code:htmlpart}
+\end{code}
+
+
+ Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
+
+
+\section{Section with Table}
+Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
+
+\begin{table}[h]
+  \centering
+  \caption{Some data}
+  %IMPORTANT the caption must be before the tabular, so it will be on top of the table (there are other tricks to force it on top; but this one is straitforward).
+  \begin{tabular}{| l | >{\centering\arraybackslash}p{.5\textwidth} |}
+    \hline
+    Test 1 & test 1234 test \\
+    \hline
+    Some more date comes here & with more values and if the text is very long it will disappear out of the box unless you force the column size :( \\
+    \hline
+  \end{tabular}
+  \label{table:some_data}
+\end{table}
+
+
+As presented in table \ref{table:some_data}: Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
+
+\begin{table}[h]
+  \centering
+  \caption{Another table with tabularx}
+  \begin{tabularx}{.95\textwidth}{| l | >{\centering\arraybackslash} X |}
+    \hline
+    Test 1 & test 1234 test \\
+    \hline
+    Some more date comes here & with more values and if the text is very long it will disappear out of the box unless you force the table size :( \\
+    \hline
+  \end{tabularx}
+  \label{table:some_data2}
+\end{table}
+
+As presented in table \ref{table:some_data2}: Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Booktabs example}
+    \begin{tabular}{rrrr}
+    \toprule
+    t (s) & [HCl] & [t-ButCl] & $\ln\frac{[t-ButCl]}{[t-ButCl]_0}$ \\
+    \midrule
+    0     & 4,02  & 160,88 & 0,00 \\
+    10    & 63    & 101,9 & -0,46 \\
+    20    & 115,2 & 49,7  & -1,17 \\
+    30    & 141,3 & 23,6  & -1,92 \\
+    40    & 157,9 & 7     & -3,13 \\
+    50    & 161   & 3,9   & -3,72 \\
+    60    & 164,3 & 0,6   & -5,59 \\
+    70    & 163,5 & 1,4   & -4,74 \\
+    80    & 163,8 & 1,1   & -4,99 \\
+    90    & 164,1 & 0,8   & -5,30 \\
+    100   & 164,3 & 0,6   & -5,59 \\
+    \bottomrule
+    \end{tabular}
+  \label{tab:thisislabel}
+\end{table}
+
+As presented in table \ref{tab:thisislabel}: Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
+
+\clearpage %force the next chapter to start on a new page. Keep that as the last line of your chapter!
