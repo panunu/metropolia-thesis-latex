@@ -1,0 +1,24 @@
+% Appendix
+% Normally, you do not have to edit this file.
+
+%start appendix
+\appendix
+%no page number for appendix in table of content
+\addtocontents{toc}{\cftpagenumbersoff{chapter}}
+%appendix sections and subsections not in table of content
+\settocdepth{chapter}
+%add "Appendices" in the table of content
+\addappheadtotoc
+%have Appendix 1 (instead of Appendix A)
+\renewcommand{\thechapter}{\arabic{chapter}} 
+
+\newcommand\liite[1]{
+%each appendix restart page num to one
+\setcounter{page}{1}
+%special counter for appendix TODO: this is a ugly quick hack :( Should find a better way to count the page per appendix.
+\newtotcounter{appx#1}
+%overwrite the header
+\makeevenhead{plain}{}{}{\appname \thechapter \\ \thepage\,(\stepcounter{appx#1}\total{appx#1})}
+\makeoddhead{plain}{}{}{\appname \thechapter \\ \thepage\,(\stepcounter{appx#1}\total{appx#1})}}
+
+
