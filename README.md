@@ -24,18 +24,26 @@ Usual compilation sequence (minted package require external Python Pygments scri
     #And if still some citation or label warnings, compile once more
     $ xelatex -shell-escape -8bit main
 
+### Using Overleaf
+
+#### Create new project from Zip
+
+1. Same instructions as for ShareLaTeX (below); but to [Overleaf](https://www.overleaf.com/)
+1. Among others [advantages](https://www.overleaf.com/plans): unlimited collaborators and git access with free account
+
+#### Using git
+
+1. Fork this project (optional (advantage of fork is to synchronize your github and overleaf projects with your local clone))
+1. Clone your fork (or this github project) to your local computer
+1. Follow the [instructions](https://www.overleaf.com/help/230-how-do-i-push-a-new-project-to-overleaf-via-git) to create a new Overleaf project from existing git repo
+1. Once done, open your Overleaf project and from Settings menu change "LaTeX Engine" to XeLaTeX
+
 ### Using ShareLaTeX
 
 1. Download this project as zip (or fork)
 1. Create an account on [ShareLaTeX](https://www.sharelatex.com?r=2c9014ea&rm=d&rs=b) (if not already have one)
 1. Once logged in ShareLaTeX: Open Project section. Then New Project &rarr; Upload Project &rarr; select the zip (otherwise with the paid version you could sync with github (your fork))
 1. Once project opened: from the menu change "compiler" to XeLaTeX
-
-### Using Overleaf
-
-1. Same instructions as for ShareLaTeX; but to [Overleaf](https://www.overleaf.com/)
-1. Among others [advantages](https://www.overleaf.com/plans): unlimited collaborators and git access with free account
-
 
 
 ## Editor
