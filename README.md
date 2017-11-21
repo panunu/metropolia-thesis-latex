@@ -16,15 +16,15 @@ Usual compilation sequence (minted package require external Python Pygments scri
 
     # minted require -shell-escape to run  external script. 
     # -8bit avoid ^^I for tabs in minted.
-    $ xelatex -shell-escape -8bit thesis
+    $ xelatex -shell-escape -8bit main
     # If any change in the bibliography
-    $ bibtex8 thesis
+    $ bibtex8 main
     # If any change with the abbreviation or acronym
-    $ makeglossaries thesis
+    $ makeglossaries main
     #Then compile again
-    $ xelatex -shell-escape -8bit thesis
+    $ xelatex -shell-escape -8bit main
     #And if still some citation or label warnings, compile once more
-    $ xelatex -shell-escape -8bit thesis
+    $ xelatex -shell-escape -8bit main
 
 ### Using ShareLaTeX
 
