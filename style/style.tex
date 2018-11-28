@@ -50,6 +50,7 @@
 %insert source code
 %\usepackage{listings}
 %require -8bit -shell-escape in the xelatex compile command
+%if compiling locally, consider options cachedir=minted,outputdir=~/.tex
 \usepackage[newfloat]{minted}
 \setminted{tabsize=2,linenos,breaklines,breaksymbolleft={\quad},baselinestretch=1}
 \setmintedinline{breaklines}
