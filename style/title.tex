@@ -4,9 +4,9 @@
 \makeatletter
 \renewcommand{\maketitle}{
 \thispagestyle{empty}
-\ThisCenterWallPaper{1}{viiva}
+\ThisULCornerWallPaper{1}{\IfLanguageName{finnish}{metropolia_fi}{metropolia_fi}}
 %
-\vspace*{9.5cm}
+\vspace*{12.5cm}
 \tn{\LARGE\@author\\[22pt]\Huge\IfLanguageName {finnish}{\otsikko}{\@title}\\[22pt]\LARGE\alaotsikko\\[1.75cm]}
 
 \parbox{.7\linewidth}{
@@ -24,8 +24,6 @@
   \IfLanguageName {finnish}{\pvm}{\@date} % D.M.YYYY date format for Finnish. D Month YYYY for English
 }
 }
-\ThisLRCornerWallPaper{1}{metropolia}
-%
 \clearpage
 }
 \makeatother
