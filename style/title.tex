@@ -3,11 +3,12 @@
 
 \makeatletter
 \renewcommand{\maketitle}{
+\newgeometry{left=4.5cm}
 \thispagestyle{empty}
 \ThisULCornerWallPaper{1}{\IfLanguageName{finnish}{metropolia_fi}{metropolia_fi}}
 %
-\vspace*{12.5cm}
-\tn{\LARGE\@author\\[22pt]\Huge\IfLanguageName {finnish}{\otsikko}{\@title}\\[22pt]\LARGE\alaotsikko\\[1.75cm]}
+\vspace*{12.8cm}
+\tn{\Large\@author\\[1cm]\Huge\IfLanguageName {finnish}{\otsikko}{\@title}}%\\[22pt]\LARGE\alaotsikko\\[1.75cm]}
 
 \parbox{.7\linewidth}{
 \IfLanguageName {finnish}{
@@ -25,6 +26,7 @@
 }
 }
 \clearpage
+\restoregeometry
 }
 \makeatother
 
