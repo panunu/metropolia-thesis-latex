@@ -14,7 +14,7 @@
   & 
   \makeatletter
   \@author \newline
-  \@title \newline\newline
+  \@title \newline\newline %! if very long title over 2 lines, remove one \newline
   \pageref*{LastPage} pages + \total{chapter} appendices \newline %! if no appendices, risk to count total of chapter :D
   \IfLanguageName {finnish} {\foreignlanguage{english}{\longdate\@date}} {\@date}
   \makeatother
