@@ -60,7 +60,8 @@
 \usepackage{tabularx}
 \usepackage{booktabs} %why not booktabs? :3
 % Abbreviations, acronym and glossary
-\usepackage[acronym,nonumberlist,section]{glossaries}%xindy,%toc, ,nomain
+\usepackage[acronym,toc,nonumberlist,section=chapter]{glossaries}%xindy,%toc, ,nomain
+\renewcommand*{\glsclearpage}{}
 
 \usepackage{float} % For forced figure location with modifier H (\begin{figure}[H])
 \usepackage{cite} % Make citations to match Metropolia thesis guide
@@ -140,7 +141,7 @@
 \setcounter{secnumdepth}{2}
 \renewcommand{\tocheadstart}{\vspace*{-15pt}}
 \renewcommand{\printtoctitle}[1]{\fontsize{13pt}{13pt}\bfseries #1}
-\renewcommand{\aftertoctitle}{\vspace*{-22pt}\afterchaptertitle}
+%\renewcommand{\aftertoctitle}{\vspace*{-22pt}\afterchaptertitle}
 %spacing afer a chapter in toc
 \preto\section{%
   \ifnum\value{section}=0\addtocontents{toc}{\vskip11pt}\fi

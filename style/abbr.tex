@@ -6,7 +6,7 @@
 
 % \gsladdall would add all terms even if not used in your text.
 %\glsaddall
-
+  \addtocontents{toc}{\cftpagenumbersoff{chapter}}
 {
 	\titleformat{\section}
 	{\fontsize{13pt}{13pt}\bfseries\linespread{1}}
@@ -16,12 +16,13 @@
 	\IfLanguageName {finnish} {
 		\printacronyms[title=Lyhenteet]
 	}{
-		\printacronyms[title=Abbreviations]
+		\printacronyms[title=List of Abbreviations]
 	}
 	\setlist[description]{leftmargin=!, labelwidth=7em}
 	\printglossary 
 	\setlist[description]{style=standard} % reset settings back to default
 }
+\addtocontents{toc}{\cftpagenumberson{chapter}} 
 \end{singlespacing}
 
 \clearpage
