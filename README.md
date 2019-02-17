@@ -43,7 +43,7 @@ Usual compilation sequence (minted package require external Python Pygments scri
 1. Download this project as zip (or fork)
 1. Create an account on [ShareLaTeX](https://www.sharelatex.com?r=2c9014ea&rm=d&rs=b) (if not already have one)
 1. Once logged in ShareLaTeX: Open Project section. Then New Project &rarr; Upload Project &rarr; select the zip (otherwise with the paid version you could sync with github (your fork))
-1. Once project opened: from the menu change "compiler" to XeLaTeX
+1. Once project opened: from the menu change "compiler" to XeLaTeX and set ``main.tex`` as the main document
 
 
 ## Editor
