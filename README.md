@@ -32,7 +32,7 @@ Usual compilation sequence (minted package require external Python Pygments scri
 
 #### Using git
 
-Note: git version control != GitHub 😉 You would need the paid version of Overleaf to directly sync with GitHub.
+Note: git version control != GitHub 😉 These instructions can be used with the Personal/Free subscription plan. While you would need the paid version of Overleaf to directly sync with GitHub. 
 
 1. Fork this project (optional (advantage of fork is to synchronize your github and overleaf projects with your local clone))
 1. Clone your fork (or this github project) to your local computer
