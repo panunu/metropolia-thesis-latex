@@ -42,7 +42,7 @@ Note: git version control != GitHub 😉 You would need the paid version of Over
 #### Create new project from Zip
 
 1. Download this project as zip (or fork)
-1. Once logged in ShareLaTeX: Open Project section. Then New Project &rarr; Upload Project &rarr; select the zip (otherwise with the paid version you could sync with github (your fork))
+1. Once logged in Overleaf, open Project section. Then New Project &rarr; Upload Project &rarr; select the zip (otherwise with the paid version you could sync with github (your fork))
 1. Once project opened: from the Menu change "compiler" to XeLaTeX and set ``main.tex`` as the main document
 
 
