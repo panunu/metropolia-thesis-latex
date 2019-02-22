@@ -32,6 +32,8 @@ Usual compilation sequence (minted package require external Python Pygments scri
 
 #### Using git
 
+Note: git version control != GitHub 😉 You would need the paid version of Overleaf to directly sync with GitHub.
+
 1. Fork this project (optional (advantage of fork is to synchronize your github and overleaf projects with your local clone))
 1. Clone your fork (or this github project) to your local computer
 1. Follow the [instructions](https://www.overleaf.com/help/230-how-do-i-push-a-new-project-to-overleaf-via-git) to create a new Overleaf project from existing git repo
@@ -41,7 +43,7 @@ Usual compilation sequence (minted package require external Python Pygments scri
 
 1. Download this project as zip (or fork)
 1. Once logged in ShareLaTeX: Open Project section. Then New Project &rarr; Upload Project &rarr; select the zip (otherwise with the paid version you could sync with github (your fork))
-1. Once project opened: from the menu change "compiler" to XeLaTeX and set ``main.tex`` as the main document
+1. Once project opened: from the Menu change "compiler" to XeLaTeX and set ``main.tex`` as the main document
 
 
 
