@@ -64,14 +64,11 @@
 \renewcommand*{\glsclearpage}{}
 
 \usepackage{float} % For forced figure location with modifier H (\begin{figure}[H])
-\usepackage{cite} % Make citations to match Metropolia thesis guide
 
+% Make citations to match Metropolia thesis guide
 % change font of links in bibliography to same as other text
 \usepackage{url}
 \urlstyle{same}
-
-% change punctuation of multiple cites to semicolon instead of comma: [1; 2; 3]
-\renewcommand\citepunct{; }
 
 % citep-macro for reference with period inside square brackets [1.]
 \newcommand{\citep}[1]{
@@ -189,6 +186,63 @@
 \renewcommand\@biblabel[1]{#1\hspace{1cm}} %from [1] to 1 with 1cm gap
 \makeatother %
 \setlength{\bibitemsep}{11pt}
+
+\usepackage[backend=biber,bibencoding=utf8,%
+citetracker=true,%
+isbn=true,%
+doi=true,%
+url=true,%
+usetranslator=true,%
+style=numeric-comp,%
+citestyle=numeric,%
+terseinits=false,%
+giveninits=true,%
+sorting=none%
+]{biblatex}
+
+% set right format
+%\DeclareNameAlias{sortname}{last-first} % deprecated
+\DeclareNameAlias{default}{family-given}
+\DeclareFieldFormat{labelnumberwidth}{#1} % remove () from label number
+\DeclareFieldFormat{title}{"#1"} % quotes to the title
+\DeclareFieldFormat{journaltitle}{#1} % remove underline
+\DeclareFieldFormat*{url}{\textless\url{#1}\textgreater} % you can modify how to url looks here
+\DeclareFieldFormat{urldate}{\addcomma\space\bibstring{urlseen}\space#1} % remove () from date
+%try set translation to biblio
+\DefineBibliographyStrings{english}{%
+    urlfrom = {available at},%
+    urlseen = {visited on},%
+    fromenglish = {from English},%
+    fromfinnish = {from Finnish},%
+    fromgerman = {from German},%
+    fromjapanese = {from Japanese},%
+}
+\DefineBibliographyStrings{finnish}{%
+  %  urlfrom={Linkki: },%
+    urlfrom = {},%
+    urlseen = {katsottu},%
+    fromjapanese = {japanista},%
+    fromenglish = {englannista},%
+    fromfinnish = {suomesta},%
+    fromgerman = {saksasta},%
+}
+{
+  %new cite command: "Vancouver Short"
+  \DeclareCiteCommand{\citeVS}
+    {\usebibmacro{prenote}}
+    {\usebibmacro{author}, \usebibmacro{title}}
+    {\multicitedelim}
+    {\usebibmacro{postnote}}
+  
+  % new cite command: "Vancouver Short Collection" - necessary when referencing whole collections. 
+  \DeclareCiteCommand{\citeVSc}
+    {\usebibmacro{prenote}}
+    {\usebibmacro{editor}, \usebibmacro{title}}
+    {\multicitedelim}
+    {\usebibmacro{postnote}}
+}
+
+\addbibresource{biblio.bib}% for biblatex you need out \printbibliography too
 
 %count the appendices (since the chapter counter is reset after \appendix).
 %! require to complie 2 times
