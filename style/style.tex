@@ -1,9 +1,9 @@
-% Global style. Normally should not be edited. 
+% Global style. Normally should not be edited.
 % If you use windows OS, eventually change \setmainfont to Arial
 % Check around commit https://github.com/panunu/metropolia-thesis-latex/commit/a0c15ac77bab1a52c59c517a18080938e57bf5ef
 % to see how the font files were manually added (after downloading them: https://pagure.io/liberation-fonts/ )
 
-\documentclass[11pt,a4paper,oneside,article]{memoir}
+\documentclass[12pt,a4paper,oneside,article]{memoir}
 \usepackage[\secondlang,\thesislang]{babel}% finnish english swedish
 \usepackage{iflang}
 \usepackage{amsmath}
@@ -88,9 +88,9 @@
 %NORMAL TEXT
 %all text, title, etc. in the same font: Arial
 %NOTE: fontname is case-sensitive
-\setmainfont{Liberation Sans}
+\setmainfont[Scale=0.98]{Liberation Sans}
 %line space
-\linespread{1.5}
+\linespread{1.46}
 \AtBeginEnvironment{tabular}{\singlespacing}
 %\doublespacing
 %margin
@@ -233,8 +233,8 @@ sorting=none%
     {\usebibmacro{author}, \usebibmacro{title}}
     {\multicitedelim}
     {\usebibmacro{postnote}}
-  
-  % new cite command: "Vancouver Short Collection" - necessary when referencing whole collections. 
+
+  % new cite command: "Vancouver Short Collection" - necessary when referencing whole collections.
   \DeclareCiteCommand{\citeVSc}
     {\usebibmacro{prenote}}
     {\usebibmacro{editor}, \usebibmacro{title}}
