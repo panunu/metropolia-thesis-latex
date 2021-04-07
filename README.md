@@ -1,6 +1,6 @@
 # Metropolia Thesis LaTeX Template
 
-New 2021 template in progress. Check issue #26
+New 2021 template in progress. Check issue [#26](/../../issues/26).
 
 ## License
 
