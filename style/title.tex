@@ -3,14 +3,16 @@
 
 \makeatletter
 \renewcommand{\maketitle}{
-\newgeometry{left=4.5cm}
+\newgeometry{left=4cm,top=2.7cm}
 \thispagestyle{empty}
-\ThisULCornerWallPaper{1}{\IfLanguageName{finnish}{metropolia_fi}{metropolia_en}}
-%
-\vspace*{12.8cm}
-\tn{\Large\@author\\[1cm]\Huge\IfLanguageName {finnish}{\color[RGB]{155,50,35}\otsikko}{\color[RGB]{31,73,125}\@title}}%\\[22pt]\LARGE\alaotsikko\\[1.75cm]}
 
-\null\vfill
+\includegraphics[width=8.8cm]{Metropolia_L_oranssi}
+
+\vspace*{2.1cm}
+\tn{\Large\@author\\[1cm]\Huge\IfLanguageName {finnish}{\color[RGB]{155,50,35}\otsikko}{\color[RGB]{155,50,35}\@title}}%\\[22pt]\LARGE\alaotsikko\\[1.75cm]}
+
+%\null\vfill
+\vspace*{3cm}
 \parbox{.7\linewidth}{
 \IfLanguageName {finnish}{
   Metropolia Ammattikorkeakoulu\\
