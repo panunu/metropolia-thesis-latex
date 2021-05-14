@@ -14,10 +14,12 @@
 \usepackage{titlesec}
 \usepackage[hyphens]{url}
 \usepackage{mathtools}
-\usepackage{pdfcomment}
+\usepackage{pdfcomment}%try the alt text for graphics
+\usepackage{accsupp}
+\newcommand{\AccTool}[2]{\BeginAccSupp{method=pdfstringdef,unicode,Alt={{#1}}}\pdftooltip{{#2}}{{#1}}\EndAccSupp{}}
 \usepackage{datetime}
 \usepackage{hyperxmp}% metadata (title, author, lang,...) for accessibility, etc.
-\usepackage[pdfa,unicode,bookmarksdepth=subsection]{hyperref} % for automagic pdf links for toc, refs, etc.
+\usepackage[pdfa,unicode=true,bookmarksdepth=subsection]{hyperref} % for automagic pdf links for toc, refs, etc.
 \def\isolang{\IfLanguageName {finnish}{fi}{en}} %iso code (based on main language)
 %TODO: author and keywords don't show in pdf properties?
 %TODO: title shows in pdf porperties; but fail accessibility check?
