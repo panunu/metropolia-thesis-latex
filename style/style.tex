@@ -16,7 +16,20 @@
 \usepackage{mathtools}
 \usepackage{pdfcomment}
 \usepackage{datetime}
-\usepackage[bookmarksdepth=subsection]{hyperref} % for automagic pdf links for toc, refs, etc.
+\usepackage{hyperxmp}% metadata (title, author, lang,...) for accessibility, etc.
+\usepackage[pdfa,unicode,bookmarksdepth=subsection]{hyperref} % for automagic pdf links for toc, refs, etc.
+\def\isolang{\IfLanguageName {finnish}{fi}{en}} %iso code (based on main language)
+%TODO: author and keywords don't show in pdf properties?
+%TODO: title shows in pdf porperties; but fail accessibility check?
+\hypersetup{%
+  pdfapart=1,
+  pdfaconformance=b,
+  pdftitle={\IfLanguageName {finnish}{\otsikko}{\@title}},
+  %pdfauthor={\@author},
+  %pdfdate={\@date},
+  pdfkeywords={\metropoliakeywords},
+  pdflang={\isolang}
+}
 \usepackage[amssymb]{SIunits}
 \usepackage[version=3]{mhchem}
 \usepackage{pgfplots} %simple plots etc
