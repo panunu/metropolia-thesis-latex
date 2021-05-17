@@ -5,7 +5,7 @@
 This is a chapter to demonstrate some of the \LaTeX{} ~commands that you can use to format your text.
 This should be \textbf{bold} and this \textit{italic} and finally \textbf{\textit{bolditalic}}. When one want to use an abbreviation or acronym like \gls{html} using the \textbf{\textbackslash{}gls} command in \gls{latex}, the first time, it comes with it full version and for all next uses in it short \gls{html} form. Of course, when needed, the full version is available using e.g. the \textbf{\textbackslash{}acrlong} command.
 
-The defined terms like \gls{maths} use the same \textbf{\textbackslash{}gls} \gls{latex} command. The Capitalized can be obtained with \textbf{\textbackslash{}Gls}. Should be avoided; but to have all the abbreviations and terms, even the non-used ones, use the \textbf{\textbackslash{}glsaddall} command before printing the list of Abbreviations. 
+The defined terms like \gls{maths} use the same \textbf{\textbackslash{}gls} \gls{latex} command. The Capitalized can be obtained with \textbf{\textbackslash{}Gls}. Should be avoided; but to have all the abbreviations and terms, even the non-used ones, use the \textbf{\textbackslash{}glsaddall} command before printing the list of Abbreviations.
 
 \section{Section with references}
 Here is an example how to cite a bibliography entry \cite{kopka:guide} using the \textquotedblleft\textbackslash{}cite\textquotedblright ~\gls{latex} command ~\cite[section 4.2]{tobias:book}. You might also like \textquotedblleft\textbackslash{}citeauthor\textquotedblright and \textquotedblleft\textbackslash{}citedate\textquotedblright ~as demonstrated in figure \ref{fig:latex-cover} caption.  Note that a paragraph is added by forcing a new line.
@@ -28,18 +28,18 @@ From the Universal Declaration of Human Rights:
 (3) Parents have a prior right to choose the kind of education that shall be given to their children. \cite[article 26]{un:udhr}
 \end{quote}
 
-\textit{Quisque augue} est, \textbf{elementum ac porttitor} non, porttitor ac orci. Donec hendrerit, ligula ac luctus egestas, sem dolor pretium nunc, sed vehicula magna diam a massa. Donec mattis, arcu et tempor mattis, risus tortor ultrices metus, nec sodales sem dolor eu elit.\vspace{-17pt} 
+\textit{Quisque augue} est, \textbf{elementum ac porttitor} non, porttitor ac orci. Donec hendrerit, ligula ac luctus egestas, sem dolor pretium nunc, sed vehicula magna diam a massa. Donec mattis, arcu et tempor mattis, risus tortor ultrices metus, nec sodales sem dolor eu elit.\vspace{-17pt}
 \begin{itemize}
 \item \textbf{A small hack} with list
-\item is to force the vertical space 
+\item is to force the vertical space
 \item before and after the list
 \end{itemize}
-\vspace{-17pt} Nullam egestas enim at odio pellentesque bibendum. 
+\vspace{-17pt} Nullam egestas enim at odio pellentesque bibendum.
 
 \subsection{Subsection}
 Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
 \reaction{\label{eq:reaktio}$\underset{\text{+II}}{\ce{2Fe^2+}}$ + $\underset{\text{+I\;-I}}{\ce{H2O2}}$ + $\underset{\text{+I\;-II}}{\ce{2H3O^+}}$ <=> $\underset{\text{+III}}{\ce{2Fe^3+}}$ + $\underset{\text{+I\;-II}}{\ce{4H2O}}$}
-Työn aluksi rauta(II)ionit hapetetaan rauta(III)ioneiksi väkevällä vetyperoksidilla, kuten reaktion~\ref{eq:reaktio} hapetusluvuista nähdään (rauta hapettuu, happi pelkistyy).  
+Työn aluksi rauta(II)ionit hapetetaan rauta(III)ioneiksi väkevällä vetyperoksidilla, kuten reaktion~\ref{eq:reaktio} hapetusluvuista nähdään (rauta hapettuu, happi pelkistyy).
 \reaction{Fe^3+( \emph{aq} ) + 3OH^-( \emph{aq} ) + $(x-1)$H2O( \emph{l} ) -> FeOOH $\cdot$ $x$(H2O)( \emph{s} )}
 Rauta(III)ionit saostetaan emäksen (\ce{NH3}) avulla ja saadaan tuotteeksi kidevedellinen rauta(III)hydroksidi. Saatu saostuma pestään \ce{NH4NO3}:lla.
 \reaction{FeOOH $\cdot$ $x$(H2O)( \emph{s} ) ->T[$\Delta$900-1000\celsius] Fe2O3( \emph{s} )}
@@ -79,34 +79,34 @@ Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit ma
 \begin{code}
   \begin{minted}{php}
 <?php
-$userName = $_POST["usern"];
+$username = $_POST["username"];
 //maybe not?
 if ($userName){
-	?>
-	<h2>Hello <?php echo $userName; ?>!</h2>
-	<p>your message got received.</p>
-	<?php
+  ?>
+  <h2>Hello <?= $username ?>!</h2>
+  <p>your message got received.</p>
+  <?php
 }
 ?>
 \end{minted}
-  \captionof{listing}{Descriptive Caption Text (e.g. this code do blah)}
+\captionof{listing}{Descriptive Caption Text (e.g. this \gls{php} code do blah)}
   \label{code:testphp}
 \end{code}
 
 
-As see in listing \ref{code:testphp}, blah. It is also possible to have code inline, for example \mintinline{sql}{SELECT * FROM user WHERE age >= 18} that was SQL. 
+As see in listing \ref{code:testphp}, blah. It is also possible to have code inline, for example \mintinline{sql}{SELECT * FROM user WHERE age >= 18} that was \gls{sql}.
 The lisings \ref{code:htmlfull} and \ref{code:htmlpart} show how to load code from an external source file. In the case of listing \ref{code:htmlpart} it only take few line out of the source code file.
 
 \begin{code}
   \inputminted{html}{code/html5_sample.html}
-  \captionof{listing}{Some html code}
+  \captionof{listing}{Some \gls{html} code}
   \label{code:htmlfull}
 \end{code}
  Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus.
- 
+
  \begin{code}
    \inputminted[firstline=3,lastline=6]{html}{code/html5_sample.html}
-  \captionof{listing}{The \mintinline{html}{<head>} section of an html page}
+   \captionof{listing}{The \mintinline{html}{<head>} section of an \gls{html} page}
   \label{code:htmlpart}
 \end{code}
 
