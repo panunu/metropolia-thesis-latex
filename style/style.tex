@@ -12,26 +12,11 @@
 \usepackage{fontspec}
 \usepackage{tocloft}
 \usepackage{titlesec}
-\usepackage[hyphens]{url}
 \usepackage{mathtools}
 \usepackage{pdfcomment}%try the alt text for graphics
 \usepackage{accsupp}
 \newcommand{\AccTool}[2]{\BeginAccSupp{method=pdfstringdef,unicode,Alt={{#1}}}\pdftooltip{{#2}}{{#1}}\EndAccSupp{}}
 \usepackage{datetime}
-\usepackage{hyperxmp}% metadata (title, author, lang,...) for accessibility, etc.
-\usepackage[pdfa,unicode=true,bookmarksdepth=subsection]{hyperref} % for automagic pdf links for toc, refs, etc.
-\def\isolang{\IfLanguageName {finnish}{fi}{en}} %iso code (based on main language)
-%TODO: author and keywords don't show in pdf properties?
-%TODO: title shows in pdf porperties; but fail accessibility check?
-\hypersetup{%
-  pdfapart=1,
-  pdfaconformance=b,
-  pdftitle={\IfLanguageName {finnish}{\otsikko}{\@title}},
-  %pdfauthor={\@author},
-  %pdfdate={\@date},
-  pdfkeywords={\metropoliakeywords},
-  pdflang={\isolang}
-}
 \usepackage[amssymb]{SIunits}
 \usepackage[version=3]{mhchem}
 \usepackage{pgfplots} %simple plots etc
@@ -78,12 +63,9 @@
 \usepackage[acronym,toc,nonumberlist,section=chapter]{glossaries}%xindy,%toc, ,nomain
 \renewcommand*{\glsclearpage}{}
 
-\usepackage{float} % For forced figure location with modifier H (\begin{figure}[H])
+\usepackage{csquotes}% avoid warning with babel
 
-% Make citations to match Metropolia thesis guide
-% change font of links in bibliography to same as other text
-\usepackage{url}
-\urlstyle{same}
+\usepackage{float} % For forced figure location with modifier H (\begin{figure}[H])
 
 % citep-macro for reference with period inside square brackets [1.]
 \newcommand{\citep}[1]{
@@ -131,7 +113,7 @@
 
 %SOURCE CODE
 \newenvironment{code}{\captionsetup{type=listing}}{}
-\IfLanguageName {finnish} {\SetupFloatingEnvironment{listing}{name=Koodiesimerkki}} {}%was Listaus
+\IfLanguageName{finnish}{\SetupFloatingEnvironment{listing}{name=Koodiesimerkki}}{}%was Listaus
 %\counterwithout{lstlisting}{chapter}
 %moved after begin document, otherwise does not compile
 
@@ -141,7 +123,7 @@
 
 %TOC
 %change toc title
-\IfLanguageName {finnish} {\addto{\captionsfinnish}{\renewcommand*{\contentsname}{Sisällys}}} {}
+\IfLanguageName{finnish}{\addto{\captionsfinnish}{\renewcommand*{\contentsname}{Sisällys}}}{}
 %remove dots
 \renewcommand*{\cftdotsep}{\cftnodots}
 %chapter title and page number not in bold
@@ -163,12 +145,12 @@
 %spacing afer a subsection in toc
 \renewcommand{\cftsubsectionaftersnumb}{\vspace*{-1pt}}
 %appendix in toc with "Appendix " + num
-\IfLanguageName {finnish} {
+\IfLanguageName{finnish}{
   \renewcommand*{\cftappendixname}{Liite\space}
   \renewcommand{\appendixtocname}{Liitteet}
 }{\renewcommand*{\cftappendixname}{Appendix\space}}
 %appendix header
-\IfLanguageName {finnish} {\def\appname{Liite\space}}{\def\appname{Appendix\space}}
+\IfLanguageName{finnish}{\def\appname{Liite\space}}{\def\appname{Appendix\space}}
 
 %TITLES
 %chapter title
@@ -196,7 +178,7 @@
 %BIBLIOGRAPHY
 %bibliography title to be "references"
 %IF THE TITLE DON'T GET RENAMED PROPERLY, move that line after the \begin{document}
-\IfLanguageName {finnish} {\addto{\captionsfinnish}{\renewcommand*{\bibname}{Lähteet}}} {\renewcommand\bibname{References}}
+\IfLanguageName{finnish}{\addto{\captionsfinnish}{\renewcommand*{\bibname}{Lähteet}}}{\renewcommand\bibname{References}}
 \makeatletter %reference list option change
 \renewcommand\@biblabel[1]{#1\hspace{1cm}} %from [1] to 1 with 1cm gap
 \makeatother %
@@ -271,3 +253,21 @@ sorting=none%
 \makepagestyle{abstract}
 \makeevenhead{abstract}{}{}{Abstract}
 \makeoddhead{abstract}{}{}{Abstract}
+
+% metadata (title, author, lang,...) for accessibility, etc.
+\usepackage{hyperxmp}
+\usepackage[pdfa,bookmarksdepth=subsection]{hyperref} % for automagic pdf links for toc, refs, etc.
+\def\isolang{\IfLanguageName{finnish}{fi}{en}} %iso code (based on main language)
+%TODO: author and keywords don't show in pdf properties?
+%TODO: title shows in pdf porperties; but fail accessibility check?
+\hypersetup{%
+  unicode=true,
+  pdfapart=1,
+  pdfaconformance=b,
+  pdftitle={\IfLanguageName{finnish}{\otsikko}{\@title}},
+  pdfauthor={\@author},
+  pdfdate={\@date},
+  pdfkeywords={\metropoliakeywords},
+  pdflang={\isolang}
+}
+\urlstyle{same}
