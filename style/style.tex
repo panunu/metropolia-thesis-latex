@@ -256,17 +256,15 @@ sorting=none%
 
 % metadata (title, author, lang,...) for accessibility, etc.
 \usepackage{hyperxmp}
-\usepackage[pdfa,bookmarksdepth=subsection]{hyperref} % for automagic pdf links for toc, refs, etc.
 \def\isolang{\IfLanguageName{finnish}{fi}{en}} %iso code (based on main language)
-%TODO: author and keywords don't show in pdf properties?
-%TODO: title shows in pdf porperties; but fail accessibility check?
 \hypersetup{%
+  xetex,
+  pdfdisplaydoctitle,
+  pdfencoding=auto,
+  bookmarksdepth=subsection,
   unicode=true,
-  pdfapart=1,
-  pdfaconformance=b,
+  keeppdfinfo=true,
   pdftitle={\IfLanguageName{finnish}{\otsikko}{\@title}},
-  pdfauthor={\@author},
-  pdfdate={\@date},
   pdfkeywords={\metropoliakeywords},
   pdflang={\isolang}
 }
