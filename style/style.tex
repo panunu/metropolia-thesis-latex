@@ -13,19 +13,11 @@
 \usepackage{tocloft}
 \usepackage{titlesec}
 \usepackage{mathtools}
-\usepackage{pdfcomment}%try the alt text for graphics
-\usepackage{accsupp}
-\newcommand{\AccTool}[2]{\BeginAccSupp{method=pdfstringdef,unicode,Alt={{#1}}}\pdftooltip{{#2}}{{#1}}\EndAccSupp{}}
-\usepackage{datetime}
 \usepackage[amssymb]{SIunits}
 \usepackage[version=3]{mhchem}
-\usepackage{pgfplots} %simple plots etc
-\usepackage{pgfplotstable}
 \usepackage{tikz} % mindmaps, flowcharts, piecharts, examples at http://www.texample.net/tikz/examples/
 \usetikzlibrary{shapes.geometric, arrows}
 
-
-\renewcommand{\dateseparator}{.}
 %condition for adding or not space in TOC
 \usepackage{etoolbox}
 %for compact list
@@ -33,7 +25,7 @@
 %for block comment
 \usepackage{verbatim}
 %for "easier" references
-\usepackage{varioref}
+%\usepackage{varioref}
 %forcing single line spacing in bibliography
 \DisemulatePackage{setspace}
 \usepackage{setspace}
@@ -59,9 +51,6 @@
 %force the width of a table instead of column
 \usepackage{tabularx}
 \usepackage{booktabs} %why not booktabs? :3
-% Abbreviations, acronym and glossary
-\usepackage[acronym,toc,nonumberlist,section=chapter]{glossaries}%xindy,%toc, ,nomain
-\renewcommand*{\glsclearpage}{}
 
 \usepackage{csquotes}% avoid warning with babel
 
@@ -75,9 +64,25 @@
 }
 
 %set date format to D.M.YYYY
-\newdateformat{specialdate}{\THEDAY.\THEMONTH.\THEYEAR}
+\def\pvm{\the\day.\the\month.\the\year}
 %set date format to D Month YYYY
-\newdateformat{longmonth}{\THEDAY~\monthname[\THEMONTH] \THEYEAR}
+\usepackage[en,useregional=false]{datetime2}
+\DTMsetup{datesep=.}
+\DTMnewdatestyle{dMonthyyyy}
+{%
+  \renewcommand{\DTMdisplaydate}[4]{%
+    \number##3 % day
+    ~% separator
+    \DTMenglishmonthname{##2}% month name
+    ~% separator
+    \number##1% year
+  }%
+  \renewcommand{\DTMDisplaydate}[4]{%
+    \DTMdisplaydate{##4}{##3}{##2}{##1}%
+  }%
+}
+\DTMsetdatestyle{dMonthyyyy}
+\date{\today}
 
 \newcommand\tn[1]{\textnormal{#1}} %use \tn instead of \textnormal
 \newcommand\reaction[1]{\begin{equation}\ce{#1}\end{equation}} %\reaction{} for chemical reactions
@@ -91,7 +96,7 @@
 \AtBeginEnvironment{tabular}{\singlespacing}
 %\doublespacing
 %margin
-\usepackage[top=2.5cm, bottom=3cm, left=4cm, right=2cm, nofoot]{geometry}
+%geometry moved after hyperref
 \setlength{\parindent}{0pt} %first line of paragraph not indented
 \setlength{\parskip}{16.5pt} %one empty line to separate paragraph
 %list with small line space separation
@@ -255,10 +260,12 @@ sorting=none%
 \makeoddhead{abstract}{}{}{Abstract}
 
 % metadata (title, author, lang,...) for accessibility, etc.
+\usepackage{hyperref}
 \usepackage{hyperxmp}
 \def\isolang{\IfLanguageName{finnish}{fi}{en}} %iso code (based on main language)
+%TODO bug: pdfcopyright don't go, neither the alt lang
+%works with simple example, so probably conflict with some package?
 \hypersetup{%
-  xetex,
   pdfdisplaydoctitle,
   pdfencoding=auto,
   bookmarksdepth=subsection,
@@ -266,6 +273,28 @@ sorting=none%
   keeppdfinfo=true,
   pdftitle={\IfLanguageName{finnish}{\otsikko}{\@title}},
   pdfkeywords={\metropoliakeywords},
-  pdflang={\isolang}
+  pdflang={\isolang},
+  pdfcopyright={Copyright \textcopyright\ \the\year{},  \@author},
+  pdfmetalang={\isolang},
+}
+\XMPLangAlt{\IfLanguageName{finnish}{en}{fi}}{%
+  pdftitle={\IfLanguageName{finnish}{\@title}{\otsikko}},
+  pdfcopyright={Copyright \textcopyright\ \the\year{},  \@author},
 }
 \urlstyle{same}
+
+%moved after hyperred as can cause conflicts
+\usepackage{pdfcomment}%try the alt text for graphics
+\usepackage{accsupp}
+\newcommand{\AccTool}[2]{\BeginAccSupp{method=pdfstringdef,unicode,Alt={{#1}}}\pdftooltip{{#2}}{{#1}}\EndAccSupp{}}
+
+\usepackage[top=2.5cm, bottom=3cm, left=4cm, right=2cm, nofoot]{geometry}
+
+\usepackage{pgfplots} %simple plots etc
+\pgfplotsset{compat=1.17}
+\usepackage{pgfplotstable}
+
+% Abbreviations, acronym and glossary
+%noredefwarn
+\usepackage[acronym,toc,nonumberlist,section=chapter]{glossaries}%xindy,%toc, ,nomain
+\renewcommand*{\glsclearpage}{}
