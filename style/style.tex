@@ -294,7 +294,15 @@ sorting=none%
 \pgfplotsset{compat=1.17}
 \usepackage{pgfplotstable}
 
-% Abbreviations, acronym and glossary
-%noredefwarn
-\usepackage[acronym,toc,nonumberlist,section=chapter]{glossaries}%xindy,%toc, ,nomain
+% Abbreviations, acronym and glossary, in case of bug, remove temporary the noredefwarn
+\usepackage[acronym,toc,nonumberlist,section=chapter,noredefwarn]{glossaries}%xindy,%toc, ,nomain
+\newglossarystyle{mystyle}{%
+  \setglossarystyle{list}% base this style on the list style
+  \renewcommand*{\glossentry}[2]{%
+  \item[\glsentryitem{##1}%
+    \glstarget{##1}{\glossentryname{##1}:}]
+  \glossentrydesc{##1}\glspostdescription\space ##2}
+}
+\setglossarystyle{mystyle}
+
 \renewcommand*{\glsclearpage}{}
