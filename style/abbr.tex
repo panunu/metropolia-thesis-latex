@@ -1,28 +1,31 @@
 % Abbreviation and Glossary
-% Normally, you don't have to modify this file. Your abbreviations, etc. goes in 
+% Normally, you don't have to modify this file. Your abbreviations, etc. goes in
 % ../chapters/0abbr.tex file.
 
 \begin{singlespacing}
 
-% \gsladdall would add all terms even if not used in your text.
-%\glsaddall
-  \addtocontents{toc}{\cftpagenumbersoff{chapter}}
-{
-	\titleformat{\section}
-	{\fontsize{13pt}{13pt}\bfseries\linespread{1}}
-	{\thesection}{.5cm}{}
-	%Adapt labelwidth (sorry for the ugly hack)
-	\setlist[description]{leftmargin=!, labelwidth=4em}
-	\IfLanguageName {finnish} {
-		\printacronyms[title=Lyhenteet]
-	}{
-		\printacronyms[title=List of Abbreviations]
+	% \gsladdall would add all terms even if not used in your text.
+	\glsaddall
+	\addtocontents{toc}{\cftpagenumbersoff{chapter}}
+	{
+		\vspace{-.46cm}
+		\titleformat{\section}
+		{\fontsize{13.5pt}{13.5pt}\bfseries\normalfont}
+		{\thesection}{.5cm}{}
+		\renewcommand*{\glossarypreamble}{\vspace{.7\baselineskip}}
+		%Adapt labelwidth (sorry for the ugly hack)
+		\setlist[description]{leftmargin=!, labelwidth=4em}
+		\IfLanguageName {finnish} {
+			\printacronyms[title=Lyhenteet]
+			}{
+			\printacronyms[title=List of Abbreviations]
+		}
+		\setlist[description]{leftmargin=!, labelwidth=7em}
+		\vspace{1cm}
+		\printglossary
+		\setlist[description]{style=standard} % reset settings back to default
 	}
-	\setlist[description]{leftmargin=!, labelwidth=7em}
-	\printglossary 
-	\setlist[description]{style=standard} % reset settings back to default
-}
-\addtocontents{toc}{\cftpagenumberson{chapter}} 
+	\addtocontents{toc}{\cftpagenumberson{chapter}}
 \end{singlespacing}
 
 \clearpage
