@@ -120,12 +120,12 @@ Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit ma
 \begin{table}[h]
   \centering
   \caption{Some data}
-  %IMPORTANT the caption must be before the tabular, so it will be on top of the table (there are other tricks to force it on top; but this one is straitforward).
+  %IMPORTANT the caption must be before the tabular, so it will be on top of the table (there are other tricks to force it on top; but this one is straightforward).
   \begin{tabular}{| l | >{\centering\arraybackslash}p{.5\textwidth} |}
     \hline
     Test 1 & test 1234 test \\
     \hline
-    Some more date comes here & with more values and if the text is very long it will disappear out of the box unless you force the column size :( \\
+    Some more data comes here & with more values and if the text is very long it will disappear out of the box unless you force the column size :( You can use e.g. \textbackslash raggedright or \textbackslash centering (as in this example) to avoid hyphenization of long words\ldots \\
     \hline
   \end{tabular}
   \label{table:some_data}
@@ -141,7 +141,7 @@ As presented in table \ref{table:some_data}: Donec et sapien ac leo condimentum 
     \hline
     Test 1 & test 1234 test \\
     \hline
-    Some more date comes here & with more values and if the text is very long it will disappear out of the box unless you force the table size :( \\
+    Some more data comes here & with more values and if the text is very long it will disappear out of the box unless you force the table size :( \\
     \hline
   \end{tabularx}
   \label{table:some_data2}
