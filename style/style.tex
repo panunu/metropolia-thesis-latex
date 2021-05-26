@@ -3,7 +3,6 @@
 % Check around commit https://github.com/panunu/metropolia-thesis-latex/commit/a0c15ac77bab1a52c59c517a18080938e57bf5ef
 % to see how the font files were manually added (after downloading them: https://pagure.io/liberation-fonts/ )
 
-\documentclass[12pt,a4paper,oneside,article]{memoir}
 \usepackage[\secondlang,\thesislang]{babel}% finnish english swedish
 \usepackage{iflang}
 \usepackage{amsmath}
@@ -258,19 +257,20 @@ sorting=none%
 %works with simple example, so probably conflict with some package?
 \hypersetup{%
   pdfdisplaydoctitle,
+  %breaklinks=true,%searching for overfull warnings
   pdfencoding=auto,
   bookmarksdepth=subsection,
   unicode=true,
   keeppdfinfo=true,
-  pdftitle={\IfLanguageName{finnish}{\otsikko}{\@title}},
-  pdfkeywords={\metropoliakeywords},
   pdflang={\isolang},
-  pdfcopyright={Copyright \textcopyright\ \the\year{},  \@author},
   pdfmetalang={\isolang},
+  pdftitle={\IfLanguageName{finnish}{\otsikko}{\thetitle}},
+  pdfkeywords={\metropoliakeywords},
+  pdfcopyright={Copyright \textcopyright\ \the\year{}, \theauthor},
 }
 \XMPLangAlt{\IfLanguageName{finnish}{en}{fi}}{%
-  pdftitle={\IfLanguageName{finnish}{\@title}{\otsikko}},
-  pdfcopyright={Copyright \textcopyright\ \the\year{},  \@author},
+  pdftitle={\IfLanguageName{finnish}{\thetitle}{\otsikko}},
+  pdfcopyright={Copyright \textcopyright\ \the\year{}, \theauthor},
 }
 \urlstyle{same}
 
