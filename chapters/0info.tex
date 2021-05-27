@@ -2,6 +2,9 @@
 
 % Global information (title of your thesis, your name, degree programme, major, etc.)
 
+\def\bilingual{yes}%For Finnish students, you must have 2 abstracts, one in English and one in your native language (Finnish or Swedish), so "yes", your thesis is bilingual.
+%\def\bilingual{no}%For international student writing in English, only one language and one abstract.
+
 \def\thesislang{finnish} %change this depending on the main language of the thesis.
 %\def\thesislang{english} % "english" is the only other supported language currently. If someone has the swedish, please contribute!
 
@@ -10,8 +13,6 @@
 %If the main language is English and that you are native Finnish (or Swedish) speaker, you must have also abstract in your native language on top of the English one.
 
 \author{Nimi/Name} %your first name and last name
-\def\thesisfi{Insinöörityö}%was Opinnäytetyö
-\def\thesisen{Thesis}
 
 %\def\alaotsikko{Alaotsikko/Subtitle} %DISABLED, seems not to be an option with the 2018 template. If you really need it, uncomment and modify style/title.tex accordingly.
 
@@ -20,19 +21,21 @@
 \def\tutkinto{Tutkinto (esim. Insinööri (AMK))} % change to your needs, e.g. "YAMK", etc.
 \def\kohjelma{Koulutusohjelma (esim. Tieto\textendash ja viestintätekniikka)}
 \def\suuntautumis{Ammatillinen pääaine (esim. Mobile Solutions)}
+\def\thesisfi{Insinöörityö}%was Opinnäytetyö
 \def\ohjaajat{
 Titteli Etunimi Sukunimi\newline
 Titteli Etunimi Sukunimi
 }
-\def\avainsanat{avainsanat}
+\def\avainsanat{avainsana, avainsana}
 
 %English section, for title/abstract
 \title{Your title here}
 \def\metropoliadegree{Bachelor of Engineering} % change to your needs, e.g. "master", etc.
 \def\metropoliadegreeprogramme{your degree programme (e.g. Information Technology)}
 \def\metropoliaspecialisation{your major option (e.g. Mobile Solutions)}
+\def\thesisen{Bachelor’s Thesis} % change to your need, e.g. master's
 \def\metropoliainstructors{
 First name Last name, Title (e.g.: Project Manager)\newline
 First name Last name, Title (e.g.: Principal Lecturer)
 }
-\def\metropoliakeywords{Keywords}
+\def\metropoliakeywords{keyword, keyword}

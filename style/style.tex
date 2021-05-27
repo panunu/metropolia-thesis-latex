@@ -5,7 +5,13 @@
 
 %\usepackage[l2tabu, orthodox]{nag}%check for obsolete packages (with outdated nag package?)
 
-\usepackage[\secondlang,\thesislang]{babel}% finnish english swedish
+%condition e.g. for adding or not space in TOC,...
+\usepackage{etoolbox}
+\ifstrequal{\bilingual}{yes}{
+  \usepackage[\secondlang,\thesislang]{babel}% finnish (or swedish) and english
+}{
+  \usepackage[\thesislang]{babel}% english only
+}
 \usepackage{iflang}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -19,8 +25,6 @@
 \usepackage{tikz} % mindmaps, flowcharts, piecharts, examples at http://www.texample.net/tikz/examples/
 \usetikzlibrary{shapes.geometric, arrows}
 
-%condition for adding or not space in TOC
-\usepackage{etoolbox}
 %for compact list
 \usepackage{enumitem}
 %for block comment
@@ -270,10 +274,13 @@ sorting=none%
   pdfkeywords={\metropoliakeywords},
   pdfcopyright={Copyright \textcopyright\ \the\year{}, \theauthor},
 }
-\XMPLangAlt{\IfLanguageName{finnish}{en}{fi}}{%
-  pdftitle={\IfLanguageName{finnish}{\thetitle}{\otsikko}},
-  pdfcopyright={Copyright \textcopyright\ \the\year{}, \theauthor},
-}
+
+\ifstrequal{\bilingual}{yes}{%metadata (title and copyright) in multiple language
+  \XMPLangAlt{\IfLanguageName{finnish}{en}{fi}}{%
+    pdftitle={\IfLanguageName{finnish}{\thetitle}{\otsikko}},
+    pdfcopyright={Copyright \textcopyright\ \the\year{}, \theauthor},
+  }
+}{}
 \urlstyle{same}
 
 %moved after hyperred as can cause conflicts

@@ -84,13 +84,21 @@
 %	ABSTRACT / Tiivistelmä
 %----------------------------------------------------------------------------------------
 
-% If you are international student writing in English, remove the Finnish abstract.
+% If you are international student writing in English, ignore the Finnish abstract.
 % If you are Finnish citizen, you must have 2 abstracts, one in Finnish (or Swedish
 % depending on your mother tongue) and one in English regardless of the main language of
 % your thesis.
-\input{chapters/0abstract_fi.tex}
-\input{chapters/0abstract_en.tex}
-
+\ifstrequal{\bilingual}{no}{%
+    \input{chapters/0abstract_en.tex}
+    }{%
+    \IfLanguageName{finnish}{%order of abstracts based on main language
+        \input{chapters/0abstract_fi.tex}
+        \input{chapters/0abstract_en.tex}
+        }{
+        \input{chapters/0abstract_en.tex}
+        \input{chapters/0abstract_fi.tex}
+    }
+}
 %----------------------------------------------------------------------------------------
 %	License? Acknowledgement?
 %----------------------------------------------------------------------------------------
