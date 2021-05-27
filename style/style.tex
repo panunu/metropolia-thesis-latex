@@ -3,6 +3,8 @@
 % Check around commit https://github.com/panunu/metropolia-thesis-latex/commit/a0c15ac77bab1a52c59c517a18080938e57bf5ef
 % to see how the font files were manually added (after downloading them: https://pagure.io/liberation-fonts/ )
 
+%\usepackage[l2tabu, orthodox]{nag}%check for obsolete packages (with outdated nag package?)
+
 \usepackage[\secondlang,\thesislang]{babel}% finnish english swedish
 \usepackage{iflang}
 \usepackage{amsmath}
@@ -140,13 +142,13 @@
 \renewcommand{\tocheadstart}{\vspace*{-33pt}}
 \renewcommand{\printtoctitle}[1]{\fontsize{13.5pt}{13.5pt}\bfseries #1}
 %\renewcommand{\aftertoctitle}{\vspace*{-22pt}\afterchaptertitle}
-%spacing afer a chapter in toc
+%spacing after a chapter in toc
 \preto\section{%
   \ifnum\value{section}=0\addtocontents{toc}{\vskip11pt}\fi
 }
-%spacing afer a section in toc
+%spacing after a section in toc
 \renewcommand{\cftsectionaftersnumb}{\vspace*{-3pt}}
-%spacing afer a subsection in toc
+%spacing after a subsection in toc
 \renewcommand{\cftsubsectionaftersnumb}{\vspace*{-1pt}}
 %appendix in toc with "Appendix " + num
 \IfLanguageName{finnish}{
