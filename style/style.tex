@@ -3,7 +3,15 @@
 % Check around commit https://github.com/panunu/metropolia-thesis-latex/commit/a0c15ac77bab1a52c59c517a18080938e57bf5ef
 % to see how the font files were manually added (after downloading them: https://pagure.io/liberation-fonts/ )
 
-\usepackage[\secondlang,\thesislang]{babel}% finnish english swedish
+%\usepackage[l2tabu, orthodox]{nag}%check for obsolete packages (with outdated nag package?)
+
+%condition e.g. for adding or not space in TOC,...
+\usepackage{etoolbox}
+\ifstrequal{\bilingual}{yes}{
+  \usepackage[\secondlang,\thesislang]{babel}% finnish (or swedish) and english
+}{
+  \usepackage[\thesislang]{babel}% english only
+}
 \usepackage{iflang}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -17,8 +25,6 @@
 \usepackage{tikz} % mindmaps, flowcharts, piecharts, examples at http://www.texample.net/tikz/examples/
 \usetikzlibrary{shapes.geometric, arrows}
 
-%condition for adding or not space in TOC
-\usepackage{etoolbox}
 %for compact list
 \usepackage{enumitem}
 %for block comment
@@ -140,13 +146,13 @@
 \renewcommand{\tocheadstart}{\vspace*{-33.5pt}}
 \renewcommand{\printtoctitle}[1]{\fontsize{13.5pt}{13.5pt}\bfseries #1\vspace*{-4pt}}
 %\renewcommand{\aftertoctitle}{\vspace*{-22pt}\afterchaptertitle}
-%spacing afer a chapter in toc
+%spacing after a chapter in toc
 \preto\section{%
   \ifnum\value{section}=0\addtocontents{toc}{\vskip11pt}\fi
 }
-%spacing afer a section in toc
+%spacing after a section in toc
 \renewcommand{\cftsectionaftersnumb}{\vspace*{-3pt}}
-%spacing afer a subsection in toc
+%spacing after a subsection in toc
 \renewcommand{\cftsubsectionaftersnumb}{\vspace*{-1pt}}
 %appendix in toc with "Appendix " + num
 \IfLanguageName{finnish}{
@@ -268,16 +274,19 @@ sorting=none%
   pdfkeywords={\metropoliakeywords},
   pdfcopyright={Copyright \textcopyright\ \the\year{}, \theauthor},
 }
-\XMPLangAlt{\IfLanguageName{finnish}{en}{fi}}{%
-  pdftitle={\IfLanguageName{finnish}{\thetitle}{\otsikko}},
-  pdfcopyright={Copyright \textcopyright\ \the\year{}, \theauthor},
-}
+
+\ifstrequal{\bilingual}{yes}{%metadata (title and copyright) in multiple language
+  \XMPLangAlt{\IfLanguageName{finnish}{en}{fi}}{%
+    pdftitle={\IfLanguageName{finnish}{\thetitle}{\otsikko}},
+    pdfcopyright={Copyright \textcopyright\ \the\year{}, \theauthor},
+  }
+}{}
 \urlstyle{same}
 
 %moved after hyperred as can cause conflicts
 \usepackage{pdfcomment}%try the alt text for graphics
 \usepackage{accsupp}
-\newcommand{\AccTool}[2]{\BeginAccSupp{method=pdfstringdef,unicode,Alt={{#1}}}\pdftooltip{{#2}}{{#1}}\EndAccSupp{}}
+\newcommand{\AltText}[2]{\BeginAccSupp{method=pdfstringdef,unicode,Alt={{#1}}}\pdftooltip{{#2}}{{#1}}\EndAccSupp{}}
 
 \usepackage[top=2.5cm, bottom=3cm, left=4cm, right=2cm, nofoot]{geometry}
 
