@@ -168,7 +168,7 @@
 \titleformat{\chapter}
 {\fontsize{14pt}{14pt}\bfseries\linespread{1}}%\clearpage
 {\thechapter}{.5cm}{}
-\titlespacing*{\chapter}{0pt}{9pt}{.5pt}
+\titlespacing*{\chapter}{0pt}{-.42cm}{.5pt}
 \titleformat{\section}
 {\fontsize{13.5pt}{13.5pt}\normalfont}
 {\thesection}{.5cm}{}
@@ -186,9 +186,6 @@
   {\endlist}
 
 %BIBLIOGRAPHY
-%bibliography title to be "references"
-%IF THE TITLE DON'T GET RENAMED PROPERLY, move that line after the \begin{document}
-\IfLanguageName{finnish}{\addto{\captionsfinnish}{\renewcommand*{\bibname}{Lähteet}}}{\renewcommand\bibname{References}}
 \makeatletter %reference list option change
 \renewcommand\@biblabel[1]{#1\hspace{1cm}} %from [1] to 1 with 1cm gap
 \makeatother %
