@@ -12,6 +12,14 @@
 }{
   \usepackage[\thesislang]{babel}% english only
 }
+\usepackage{tagpdf}
+\usepackage{luacode}
+\tagpdfsetup{tabsorder=structure,activate-all,uncompress,interwordspace=on}
+\newcommand{\AltText}[2]{%
+  \tagmcbegin{tag=Figure,alttext={{#1}}}%
+  {{#2}}%
+  \tagmcend
+}
 \usepackage{iflang}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -283,9 +291,9 @@ sorting=none%
 \urlstyle{same}
 
 %moved after hyperred as can cause conflicts
-\usepackage{pdfcomment}%try the alt text for graphics
-\usepackage{accsupp}
-\newcommand{\AltText}[2]{\BeginAccSupp{method=pdfstringdef,unicode,Alt={{#1}}}\pdftooltip{{#2}}{{#1}}\EndAccSupp{}}
+%\usepackage{pdfcomment}%try the alt text for graphics
+%\usepackage{accsupp}
+%\newcommand{\AltText}[2]{\BeginAccSupp{method=pdfstringdef,unicode,Alt={{#1}}}\pdftooltip{{#2}}{{#1}}\EndAccSupp{}}
 \usepackage{axessibility}%alternative text for formulas
 
 \usepackage[top=2.5cm, bottom=3cm, left=4cm, right=2cm, nofoot]{geometry}

@@ -6,6 +6,7 @@ Data to plot the graph \ref{fig:stdplot} are in data.dat file.
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam purus, in ornare nulla imperdiet molestie. Nam tempus erat eu dui rhoncus et vestibulum mi elementum. Ut porttitor elit sit amet justo dignissim sit amet sagittis massa egestas. Mauris sed dolor eget dui fermentum sodales ut eu nibh.
 \begin{figure}[htbp]
   \centering
+  \AltText{linear regression}{
     \begin{tikzpicture}
         \pgfplotsset{width=12cm, legend style={font=\footnotesize}}
     \begin{axis}[
@@ -26,6 +27,7 @@ $\pgfmathprintnumber{\pgfplotstableregressiona}x
 \pgfmathprintnumber[print sign]{\pgfplotstableregressionb}$}
 \end{axis}
 \end{tikzpicture}
+}
 \caption{Simple linear regression plot (cannot get $r^2$ value)}
 \label{fig:stdplot}
 \end{figure}
@@ -41,6 +43,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam
 \tikzstyle{arrow} = [thick,->,>=stealth]
 \begin{figure}[htbp]
 \centering
+\AltText{flow diagram}{
 \begin{tikzpicture}[node distance=2.75cm]
 \node[label=90:Label] (yksi) [palikka] {Lorem};
 \node (kaksi) [palikka, right of=yksi] {ipsum};
@@ -52,6 +55,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam aliquam
 \draw [arrow] (kolme) -- (neljä);
 \draw [arrow] (neljä) -- (viisi);
 \end{tikzpicture}
+}
 \caption{Example tikz-picture}
 \label{fig:tikz}
 \end{figure}
