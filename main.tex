@@ -89,14 +89,14 @@
 % depending on your mother tongue) and one in English regardless of the main language of
 % your thesis.
 \ifstrequal{\bilingual}{no}{%
-    \input{chapters/0abstract_en.tex}
+    \input{style/abstract_en.tex}
     }{%
-    \IfLanguageName{finnish}{%order of abstracts based on main language
-        \input{chapters/0abstract_fi.tex}
-        \input{chapters/0abstract_en.tex}
+    \IfLanguageName{finnish}{%order of abstracts based on main language and spacing hell
+        \input{style/abstract_fi_fi.tex}
+        \input{style/abstract_fi_en.tex}
         }{
-        \input{chapters/0abstract_en.tex}
-        \input{chapters/0abstract_fi.tex}
+        \input{style/abstract_en.tex}
+        \input{style/abstract_fi.tex}
     }
 }
 %----------------------------------------------------------------------------------------
