@@ -69,7 +69,10 @@
 %----------------------------------------------------------------------------------------
 
 \begin{document}
-\raggedright%2021 template, align left, no hyphennization
+\IfLanguageName{finnish}{
+}{
+  \raggedright%2021 template, align left, no hyphennization for English version
+}
 \counterwithout{listing}{chapter}
 
 %----------------------------------------------------------------------------------------

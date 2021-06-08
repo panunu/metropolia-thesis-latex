@@ -25,6 +25,15 @@
 \usepackage{tikz} % mindmaps, flowcharts, piecharts, examples at http://www.texample.net/tikz/examples/
 \usetikzlibrary{shapes.geometric, arrows}
 
+\usepackage{ragged2e}%
+\IfLanguageName{finnish}{
+  \RaggedRight%2021 template, align left and hyphennization for Finnish version
+}{}
+\makeatletter
+  \let\@gnewline\@raggedtwoe@saved@gnewline% Restore original functionality of \newline
+  \let\\\@raggedtwoe@savedcr% Restore original functionality of \\
+\makeatother
+
 %for compact list
 \usepackage{enumitem}
 %for block comment
