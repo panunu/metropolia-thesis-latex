@@ -25,9 +25,10 @@
 \usepackage{tikz} % mindmaps, flowcharts, piecharts, examples at http://www.texample.net/tikz/examples/
 \usetikzlibrary{shapes.geometric, arrows}
 
-\usepackage{ragged2e}%
+\usepackage{ragged2e}
 \IfLanguageName{finnish}{
   \RaggedRight%2021 template, align left and hyphennization for Finnish version
+  \setlength{\RaggedRightRightskip}{0pt plus 1fil}%TODO: fix the Overfull/Underfull warnings when \RaggedRight (likely in title and abstact)
 }{}
 \makeatletter
   \let\@gnewline\@raggedtwoe@saved@gnewline% Restore original functionality of \newline
