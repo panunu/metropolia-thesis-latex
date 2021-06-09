@@ -6,6 +6,24 @@
 
 Check comments in [main.tex](main.tex) for details. Especially what it means when licensing your own thesis when using this template.
 
+## Accessibility
+
+Accessible pdf is a requirement for the 2021 thesis (and every future versions as required by EU regulations). Currently, it is [work in progress](https://tug.org/twg/accessibility/) in LaTeX and should be implemented by 2023/25. Meanwhile, there is two options:
+
+### Option 1, check by hand (recommended)
+
+Once your pdf is ready to be published, use e.g. Adobe Acrobat Pro DC (available on school computers), from the More Tools -> Accessibility, run the Accessibility Check and once the Checker opens, you can fix the problems by right clicking them (mostly, fix the Tagged PDF, Alternative text for image and Table Headings,...).
+
+### Option 2, try with some experimental packages (at your own risk)
+
+If you are not afraid and know what you are doing... Has been tested in [branch axessibility](../tree/axessibility) (and somehow in abandoned accessibility-tag branch):
+* `accsupp` and `pdfcomment` packages to have alternative text to figures. Nicely get a tooltip over the image; but fail the alternative text test...
+* `accessibility` package for tagged pdf; but conflicted with too many packages and as stated by the author "should be considered broken and unusable".
+* `tagpdf` package  would require much manual work (e.g. when trying to add `alttext` to figures). And as stated by the author "is not intended for production use, but allows the user to try out how difficult it is to tag some structures".
+* `axessibility` to tag formulae. Works nicely; but seems to mess with the reading order of the other elements?
+
+Most of these packages required to use `lualatex` as compiler.
+
 ## Compiler
 
 Use XeLaTeX as a compiler.
@@ -14,7 +32,7 @@ Use XeLaTeX as a compiler.
 
 Usual compilation sequence (minted package require external Python Pygments script to be installed ([check the docs](https://www.ctan.org/pkg/minted?lang=en)))
 
-    # minted require -shell-escape to run  external script. 
+    # minted require -shell-escape to run  external script.
     # -8bit avoid ^^I for tabs in minted.
     $ xelatex -shell-escape -8bit main
     # If any change in the bibliography
@@ -32,7 +50,7 @@ Usual compilation sequence (minted package require external Python Pygments scri
 
 #### Using git
 
-Note: git version control != GitHub 😉 These instructions can be used with the Personal/Free subscription plan. While you would need the paid version of Overleaf to directly sync with GitHub. 
+Note: git version control != GitHub 😉 These instructions can be used with the Personal/Free subscription plan. While you would need the paid version of Overleaf to directly sync with GitHub.
 
 1. Fork this project (optional (advantage of fork is to synchronize your github and overleaf projects with your local clone))
 1. Clone your fork (or this github project) to your local computer
