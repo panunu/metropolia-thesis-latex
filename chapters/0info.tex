@@ -1,40 +1,51 @@
-% Global information (title of your thesis, your name, degree programme, major, etc.) 
+\documentclass[12pt,a4paper,oneside,article]{memoir}%Do not touch this first line ;)
 
-\def\thesislang{finnish} %change this depending on the main language of the thesis. 
+% Global information (title of your thesis, your name, degree programme, major, etc.)
+
+\def\bilingual{yes}%For Finnish students, you must have 2 abstracts, one in English and one in your native language (Finnish or Swedish), so "yes", your thesis is bilingual.
+%\def\bilingual{no}%For international student writing in English, only one language and one abstract.
+
+\def\thesislang{finnish} %change this depending on the main language of the thesis.
 %\def\thesislang{english} % "english" is the only other supported language currently. If someone has the swedish, please contribute!
 
 \def\secondlang{english} %if the main language is Finnish (or Swedish), you must have 2 abstracts (one in Finnish (or Swedish) and one in English)
-%\def\secondlang{finnish} 
+%\def\secondlang{finnish}
 %If the main language is English and that you are native Finnish (or Swedish) speaker, you must have also abstract in your native language on top of the English one.
 
 \author{Nimi/Name} %your first name and last name
-\def\thesisfi{Insinöörityö}%was Opinnäytetyö
-\def\thesisen{Thesis}
 
-\def\alaotsikko{Alaotsikko/Subtitle} %DISABLED, seems not to be an option with the new template (2018). If you really need it, uncomment and modify style/title.tex accordingly %if you don't have subtitle, empty {} it (but don't delete that line)
+%\def\alaotsikko{Alaotsikko/Subtitle} %DISABLED, seems not to be an option with the 2018 template. If you really need it, uncomment and modify style/title.tex accordingly.
 
 %Finnish section, for title/abstract
 \def\otsikko{Opinnäytetyön otsikko}
 \def\tutkinto{Tutkinto (esim. Insinööri (AMK))} % change to your needs, e.g. "YAMK", etc.
 \def\kohjelma{Koulutusohjelma (esim. Tieto\textendash ja viestintätekniikka)}
 \def\suuntautumis{Ammatillinen pääaine (esim. Mobile Solutions)}
+\def\thesisfi{Insinöörityö}%was Opinnäytetyö
 \def\ohjaajat{
 Titteli Etunimi Sukunimi\newline
 Titteli Etunimi Sukunimi
 }
-\def\avainsanat{avainsanat}
-\def\pvm{\specialdate\today}
+\def\tiivistelma{
+Tämä on tiivistelmän ensimmäinen kappale. Tiivistelmän kappaleet loppuvat komentoon newline, jotta saadaan yksi tyhjä rivi aikaiseksi. \newline
+
+Tämä on tiivistlemän toinen kappale.
+}
+\def\avainsanat{avainsana, avainsana}
 
 %English section, for title/abstract
 \title{Your title here}
-\def\metropoliadegree {Bachelor of Engineering} % change to your needs, e.g. "master", etc.
-\def\metropoliadegreeprogramme {your degree programme (e.g. Information Technology)}
-\def\metropoliaspecialisation {your major option (e.g. Mobile Solutions)}
-\def\metropoliainstructors {
-First name Last name, Title (for example: Project Manager)\newline
-First name Last name, Title (for example: Principal Lecturer)
+\def\metropoliadegree{Bachelor of Engineering} % change to your needs, e.g. "master", etc.
+\def\metropoliadegreeprogramme{your degree programme (e.g. Information Technology)}
+\def\metropoliaspecialisation{your major option (e.g. Mobile Solutions)}
+\def\thesisen{Bachelor’s Thesis} % change to your need, e.g. master's
+\def\metropoliainstructors{
+First name Last name, Title (e.g.: Project Manager)\newline
+First name Last name, Title (e.g.: Principal Lecturer)
 }
-\def\metropoliakeywords {Keywords}
-\date{\longmonth\today}
+\def\abstract{
+Abstract content. To force newline between paragraph in the abstract, you must have both a empty line and the newline command. \newline
 
-
+beginning of second paragraph\ldots
+}
+\def\metropoliakeywords{keyword, keyword}

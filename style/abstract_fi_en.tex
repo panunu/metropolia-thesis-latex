@@ -1,0 +1,40 @@
+% Abstract in English
+% Normally, you should not edit this file. Everything comes from chapter/0info.tex
+
+\pagestyle{empty} %remove page number
+\newgeometry{top=1.77cm,left=4cm,right=.5cm}
+\begin{otherlanguage}{english}
+{\large\textbf{Abstract}}
+{\renewcommand{\arraystretch}{1.1}
+  \begin{tabular}{@{}p{4.7cm} >{\raggedright\arraybackslash}p{10.8cm}@{}}
+  Author: & \makeatletter\@author\makeatother
+  \\
+  Title: & \makeatletter\@title\makeatother
+  \\
+  Number of Pages: & \pageref*{LastPage} pages + \total{chapter} appendices
+  \\
+  Date: & \makeatletter\thedate\makeatother
+  \\[6.5mm]
+  Degree: & \metropoliadegree
+  \\
+  Degree Programme: & \metropoliadegreeprogramme
+  \\
+  Professional Major: & \metropoliaspecialisation
+  \\
+  Supervisors: & \metropoliainstructors
+  \\[9mm]
+  \cmidrule[.7pt](l{-.15em}r{5.5em}){1-2}
+  \\
+  \multicolumn{2}{>{\raggedright}p{15.5cm}}{
+    \abstract
+  }
+  \\
+  \\
+  Keywords: & \metropoliakeywords
+  \\
+\end{tabular}
+}
+\end{otherlanguage}
+\restoregeometry
+\clearpage
+

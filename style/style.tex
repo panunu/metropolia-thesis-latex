@@ -1,10 +1,17 @@
-% Global style. Normally should not be edited. 
+% Global style. Normally should not be edited.
 % If you use windows OS, eventually change \setmainfont to Arial
 % Check around commit https://github.com/panunu/metropolia-thesis-latex/commit/a0c15ac77bab1a52c59c517a18080938e57bf5ef
 % to see how the font files were manually added (after downloading them: https://pagure.io/liberation-fonts/ )
 
-\documentclass[11pt,a4paper,oneside,article]{memoir}
-\usepackage[\secondlang,\thesislang]{babel}% finnish english swedish
+%\usepackage[l2tabu, orthodox]{nag}%check for obsolete packages (with outdated nag package?)
+
+%condition e.g. for adding or not space in TOC,...
+\usepackage{etoolbox}
+\ifstrequal{\bilingual}{yes}{
+  \usepackage[\secondlang,\thesislang]{babel}% finnish (or swedish) and english
+}{
+  \usepackage[\thesislang]{babel}% english only
+}
 \usepackage{iflang}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -12,28 +19,28 @@
 \usepackage{fontspec}
 \usepackage{tocloft}
 \usepackage{titlesec}
-\usepackage[hyphens]{url}
 \usepackage{mathtools}
-\usepackage{wallpaper}
-\usepackage{datetime}
-\usepackage[bookmarksdepth=subsection]{hyperref} % for automagic pdf links for toc, refs, etc.
 \usepackage[amssymb]{SIunits}
 \usepackage[version=3]{mhchem}
-\usepackage{pgfplots} %simple plots etc
-\usepackage{pgfplotstable}
 \usepackage{tikz} % mindmaps, flowcharts, piecharts, examples at http://www.texample.net/tikz/examples/
 \usetikzlibrary{shapes.geometric, arrows}
 
+\usepackage{ragged2e}
+\IfLanguageName{finnish}{
+  \RaggedRight%2021 template, align left and hyphennization for Finnish version
+  \setlength{\RaggedRightRightskip}{0pt plus 1fil}%TODO: fix the Overfull/Underfull warnings when \RaggedRight (likely in title and abstact)
+}{}
+\makeatletter
+  \let\@gnewline\@raggedtwoe@saved@gnewline% Restore original functionality of \newline
+  \let\\\@raggedtwoe@savedcr% Restore original functionality of \\
+\makeatother
 
-\renewcommand{\dateseparator}{.}
-%condition for adding or not space in TOC
-\usepackage{etoolbox}
 %for compact list
 \usepackage{enumitem}
 %for block comment
 \usepackage{verbatim}
 %for "easier" references
-\usepackage{varioref}
+%\usepackage{varioref}
 %forcing single line spacing in bibliography
 \DisemulatePackage{setspace}
 \usepackage{setspace}
@@ -54,21 +61,15 @@
 \usepackage[newfloat]{minted}
 \setminted{tabsize=2,linenos,breaklines,breaksymbolleft={\quad},baselinestretch=1}
 \setmintedinline{breaklines}
-\usepackage[justification=justified,singlelinecheck=false,font=small]{caption}
+\usepackage[singlelinecheck=false]{caption}
 \usepackage{color}
 %force the width of a table instead of column
 \usepackage{tabularx}
 \usepackage{booktabs} %why not booktabs? :3
-% Abbreviations, acronym and glossary
-\usepackage[acronym,toc,nonumberlist,section=chapter]{glossaries}%xindy,%toc, ,nomain
-\renewcommand*{\glsclearpage}{}
+
+\usepackage{csquotes}% avoid warning with babel
 
 \usepackage{float} % For forced figure location with modifier H (\begin{figure}[H])
-
-% Make citations to match Metropolia thesis guide
-% change font of links in bibliography to same as other text
-\usepackage{url}
-\urlstyle{same}
 
 % citep-macro for reference with period inside square brackets [1.]
 \newcommand{\citep}[1]{
@@ -78,9 +79,25 @@
 }
 
 %set date format to D.M.YYYY
-\newdateformat{specialdate}{\THEDAY.\THEMONTH.\THEYEAR}
+\def\pvm{\the\day.\the\month.\the\year}
 %set date format to D Month YYYY
-\newdateformat{longmonth}{\THEDAY~\monthname[\THEMONTH] \THEYEAR}
+\usepackage[en,useregional=false]{datetime2}
+\DTMsetup{datesep=.}
+\DTMnewdatestyle{dMonthyyyy}
+{%
+  \renewcommand{\DTMdisplaydate}[4]{%
+    \number##3 % day
+    ~% separator
+    \DTMenglishmonthname{##2}% month name
+    ~% separator
+    \number##1% year
+  }%
+  \renewcommand{\DTMDisplaydate}[4]{%
+    \DTMdisplaydate{##4}{##3}{##2}{##1}%
+  }%
+}
+\DTMsetdatestyle{dMonthyyyy}
+\date{\today}
 
 \newcommand\tn[1]{\textnormal{#1}} %use \tn instead of \textnormal
 \newcommand\reaction[1]{\begin{equation}\ce{#1}\end{equation}} %\reaction{} for chemical reactions
@@ -88,17 +105,19 @@
 %NORMAL TEXT
 %all text, title, etc. in the same font: Arial
 %NOTE: fontname is case-sensitive
-\setmainfont{Liberation Sans}
+\setmainfont[Scale=0.98]{Liberation Sans}
 %line space
-\linespread{1.5}
+\linespread{1.46}
 \AtBeginEnvironment{tabular}{\singlespacing}
 %\doublespacing
 %margin
-\usepackage[top=2.5cm, bottom=3cm, left=4cm, right=2cm, nofoot]{geometry}
+%geometry moved after hyperref
 \setlength{\parindent}{0pt} %first line of paragraph not indented
 \setlength{\parskip}{16.5pt} %one empty line to separate paragraph
 %list with small line space separation
 \tightlists
+\setlist[itemize]{before=\singlespacing,itemsep=6pt,leftmargin=63pt,labelsep=22pt,topsep=1.5pt,partopsep=0pt,after=\vspace{-22pt}\newline}
+\setlist[enumerate]{before=\singlespacing,itemsep=6pt,leftmargin=63pt,labelsep=22pt,topsep=1.5pt,partopsep=0pt,after=\vspace{-22pt}\newline}
 
 %IMAGE - FIGURE
 %the figures should be placed in the "illustration" folder
@@ -116,7 +135,7 @@
 
 %SOURCE CODE
 \newenvironment{code}{\captionsetup{type=listing}}{}
-\IfLanguageName {finnish} {\SetupFloatingEnvironment{listing}{name=Koodiesimerkki}} {}%was Listaus
+\IfLanguageName{finnish}{\SetupFloatingEnvironment{listing}{name=Koodiesimerkki}}{}%was Listaus
 %\counterwithout{lstlisting}{chapter}
 %moved after begin document, otherwise does not compile
 
@@ -126,62 +145,59 @@
 
 %TOC
 %change toc title
-\IfLanguageName {finnish} {\addto{\captionsfinnish}{\renewcommand*{\contentsname}{Sisällys}}} {}
+\IfLanguageName{finnish}{\addto{\captionsfinnish}{\renewcommand*{\contentsname}{Sisällys}}}{}
 %remove dots
 \renewcommand*{\cftdotsep}{\cftnodots}
 %chapter title and page number not in bold
-\renewcommand{\cftchapterfont}{}
-\renewcommand{\cftchapterpagefont}{}
+\renewcommand{\cftchapterfont}{\normalfont}
+\renewcommand{\cftchapterpagefont}{\normalfont}
 %sub section in toc
 \setcounter{tocdepth}{2}
 %subsection numbered
 \setcounter{secnumdepth}{2}
-\renewcommand{\tocheadstart}{\vspace*{-15pt}}
-\renewcommand{\printtoctitle}[1]{\fontsize{13pt}{13pt}\bfseries #1}
+\renewcommand{\tocheadstart}{\vspace*{-33.5pt}}
+\renewcommand{\printtoctitle}[1]{\fontsize{13.5pt}{13.5pt}\bfseries #1\vspace*{-4pt}}
 %\renewcommand{\aftertoctitle}{\vspace*{-22pt}\afterchaptertitle}
-%spacing afer a chapter in toc
+%spacing after a chapter in toc
 \preto\section{%
   \ifnum\value{section}=0\addtocontents{toc}{\vskip11pt}\fi
 }
-%spacing afer a section in toc
+%spacing after a section in toc
 \renewcommand{\cftsectionaftersnumb}{\vspace*{-3pt}}
-%spacing afer a subsection in toc
+%spacing after a subsection in toc
 \renewcommand{\cftsubsectionaftersnumb}{\vspace*{-1pt}}
 %appendix in toc with "Appendix " + num
-\IfLanguageName {finnish} {
+\IfLanguageName{finnish}{
   \renewcommand*{\cftappendixname}{Liite\space}
   \renewcommand{\appendixtocname}{Liitteet}
 }{\renewcommand*{\cftappendixname}{Appendix\space}}
 %appendix header
-\IfLanguageName {finnish} {\def\appname{Liite\space}}{\def\appname{Appendix\space}}
+\IfLanguageName{finnish}{\def\appname{Liite\space}}{\def\appname{Appendix\space}}
 
 %TITLES
 %chapter title
 %\clearforchapter{\clearpage}
 \titleformat{\chapter}
-{\fontsize{13pt}{13pt}\bfseries\linespread{1}}%\clearpage
+{\fontsize{14pt}{14pt}\bfseries\linespread{1}}%\clearpage
 {\thechapter}{.5cm}{}
-\titlespacing*{\chapter}{0pt}{.32cm}{9pt}
+\titlespacing*{\chapter}{0pt}{-.42cm}{.5pt}
 \titleformat{\section}
-{\fontsize{12pt}{12pt}\linespread{1}}
+{\fontsize{13.5pt}{13.5pt}\normalfont}
 {\thesection}{.5cm}{}
-\titlespacing*{\section}{0pt}{14pt}{6pt}
+\titlespacing*{\section}{0pt}{9pt}{0pt}
 \titleformat{\subsection}
-{\fontsize{12pt}{12pt}\linespread{1}}
+{\fontsize{12.7pt}{12.7pt}\normalfont}
 {\thesubsection}{.5cm}{}
-\titlespacing*{\subsection}{0pt}{14pt}{6pt}
+\titlespacing*{\subsection}{0pt}{11pt}{0pt}
 
 
 %QUOTE
 \renewenvironment{quote}
-  {\list{}{\rightmargin=0pt\leftmargin=1cm\topsep=-10pt}%
-  \item\relax\fontsize{10pt}{10pt}\singlespacing}
-  {\endlist}
+{\list{}{\rightmargin=0pt\leftmargin=2.2cm\topsep=-14pt}%
+  \item\relax\singlespacing}%\fontsize{10pt}{10pt}
+    {\vspace{8pt}\endlist}
 
 %BIBLIOGRAPHY
-%bibliography title to be "references"
-%IF THE TITLE DON'T GET RENAMED PROPERLY, move that line after the \begin{document}
-\IfLanguageName {finnish} {\addto{\captionsfinnish}{\renewcommand*{\bibname}{Lähteet}}} {\renewcommand\bibname{References}}
 \makeatletter %reference list option change
 \renewcommand\@biblabel[1]{#1\hspace{1cm}} %from [1] to 1 with 1cm gap
 \makeatother %
@@ -233,8 +249,8 @@ sorting=none%
     {\usebibmacro{author}, \usebibmacro{title}}
     {\multicitedelim}
     {\usebibmacro{postnote}}
-  
-  % new cite command: "Vancouver Short Collection" - necessary when referencing whole collections. 
+
+  % new cite command: "Vancouver Short Collection" - necessary when referencing whole collections.
   \DeclareCiteCommand{\citeVSc}
     {\usebibmacro{prenote}}
     {\usebibmacro{editor}, \usebibmacro{title}}
@@ -248,14 +264,54 @@ sorting=none%
 %! require to complie 2 times
 \regtotcounter{chapter}
 
+% metadata (title, author, lang,...) for accessibility, etc.
+\usepackage{hyperref}
+\usepackage{hyperxmp}
+\def\isolang{\IfLanguageName{finnish}{fi}{en}} %iso code (based on main language)
+%TODO bug: pdfcopyright don't go, neither the alt lang
+%works with simple example, so probably conflict with some package?
+\hypersetup{%
+  pdfdisplaydoctitle,
+  %breaklinks=true,%searching for overfull warnings
+  pdfencoding=auto,
+  bookmarksdepth=subsection,
+  unicode=true,
+  keeppdfinfo=true,
+  pdflang={\isolang},
+  pdfmetalang={\isolang},
+  pdftitle={\IfLanguageName{finnish}{\otsikko}{\thetitle}},
+  pdfkeywords={\metropoliakeywords},
+  pdfcopyright={Copyright \textcopyright\ \the\year{}, \theauthor},
+}
 
-\makepagestyle{tiivis}
-\makeevenhead{tiivis}{}{}{Tiivistelmä}
-\makeoddhead{tiivis}{}{}{Tiivistelmä}
+\ifstrequal{\bilingual}{yes}{%metadata (title and copyright) in multiple language
+  \XMPLangAlt{\IfLanguageName{finnish}{en}{fi}}{%
+    pdftitle={\IfLanguageName{finnish}{\thetitle}{\otsikko}},
+    pdfcopyright={Copyright \textcopyright\ \the\year{}, \theauthor},
+  }
+}{}
+\urlstyle{same}
 
-\makepagestyle{abstract}
-\makeevenhead{abstract}{}{}{Abstract}
-\makeoddhead{abstract}{}{}{Abstract}
+%moved after hyperred as can cause conflicts
+\usepackage{pdfcomment}%try the alt text for graphics
+\usepackage{accsupp}
+\newcommand{\AltText}[2]{\BeginAccSupp{method=pdfstringdef,unicode,Alt={{#1}}}\pdftooltip{{#2}}{{#1}}\EndAccSupp{}}
 
-%footer on every pages
-\LLCornerWallPaper{1}{\IfLanguageName{finnish}{footer_fi}{footer_en}}
+\usepackage[top=2.5cm, bottom=3cm, left=4cm, right=2cm, nofoot]{geometry}
+
+\usepackage{pgfplots} %simple plots etc
+\pgfplotsset{compat=1.17}
+\usepackage{pgfplotstable}
+
+% Abbreviations, acronym and glossary, in case of bug, remove temporary the noredefwarn
+\usepackage[acronym,toc,nonumberlist,section=chapter,noredefwarn]{glossaries}%xindy,%toc, ,nomain
+\newglossarystyle{mystyle}{%
+  \setglossarystyle{list}% base this style on the list style
+  \renewcommand*{\glossentry}[2]{%
+  \item[\glsentryitem{##1}%
+    \glstarget{##1}{\glossentryname{##1}:}]
+  \glossentrydesc{##1}\glspostdescription\space ##2}
+}
+\setglossarystyle{mystyle}
+
+\renewcommand*{\glsclearpage}{}

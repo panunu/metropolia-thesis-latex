@@ -2,15 +2,15 @@
 %	Metropolia Thesis LaTeX Template
 %----------------------------------------------------------------------------------------
 % License:
-% This work is licensed under the Creative Commons Attribution 4.0 International License. 
+% This work is licensed under the Creative Commons Attribution 4.0 International License.
 % To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/.
 %
-% However, this license apply to this template. As a template, it is supposed to be 
-% modified for your own needs (with your thesis content). For this reason, if you use 
-% this project as a template and not specifically distribute it as part of a another 
-% package/program, we grant the extra permission to freely copy and modify these files as 
-% you see fit and even to delete this copyright notice. 
-% In short, you are free to publish your thesis under whatever license you wish, even 
+% However, this license apply to this template. As a template, it is supposed to be
+% modified for your own needs (with your thesis content). For this reason, if you use
+% this project as a template and not specifically distribute it as part of a another
+% package/program, we grant the extra permission to freely copy and modify these files as
+% you see fit and even to delete this copyright notice.
+% In short, you are free to publish your thesis under whatever license you wish, even
 % keep the all rights reserved to you.
 %
 % Authors:
@@ -20,23 +20,23 @@
 % Panu Leppäniemi: abstract, def, cleaning,...
 % Patrik Luoto: title page, abstract in Finnish, abbreviation, math,...
 % Mikaa Oni: switch to biber biblatex
-% Patrick Ausderau: initial version, style, table of content, bibliography, figure, 
+% Patrick Ausderau: initial version, style, table of content, bibliography, figure,
 %                   appendix, table, source code listing...
 %
 % Please:
-% If you find mistakes, improve this template and alike, please contribute by sharing 
-% your improvements and/or send us your feedback there: 
+% If you find mistakes, improve this template and alike, please contribute by sharing
+% your improvements and/or send us your feedback there:
 % https://github.com/panunu/metropolia-thesis-latex
 % And of course, if you improve it, add yourself as an author.
 %
 % Compiler:
 % Use XeLaTeX as a compiler.
- 
+
 %----------------------------------------------------------------------------------------
 %	THESIS INFO
 %----------------------------------------------------------------------------------------
 
-% All general information (main language, title, author (you), degree programme, major 
+% All general information (main language, title, author (you), degree programme, major
 % option, etc.)
 % Edit the file chapters/0info.tex to change these information
 \input{chapters/0info.tex}
@@ -46,11 +46,11 @@
 %----------------------------------------------------------------------------------------
 
 % If you need extra package, etc. modify the style/style.tex file.
-% If you are using Windows OS, you will need to change default font to Arial in that 
+% If you are using Windows OS, you will need to change default font to Arial in that
 % style/style.tex file (or install Liberation Sans font to your system).
 % If you are using MacOS or linux, make sure you have Liberation Sans font installed.
 \input{style/style.tex}
-% Normally, you do not need to modify the title style. It's content comes from the 
+% Normally, you do not need to modify the title style. It's content comes from the
 % chapters/0info.tex file.
 \input{style/title.tex}
 
@@ -58,9 +58,9 @@
 %	ABBREVIATION AND GLOSSARY
 %----------------------------------------------------------------------------------------
 
-% Add/edit all your acronyms, abbreviations, glossary entries, etc. definitions in 
+% Add/edit all your acronyms, abbreviations, glossary entries, etc. definitions in
 % chapters/0abbr.tex file.
-% You can have as many as you wish. Only the ones you use in your text (inserted with 
+% You can have as many as you wish. Only the ones you use in your text (inserted with
 % \gls{} command) will print in the Glossary/Lyhenteet.
 \input{chapters/0abbr.tex}
 
@@ -69,6 +69,10 @@
 %----------------------------------------------------------------------------------------
 
 \begin{document}
+\IfLanguageName{finnish}{
+}{
+  \raggedright%2021 template, align left, no hyphennization for English version
+}
 \counterwithout{listing}{chapter}
 
 %----------------------------------------------------------------------------------------
@@ -83,13 +87,22 @@
 %	ABSTRACT / Tiivistelmä
 %----------------------------------------------------------------------------------------
 
-% If you are international student writing in English, remove the Finnish abstract.
-% If you are Finnish citizen, you must have 2 abstracts, one in Finnish (or Swedish 
-% depending on your mother tongue) and one in English regardless of the main language of 
-% your thesis.
-\input{chapters/0abstract_fi.tex}
-\input{chapters/0abstract_en.tex}
-
+% If you are international student writing in English, ignore the Finnish abstract.
+% If you are Finnish citizen, you must have 2 abstracts, one in Finnish (or Swedish
+% depending on your mother tongue) and one in English regardless of the main language of
+% your thesis. Normally, you do not need to modify the abstract style. It's content comes
+% from the chapters/0info.tex file.
+\ifstrequal{\bilingual}{no}{%
+    \input{style/abstract_en.tex}
+    }{%
+    \IfLanguageName{finnish}{%order of abstracts based on main language and spacing hell
+        \input{style/abstract_fi_fi.tex}
+        \input{style/abstract_fi_en.tex}
+        }{
+        \input{style/abstract_en.tex}
+        \input{style/abstract_fi.tex}
+    }
+}
 %----------------------------------------------------------------------------------------
 %	License? Acknowledgement?
 %----------------------------------------------------------------------------------------
@@ -121,7 +134,7 @@
 
 \input{style/content.tex}%reset page number to 1, etc.
 
-% Thesis content if you strictly follow the "Final Year Project guide". Of course, you 
+% Thesis content if you strictly follow the "Final Year Project guide". Of course, you
 % can adapt to your specific needs (add more chapter, rename them, etc.).
 \input{chapters/introduction.tex}
 % uncomment what you need.
@@ -131,7 +144,7 @@
 %\input{chapters/solution.tex}
 %\input{chapters/conclusion.tex}
 
-% Sample content to demonstrate LaTeX command. You will likely delete this line and the 
+% Sample content to demonstrate LaTeX command. You will likely delete this line and the
 % next \input{sample/*} lines. You are also safe to delete the sample/ folder and its
 % content once you refershed your LaTeX skills. Also check the appendix samples.
 \input{sample/1content.tex}
@@ -145,22 +158,22 @@
 \input{style/biblio.tex}
 
 %----------------------------------------------------------------------------------------
-%	APPENDICES 
+%	APPENDICES
 %----------------------------------------------------------------------------------------
 
 \input{style/appendix.tex}
 %force smaller vertical spacing in table of content
 %!!! There can be some fun depending if the appendices have (sub)sections or not :D
-% You will have to play with these numbers and eventually add the \vspace line  before 
+% You will have to play with these numbers and eventually add the \vspace line  before
 % some \chapter and force another number.
 % To add more fun, time to time the table of content get wrong after a build :(
 \addtocontents{toc}{\vspace{11pt}}
 \pretocmd{\chapter}{\addtocontents{toc}{\protect\vspace{-24pt}}}{}{}
 
-\liite{1}% This is a hack to have right page numbering for each appendix. Make sure to 
-	 % use a unique number for each appendix.
+\liite{1}% This is a hack to have right page numbering for each appendix. Make sure to
+% use a unique number for each appendix.
 \input{sample/Xappendix1.tex}% Sample content to demonstrate appendix in LaTeX. You
-% are safe to delete this lines (and the next samples) once you refreshed your LaTeX 
+% are safe to delete this lines (and the next samples) once you refreshed your LaTeX
 % skills (and safe to delete the sample folder and all its file too).
 
 %\addtocontents{toc}{\vspace{11pt}}%fix vertical space for Table of Content
@@ -173,6 +186,6 @@
 
 
 %----------------------------------------------------------------------------------------
-%	THIS IS THE END 
+%	THIS IS THE END
 %----------------------------------------------------------------------------------------
 \end{document}

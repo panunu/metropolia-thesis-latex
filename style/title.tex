@@ -3,30 +3,30 @@
 
 \makeatletter
 \renewcommand{\maketitle}{
-\newgeometry{left=4.5cm}
+\newgeometry{left=4cm,top=2.7cm}
 \thispagestyle{empty}
-\ThisULCornerWallPaper{1}{\IfLanguageName{finnish}{metropolia_fi}{metropolia_en}}
-%
-\vspace*{12.8cm}
-\tn{\Large\@author\\[1cm]\Huge\IfLanguageName {finnish}{\color[RGB]{155,50,35}\otsikko}{\color[RGB]{31,73,125}\@title}}%\\[22pt]\LARGE\alaotsikko\\[1.75cm]}
 
-\null\vfill
-\parbox{.7\linewidth}{
-\IfLanguageName {finnish}{
+\AltText{\IfLanguageName{finnish}{Metropolia Ammattikorkeakoulu.}{Metropolia University of Applied Sciences.}}{\includegraphics[width=9.1cm,keepaspectratio]{Metropolia_L_oranssi}}
+
+\vspace*{1.18cm}
+\tn{\large\theauthor\\[9.2mm]{\fontsize{27.5pt}{27.5pt}\normalfont\color[RGB]{155,50,35}\IfLanguageName{finnish}{\otsikko}{\thetitle}}}%\\[22pt]\LARGE\alaotsikko\\[1.75cm]}
+
+\vspace*{2.38cm}
+{\setstretch{1.512}
+\IfLanguageName{finnish}{
   Metropolia Ammattikorkeakoulu\\
   \tutkinto \\
   \kohjelma \\
   \thesisfi\\
-  \pvm
+  \pvm % D.M.YYYY date format for Finnish.
 } {
-  Helsinki Metropolia University of Applied Sciences\\
+  Metropolia University of Applied Sciences\\
   \metropoliadegree \\
   \metropoliadegreeprogramme \\
   \thesisen\\
-  \IfLanguageName {finnish}{\pvm}{\@date} % D.M.YYYY date format for Finnish. D Month YYYY for English
+  \@date %D Month YYYY for English
 }
 }
-\vspace*{-1.5cm}
 \clearpage
 \restoregeometry
 }
