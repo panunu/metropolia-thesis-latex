@@ -7,7 +7,7 @@
 
 %condition e.g. for adding or not space in TOC,...
 \usepackage{etoolbox}
-\ifstrequal{\bilingual}{yes}{
+\ifdefstring{\bilingual}{yes}{
   \usepackage[\secondlang,\thesislang]{babel}% finnish (or swedish) and english
 }{
   \usepackage[\thesislang]{babel}% english only
@@ -280,11 +280,11 @@ sorting=none%
   pdflang={\isolang},
   pdfmetalang={\isolang},
   pdftitle={\IfLanguageName{finnish}{\otsikko}{\thetitle}},
-  pdfkeywords={\metropoliakeywords},
+  pdfkeywords={\IfLanguageName{finnish}{\avainsanat}{\metropoliakeywords}},
   pdfcopyright={Copyright \textcopyright\ \the\year{}, \theauthor},
 }
 
-\ifstrequal{\bilingual}{yes}{%metadata (title and copyright) in multiple language
+\ifdefstring{\bilingual}{yes}{%metadata (title and copyright) in multiple language
   \XMPLangAlt{\IfLanguageName{finnish}{en}{fi}}{%
     pdftitle={\IfLanguageName{finnish}{\thetitle}{\otsikko}},
     pdfcopyright={Copyright \textcopyright\ \the\year{}, \theauthor},

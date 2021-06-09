@@ -92,7 +92,7 @@
 % depending on your mother tongue) and one in English regardless of the main language of
 % your thesis. Normally, you do not need to modify the abstract style. It's content comes
 % from the chapters/0info.tex file.
-\ifstrequal{\bilingual}{no}{%
+\ifdefstring{\bilingual}{no}{%
     \input{style/abstract_en.tex}
     }{%
     \IfLanguageName{finnish}{%order of abstracts based on main language and spacing hell
