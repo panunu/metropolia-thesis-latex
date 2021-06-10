@@ -14,12 +14,11 @@
 }
 \usepackage{iflang}
 \usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
+%\usepackage{amsfonts}%extra mathematical symbols
+%\usepackage{amssymb}
 \usepackage{fontspec}
-\usepackage{tocloft}
 \usepackage{titlesec}
-\usepackage{mathtools}
+%\usepackage{mathtools}%enhance the appearance of documents containing a lot of mathematics
 \usepackage[amssymb]{SIunits}
 \usepackage[version=3]{mhchem}
 \usepackage{tikz} % mindmaps, flowcharts, piecharts, examples at http://www.texample.net/tikz/examples/
@@ -37,32 +36,20 @@
 
 %for compact list
 \usepackage{enumitem}
-%for block comment
-\usepackage{verbatim}
-%for "easier" references
-%\usepackage{varioref}
+%\usepackage{verbatim}%for block comment
 %forcing single line spacing in bibliography
 \DisemulatePackage{setspace}
 \usepackage{setspace}
-%including figure (image)
-\usepackage{graphicx}
-%change the numbering for figure
-\usepackage{chngcntr}
-%strike trough
-\usepackage{ulem}
-%euro symbol
-\usepackage{eurosym}
+%\usepackage{eurosym}%euro symbol
 %try to count
 \usepackage{totcount}
 %insert source code
-%\usepackage{listings}
 %require -8bit -shell-escape in the xelatex compile command
 %if compiling locally, consider options cachedir=minted,outputdir=~/.tex
 \usepackage[newfloat]{minted}
 \setminted{tabsize=2,linenos,breaklines,breaksymbolleft={\quad},baselinestretch=1}
 \setmintedinline{breaklines}
 \usepackage[singlelinecheck=false]{caption}
-\usepackage{color}
 %force the width of a table instead of column
 \usepackage{tabularx}
 \usepackage{booktabs} %why not booktabs? :3
@@ -140,10 +127,6 @@
 \IfLanguageName{finnish}{\SetupFloatingEnvironment{listing}{name=Koodiesimerkki}}{}%was Listaus
 %\counterwithout{lstlisting}{chapter}
 %moved after begin document, otherwise does not compile
-
-%% set this format as the default for lstlisting
-%\DeclareCaptionFormat{empty}{}
-%\captionsetup[lstlisting]{format=empty}
 
 %TOC
 %change toc title
