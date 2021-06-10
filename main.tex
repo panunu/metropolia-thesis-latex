@@ -21,7 +21,7 @@
 % Patrik Luoto: title page, abstract in Finnish, abbreviation, math,...
 % Mikaa Oni: switch to biber biblatex
 % Patrick Ausderau: initial version, style, table of content, bibliography, figure,
-%                   appendix, table, source code listing...
+%                   appendix, table, source code listing,...
 %
 % Please:
 % If you find mistakes, improve this template and alike, please contribute by sharing
@@ -30,7 +30,19 @@
 % And of course, if you improve it, add yourself as an author.
 %
 % Compiler:
-% Use XeLaTeX as a compiler.
+% Use XeLaTeX as a compiler. LuaLaTeX works too.
+% Typical compilation:
+% # minted require -shell-escape to run  external script.
+% # -8bit avoid ^^I for tabs in minted.
+% $ xelatex -shell-escape -8bit main
+% # If any change in the bibliography
+% $ biber main
+% # If any change with the abbreviation or acronym
+% $ makeglossaries main
+% #Then compile again
+% $ xelatex -shell-escape -8bit main
+% #And if still some citation or label warnings, compile once more
+% $ xelatex -shell-escape -8bit main
 
 %----------------------------------------------------------------------------------------
 %	THESIS INFO
