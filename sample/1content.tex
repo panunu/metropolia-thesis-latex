@@ -121,8 +121,8 @@ Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit ma
 
 \begin{table}[h]
   \centering
-  \caption{Some data}
-  %IMPORTANT the caption must be before the tabular, so it will be on top of the table (there are other tricks to force it on top; but this one is straightforward).
+  \caption{Some data}%IMPORTANT the caption must be before the tabular, so it will be on top of the table (there are other tricks to force it on top; but this one is straightforward).
+  \vspace{-16.5pt}%time to time, spacing between caption and table can go too big...
   \begin{tabular}{| l | >{\centering\arraybackslash}p{.5\textwidth} |}
     \hline
     Test 1 & test 1234 test \\
@@ -132,7 +132,6 @@ Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit ma
   \end{tabular}
   \label{table:some_data}
 \end{table}
-
 
 As presented in table \ref{table:some_data}: Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
 
@@ -151,9 +150,12 @@ As presented in table \ref{table:some_data}: Donec et sapien ac leo condimentum 
 
 As presented in table \ref{table:some_data2}: Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
 
+Donec et sapien ac leo condimentum vulputate id et tellus. Maecenas hendrerit malesuada interdum. Aenean dignissim sem faucibus elit congue faucibus id non risus. Morbi at dui non tortor pellentesque consequat non eget urna. Cras in sapien dui, a tincidunt velit.
+
 \begin{table}[htbp]
   \centering
   \caption{Booktabs example}
+  \vspace{-16.5pt}
     \begin{tabular}{rrrr}
     \toprule
     t (s) & [HCl] & [t-ButCl] & $\ln\frac{[t-ButCl]}{[t-ButCl]_0}$ \\
