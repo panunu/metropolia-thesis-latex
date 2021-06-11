@@ -10,9 +10,11 @@
 %add "Appendices" in the table of content
 \addappheadtotoc
 %have Appendix 1 (instead of Appendix A)
-\renewcommand{\thechapter}{\arabic{chapter}} 
+\renewcommand{\thechapter}{\arabic{chapter}}
 
 \newcommand\liite[1]{
+%each appendix start on a new page
+\clearpage
 %each appendix restart page num to one
 \setcounter{page}{1}
 %special counter for appendix TODO: this is a ugly quick hack :( Should find a better way to count the page per appendix.
