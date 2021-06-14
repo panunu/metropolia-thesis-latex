@@ -28,22 +28,22 @@ jobs:
       # install
       - name: Install texlive and minted
         run: |
-          sudo apt-get install texlive-full,
-          sudo apt-get install texlive-latex-extra,
+          sudo apt-get install texlive-full
+          sudo apt-get install texlive-latex-extra
           sudo apt-get install python3-pygments
 
       # compile
       - name: compile to generate a pdf
         run: |
-          xelatex -shell-escape -8bit main,
-          biber main,
-          makeglossaries main,
-          xelatex -shell-escape -8bit main,
+          xelatex -shell-escape -8bit main
+          biber main
+          makeglossaries main
+          xelatex -shell-escape -8bit main
           xelatex -shell-escape -8bit main
           
       - name: get the pdf
         run: |
-          mkdir pub,
+          mkdir pub
           mv main.pdf pub
     
       - name: publish pdf as proof
