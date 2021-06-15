@@ -44,6 +44,10 @@ Usual compilation sequence (minted package require external Python Pygments scri
     #And if still some citation or label warnings, compile once more
     $ xelatex -shell-escape -8bit main
 
+#### GitHub Actions
+
+As a demonstration, check the [.github/workflows/main.yml](.github/workflows/main.yml) for an example of latex build through github actions. Result [pdf can be downloaded](../../actions) if the job is successful.
+
 ### Using Overleaf
 
 1. Create an account on [Overleaf](https://www.overleaf.com?r=2c9014ea&rm=d&rs=b)  (if not already have one)
