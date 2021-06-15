@@ -16,6 +16,21 @@
 
 %\def\alaotsikko{Alaotsikko/Subtitle} %DISABLED, seems not to be an option with the 2018 template. If you really need it, uncomment and modify style/title.tex accordingly.
 
+%License
+%When publishing your thesis to theseus.fi, you can keep all rights reserved to you,
+%or use one of the Creative Commons https://creativecommons.org/licenses/?lang=en
+%This attribute will set the license in the metadata of the generated pdf.
+%possible options (case sensitive):
+%all (keep all rights reserved to yourself)
+%by (Attribution)
+%by-sa (Attribution-ShareAlike)
+%by-nd (Attribution-NoDerivs)
+%by-nc (Attribution-NonCommercial)
+%by-nc-sa (Attribution-NonCommercial-ShareAlike)
+%by-nc-nd (Attribution-NonCommercial-NoDerivs)
+%Note that theseus do not accept dedication to public domain CC0
+\def\thesiscopy{all}
+
 %Finnish section, for title/abstract
 \def\otsikko{Opinnäytetyön otsikko}
 \def\tutkinto{Tutkinto (esim. Insinööri (AMK))} % change to your needs, e.g. "YAMK", etc.
@@ -32,6 +47,7 @@ Tämä on tiivistelmän ensimmäinen kappale. Tiivistelmän kappaleet loppuvat k
 Tämä on tiivistlemän toinen kappale.
 }
 \def\avainsanat{avainsana, avainsana}
+\def\aihe{Lyhyt kuvaus opinnäytetyöstä. Max 255 merkkiä.}%for the pdf metadata/properties. If not used, empty it and also the \def\subject.
 
 %English section, for title/abstract
 \title{Your title here}
@@ -49,3 +65,4 @@ Abstract content. To force newline between paragraph in the abstract, you must h
 beginning of second paragraph\ldots
 }
 \def\metropoliakeywords{keyword, keyword}
+\def\subject{short description of the thesis. Max 255 characters.}%for the pdf metadata/properties. If not used, empty it and also the \def\aihe.

@@ -57,6 +57,7 @@
 \usepackage{csquotes}% avoid warning with babel
 
 \usepackage{float} % For forced figure location with modifier H (\begin{figure}[H])
+\usepackage{wrapfig}
 
 % citep-macro for reference with period inside square brackets [1.]
 \newcommand{\citep}[1]{
@@ -253,8 +254,14 @@ sorting=none%
 \usepackage{hyperref}
 \usepackage{hyperxmp}
 \def\isolang{\IfLanguageName{finnish}{fi}{en}} %iso code (based on main language)
-%TODO bug: pdfcopyright don't go, neither the alt lang
-%works with simple example, so probably conflict with some package?
+\ifdefstring{\thesiscopy}{all}{%
+    \def\copyen{Copyright \textcopyright\ \the\year{}, \theauthor}
+    \def\copyfi{Kaikki oikeudet pidätetään.  \textcopyright\ \the\year{}, \theauthor}
+  }{%
+    \usepackage[type={CC},modifier={\thesiscopy},version={4.0},]{doclicense}
+    \def\copyen{\thetitle\ \textcopyright\ \the\year{} by \theauthor\ is licensed under \doclicenseLongNameRef}
+    \def\copyfi{\otsikko\ \textcopyright\ \the\year{}, jonka tekijä on \theauthor, on lisensoitu \doclicenseLongNameRef}
+}
 \hypersetup{%
   pdfdisplaydoctitle,
   %breaklinks=true,%searching for overfull warnings
@@ -266,13 +273,15 @@ sorting=none%
   pdfmetalang={\isolang},
   pdftitle={\IfLanguageName{finnish}{\otsikko}{\thetitle}},
   pdfkeywords={\IfLanguageName{finnish}{\avainsanat}{\metropoliakeywords}},
-  pdfcopyright={Copyright \textcopyright\ \the\year{}, \theauthor},
+  pdfcopyright={\IfLanguageName{finnish}{\copyfi}{\copyen}},
+  pdfsubject={\IfLanguageName{finnish}{\aihe}{\subject}},
 }
 
 \ifdefstring{\bilingual}{yes}{%metadata (title and copyright) in multiple language
   \XMPLangAlt{\IfLanguageName{finnish}{en}{fi}}{%
     pdftitle={\IfLanguageName{finnish}{\thetitle}{\otsikko}},
-    pdfcopyright={Copyright \textcopyright\ \the\year{}, \theauthor},
+    pdfcopyright={\IfLanguageName{finnish}{\copyen}{\copyfi}},
+    pdfsubject={\IfLanguageName{finnish}{\subject}{\aihe}},
   }
 }{}
 \urlstyle{same}

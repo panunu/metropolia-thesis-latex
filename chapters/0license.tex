@@ -8,28 +8,32 @@
 
 \pagestyle{empty}
 \chapter*{Licenses}
-\vspace{-20pt}
-\begin{center}
- \includegraphics[width=80pt]{cc_by_sa}
-\end{center}\vspace{-32pt}
-This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. That means:\\
+\ifdefstring{\thesiscopy}{all}{}{%
+  \begin{wrapfigure}{r}{0.3\textwidth}
+    \vspace{-20pt}
+    \doclicenseImage
+  \end{wrapfigure}
+ }
+\IfLanguageName{finnish}{\copyfi}{\copyen}
+
+That means:
+
+%adapt to the license you choose. In this example: https://creativecommons.org/licenses/by-sa/4.0/deed.en
 \textbf{You are free to:}
-\vspace{-17pt} \begin{itemize}
+\begin{itemize}
 \item Share \textemdash copy and redistribute the material in any medium or format
 \item Adapt \textemdash remix, transform, and build upon the material
-\end{itemize}\vspace{-17pt}
+\end{itemize}
 
 \textbf{Under the following terms:}
-\vspace{-17pt} \begin{itemize}
-\item Attribution \textemdash You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
-\item ShareAlike \textemdash If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
+\begin{itemize}
+\item \ccAttribution~ Attribution \textemdash You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+\item \ccShareAlike~ ShareAlike \textemdash If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
 \item No additional restrictions \textemdash You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.
 \item Any of the above conditions can be waived if you get my permission
-\end{itemize}%\vspace{-17pt}
+\end{itemize}
 
-
-To view a copy of this license, visit \url{http://creativecommons.org/licenses/by-sa/4.0/}.
-
+%Eventually consider few words why you choose such license? E.g. something like:
 I decided to publish my thesis work under the Creative Commons Attribution-ShareAlike 4.0 International License because I strongly believe that you as reader deserve the freedom to copy, share and modify this work and if you do modify it, it is fair to give these same permissions to the others. A copy in electronic form of this work can be found in \url{https://some.place} with the \LaTeX{} source.
 
 \clearpage
