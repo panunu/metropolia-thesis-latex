@@ -32,7 +32,7 @@ jobs:
           sudo apt-get install texlive-latex-extra
           sudo apt-get install python3-pygments
 
-      # compile
+      # compile Finnish version
       - name: compile to generate a pdf
         run: |
           xelatex -shell-escape -8bit main
@@ -44,7 +44,18 @@ jobs:
       - name: get the pdf
         run: |
           mkdir pub
-          mv main.pdf pub
+          mv main.pdf pub/main_fi.pdf
+      
+      # compile English versions (bilingual abstract and one abstract)
+      - name: compile to generate English verion of the pdf
+        run: |
+          sed -i 's/^\\def\\thesislang{finnish}.*/\\def\\thesislang{english}/' chapters/0info.tex
+          sed -i 's/^\\def\\secondlang{english}.*/\\def\\secondlang{finnish}/' chapters/0info.tex
+          xelatex -shell-escape -8bit main
+          mv main.pdf pub/main_en_bi.pdf
+          sed -i 's/^\\def\\bilingual{yes}.*/\\def\\bilingual{no}/' chapters/0info.tex
+          xelatex -shell-escape -8bit main
+          mv main.pdf pub/main_en.pdf
     
       - name: publish pdf as proof
         uses: actions/upload-artifact@v2
