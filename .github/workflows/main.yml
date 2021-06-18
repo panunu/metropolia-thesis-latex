@@ -2,7 +2,7 @@
 
 name: CI
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
@@ -28,9 +28,9 @@ jobs:
       # install
       - name: Install texlive and minted
         run: |
-          sudo apt-get install texlive-full
-          sudo apt-get install texlive-latex-extra
-          sudo apt-get install python3-pygments
+          sudo apt-get update
+          sudo apt-get upgrade
+          sudo apt-get install texlive-full texlive-latex-extra python3-pygments
 
       # compile Finnish version
       - name: compile to generate a pdf
@@ -40,12 +40,12 @@ jobs:
           makeglossaries main
           xelatex -shell-escape -8bit main
           xelatex -shell-escape -8bit main
-          
+
       - name: get the pdf
         run: |
           mkdir pub
           mv main.pdf pub/main_fi.pdf
-      
+
       # compile English versions (bilingual abstract and one abstract)
       - name: compile to generate English verion of the pdf
         run: |
@@ -56,9 +56,9 @@ jobs:
           sed -i 's/^\\def\\bilingual{yes}.*/\\def\\bilingual{no}/' chapters/0info.tex
           xelatex -shell-escape -8bit main
           mv main.pdf pub/main_en.pdf
-    
+
       - name: publish pdf as proof
         uses: actions/upload-artifact@v2
-        with: 
+        with:
           name: assets-for-download
           path: pub
