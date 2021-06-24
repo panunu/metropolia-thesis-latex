@@ -1,11 +1,16 @@
 %sample content to demonstrate LaTeX command.
 \vspace{21.5pt}
-\chapter{Demonstration Content}
+\chapter{Demonstration Content}\label{demo:content}
 
-This is a chapter to demonstrate some of the \LaTeX{} ~commands that you can use to format your text.
-This should be \textbf{bold} and this \textit{italic} and finally \textbf{\textit{bolditalic}}. When one want to use an abbreviation or acronym like \gls{html} using the \textbf{\textbackslash{}gls} command in \gls{latex}, the first time, it comes with it full version and for all next uses in it short \gls{html} form. Of course, when needed, the full version is available using e.g. the \textbf{\textbackslash{}acrlong} command.
+This is a chapter to demonstrate some of the \gls{latex} commands that you can use to format your text. If you are new to it, \gls{latex} follows the \gls{wysiwym} idea similar to \gls{html} where you concentrate on the content and structure and leave the formatting and styling to the computer. You will write your content in a plain text file\footnote{which can not get corrupted and can be put under version control} and indicate the structure with commands (similar to \gls{html} tags) then compile it to generate the pdf. Check some books or tutorials such as \LaTeX{} Wikibooks\footnote{\url{https://en.wikibooks.org/wiki/LaTeX}} and try with an online editor such as Overleaf\footnote{\url{https://www.overleaf.com/}} so you do not need to install the compiler on your computer first.
 
-The defined terms like \gls{maths} use the same \textbf{\textbackslash{}gls} \gls{latex} command. The Capitalized can be obtained with \textbf{\textbackslash{}Gls}. Should be avoided; but to have all the abbreviations and terms, even the non-used ones, use the \textbf{\textbackslash{}glsaddall} command before printing the list of Abbreviations.
+\section{Text, terms and abbreviations}
+
+In \gls{latex}, the \mintinline{tex}{\textbf{bold}} command produces \textbf{bold}, \mintinline{tex}{\textit{italic}}  \textit{italic} and nesting \mintinline{tex}{\textbf{\textit{bolditalic}}} generates \textbf{\textit{bolditalic}}. If the goal is to semantically mark importance, then use \emph{emphasize} with \mintinline{tex}{\emph{emphasize}} command. That would take care of cases such as \mintinline{tex}{\textit{text in italic with \emph{important stuff} inside}} which will compile to \textit{text in italic with \emph{important stuff} inside}.
+
+When one want to use an abbreviation or acronym like \gls{html} using the \mintinline{tex}{\gls{html}} command in \gls{latex}, the first time, it comes with it full version as can be seen in first paragraph of chapter \ref{demo:content} and for all next uses in its short form. Of course, when needed, the full version is available using e.g. the \mintinline{tex}{\acrlong{someID}} command. The defined terms like \gls{maths} use the same \mintinline{tex}{\gls{math}} \gls{latex} command. The Capitalized can be obtained with \mintinline{tex}{\Gls{id}}.
+
+In this template, the abbreviations are defined in the \texttt{chapters/0abbr.tex} file with the \mintinline{tex}{\newacronym{id}{SHORT}{Long Form}} command. There can be many abbreviations and terms defined there, only the ones that are used in the text will be printed in the list of abbreviations (after table of content). And of course, it is the job of the compiler to sort them alphabetically. Should be avoided; but to have all the abbreviations and terms, even the non-used ones, use the \mintinline{tex}{\glsaddall} command before printing the list of abbreviations.
 
 \section{Section with references}
 Here is an example how to cite a bibliography entry \cite{kopka:guide} using the \textquotedblleft\textbackslash{}cite\textquotedblright ~\gls{latex} command ~\cite[section 4.2]{tobias:book}. You might also like \textquotedblleft\textbackslash{}citeauthor\textquotedblright and \textquotedblleft\textbackslash{}citedate\textquotedblright ~as demonstrated in figure \ref{fig:latex-cover} caption.  Note that a paragraph is added by forcing a new line.
