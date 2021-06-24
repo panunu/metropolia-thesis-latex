@@ -48,7 +48,7 @@
 %if compiling locally, consider options cachedir=minted,outputdir=~/.tex
 \usepackage[newfloat]{minted}
 \setminted{tabsize=2,linenos,breaklines,breaksymbolleft={\quad},baselinestretch=1}
-\setmintedinline{breaklines}
+\setmintedinline{breaklines,breakanywhere}
 \usepackage[singlelinecheck=false]{caption}
 %force the width of a table instead of column
 \usepackage{tabularx}
@@ -210,20 +210,23 @@ maxbibnames=99,%
 \RequireBibliographyStyle{numeric}
 \makeatother
 
-%TODO: video, conversation/interview
 % set right format
+\renewcommand*{\multicitedelim}{;\space}
 \renewcommand*{\multinamedelim}{;\space}
 \renewcommand*{\finalnamedelim}{~\&\space}
 \DeclareFieldFormat{biblabeldate}{#1}
-\DeclareDelimFormat[bib]{nameyeardelim}{.\space}
+\DeclareDelimFormat[bib]{nameyeardelim}{\addperiod\space}
 %\DeclareNameAlias{sortname}{last-first} % deprecated
 \DeclareNameAlias{default}{family-given}
 \DeclareFieldFormat{labelnumberwidth}{#1} % remove () from label number
 \DeclareFieldFormat{title}{#1} % normal font for title
 \DeclareFieldFormat{citetitle}{#1}
 \DeclareFieldFormat{journaltitle}{#1} % remove underline
-\DeclareFieldFormat*{url}{\textless\url{#1}\textgreater .} % you can modify how to url looks here
-\DeclareFieldFormat[online]{url}{\space\IfLanguageName{finnish}{Verkkoaineisto.}{Online.}\space\textless\url{#1}\textgreater .} % you can modify how to url looks here
+\DeclareFieldFormat*{url}{%
+\ifentrytype{online}{\IfLanguageName{finnish}{Verkkoaineisto}{Online}\addperiod\space}{}%
+\ifentrytype{video}{Video\addperiod\space}{}%
+\textless\url{#1}\textgreater\addperiod
+} % you can modify how to url looks here
 %TODO: remove leading 0 for day and month for Finnish dates
 \DeclareFieldFormat{urldate}{\space\bibstring{urlseen}\space#1} % remove () from date
 %try set translation to biblio
