@@ -263,6 +263,15 @@ maxbibnames=99,%
     {\usebibmacro{postnote}}
 }
 
+% when citing multiple sentences/entire paragraph, add a dot inside the brackets
+\DeclareCiteCommand{\citep}[\mkbibbrackets]
+  {\usebibmacro{cite:init}%
+    \usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+     \usebibmacro{cite:comp}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}\addperiod}
+
 \addbibresource{biblio.bib}% for biblatex you need out \printbibliography too
 
 %count the appendices (since the chapter counter is reset after \appendix).
