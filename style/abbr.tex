@@ -13,15 +13,15 @@
 		{\thesection}{.5cm}{}
 		\renewcommand*{\glossarypreamble}{\vspace{.7\baselineskip}}
 		%Adapt labelwidth (sorry for the ugly hack)
-		\setlist[description]{leftmargin=!, labelwidth=4em}
+		\setlist[description]{leftmargin=!, labelwidth=4em, before=\doublespacing}
 		\IfLanguageName {finnish} {
-			\printacronyms[title=Lyhenteet]
+			\printacronyms[title=Lyhenteet, nogroupskip]
 			}{
-			\printacronyms[title=List of Abbreviations]
+			\printacronyms[title=List of Abbreviations, nogroupskip]
 		}
-		\setlist[description]{leftmargin=!, labelwidth=7em}
+		\setlist[description]{leftmargin=!, labelwidth=7em, before=\doublespacing}
 		\vspace{1cm}
-		\printglossary
+		\printglossary[nogroupskip]
 		\setlist[description]{style=standard} % reset settings back to default
 	}
 	\addtocontents{toc}{\cftpagenumberson{chapter}}
